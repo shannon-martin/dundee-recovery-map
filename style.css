@@ -263,4 +263,52 @@ body{
   padding: 6px 8px !important;
 }
 
+/* LEGEND */
+.legend {
+  position: absolute;
+  bottom: 28px;
+  right: 10px;
+  z-index: 1000;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.72rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  min-width: 140px;
+}
+
+.legend-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color:var(--darkgrey);
+  font-size: 0.75rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  color:var(--darkgrey);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+footer{
+	padding: 4em 0.6em;
+	padding-top: 0.6em;
+	background:var(--darkpurple);
+	color:var(--white);
+	font-family: 'Raleway-Regular',Helvetica,Arial,Lucida,sans-serif;
+	font-size: 0.6rem;
+    text-transform: uppercase;
+}
+
 /*© 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.*/
