@@ -136,3 +136,131 @@ body{
 .cat-btn.active {
   opacity: 1;
 }
+
+/* POPUPS */
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  padding: 0; /* remove default padding */
+  overflow: hidden; /* clips coloured header to the rounded corners */
+  border: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* inner content area */
+.leaflet-popup-content {
+  margin: 0; /* remove Leaflet default margin */
+  min-width: 220px;
+  max-width: 280px;
+}
+
+/* coloured header bar at top of each popup */
+.popup-header {
+  padding: 10px 14px 8px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* white body area below coloured header */
+.popup-body {
+  padding: 8px 14px 12px;
+  background: #fff;
+}
+
+/* small cat label */
+.popup-cat {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+
+/* service desc */
+.popup-desc {
+  font-size: 0.8rem;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* address / phone / web lines */
+.popup-info {
+  font-size: 0.78rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+.popup-info span {
+  font-weight: 600;
+  color: #1a2e4a;
+}
+
+/* ppening hours section */
+.popup-hours {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #eee;
+}
+
+.popup-hours-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+/* each Mon/Tue/Wed...row in the hours table */
+.day-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.73rem;
+  padding: 1px 0;
+}
+
+/* highlighted green row for today */
+.day-row.today-row {
+  font-weight: 700;
+  color: #1d7874;
+  background: #e0f4f2;
+  margin: 0 -4px; /* bleed slightly past padding */
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* greyed out rows for days when service is closed */
+.day-row.closed {
+  color: #bbb;
+}
+
+/* "Open today" / "Closed today" badges */
+.open-chip {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.open-chip.open {
+  background: #e0f4f2;
+  color: #0f6e56;
+}
+
+.open-chip.closed {
+  background: #fce8e8;
+  color: #a32d2d;
+}
+
+/* style default Leaflet close (X) button white so it's
+   visible against the coloured popup header */
+.leaflet-popup-close-button {
+  color: #fff !important;
+  font-size: 1rem !important;
+  padding: 6px 8px !important;
+}
+
+/*© 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.*/
