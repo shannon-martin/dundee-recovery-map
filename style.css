@@ -47,8 +47,92 @@ header p{
   flex: 1;
 }
 
+/* BODY */
+body{
+	font-family: 'Poppins',Helvetica,Arial,Lucida,sans-serif;
+}
+
 /* MAP */
 #map {
   flex: 1;
   min-height: 40rem;
+}
+
+/* BUTTONS */
+.controls {
+  background: #fff;
+  border-bottom: 1px solid #dde3ea;
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.day-btns {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.day-btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1.5px solid #c5cbd2;
+  background:var(--white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.15s;
+}
+
+.day-btn:hover {
+  border-color:var(--purple);
+  color:var(--purple);
+}
+
+.day-btn.active {
+  background:var(--darkpurple);
+  border-color:var(--darkpurple);
+  color:var(--white);
+}
+
+.day-btn.today-btn {
+  border-color:var(--darkpurple);
+  color:var(--darkpurple);
+}
+
+.day-btn.today-btn.active {
+  background:var(--darkpurple);
+  border-color:var(--darkpurple);
+  color:var(--white);
+}
+
+.divider {
+  width: 1px;
+  background: #dde3ea;
+  height: 28px;
+  align-self: center;
+}
+
+.cat-btns {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.cat-btn {
+  padding: 4px 9px;
+  border-radius: 12px;
+  border: 1.5px solid #c5cbd2;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  opacity: 0.6;
+}
+
+.cat-btn.active {
+  opacity: 1;
 }
