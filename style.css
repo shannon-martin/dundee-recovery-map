@@ -1,3 +1,5 @@
+ /*TODO: SIDEBAR, COST/AGE GROUP BUTTONS*/
+ 
  :root {
     --purple: #5c4d7d;
 	--darkpurple: #5c4d7d;
@@ -262,6 +264,7 @@ body{
   font-size: 1rem !important;
   padding: 6px 8px !important;
 }
+
 
 /* LEGEND */
 .legend {

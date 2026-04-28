@@ -1,45 +1,3 @@
-/* LOAD/TRANSFORM SEVICES */
-let SERVICES = [];
-
-function transformServices(data) {
-  return data.map(s => {
-    // build opening-hours obj
-    const hours = {
-      Mon: null, Tue: null, Wed: null,
-      Thu: null, Fri: null, Sat: null, Sun: null
-    };
-
-    const dayIdx = DAY_FULL.indexOf(s["Day"]);
-    if (dayIdx !== -1) {
-      const abbr = DAYS[dayIdx];
-      hours[abbr] = `${s["Start Time"]}-${s["End Time"]}`;
-    }
-
-    return {
-      name: `${s["Organisation "] || ""} - ${s["Session Name"] || ""}`.trim(),
-      cat: s["Category"] || "Other",
-      lat: s.lat,
-      lng: s.lng,
-      address: s["Full Address"] || s.Address || "",
-      phone: s.Phone || "",
-      website: s.Website || "",
-      desc: s["Description on Recovery Map"] || "",
-      hours
-    };
-  });
-}
-
-fetch("./data/DundeeRecoveryServices.json")
-  .then(res => res.json())
-  .then(rawData => {
-    SERVICES = transformServices(rawData);
-    renderMapMarkers();
-  })
-  .catch(err => {
-    console.error("Failed to load services:", err);
-  });
-
-
 /* SERVICE CATS */
 /* defines the service categories, their pin colours,
    and their light background colours (used on buttons).
@@ -67,10 +25,173 @@ const JS_TO_IDX = [6, 0, 1, 2, 3, 4, 5];
 
 const todayIdx = JS_TO_IDX[new Date().getDay()];
 const todayAbbr = DAYS[todayIdx];
+const ALL_AGE_GROUPS = ["Adults","Women","Older Adults","Men","All Ages","Young People","Children","Unknown"];
+
 let activeDay = todayAbbr;
 let activeCats = new Set(Object.keys(CATEGORIES));
+let activeCosts  = new Set(["Free","Paid","Unknown"]);
+let activeAges   = new Set(ALL_AGE_GROUPS);
 let searchTerm = "";
-let markers = [];
+
+let mapServices = []; // grouped, has lat/lng to map markers
+let virtualServices = []; // no lat/lng to sidebar list
+let markers = []; // live Leaflet marker objects
+
+/* FILTER HELPERS */
+function servicePassesFilters(s) {
+  /* returns true if the service should be visible given current filter state. */
+
+  // Category: at least one of the service's cats must be active
+  const matchCat = s.cats
+    ? s.cats.some(c => activeCats.has(c))
+    : activeCats.has(s.cat);
+
+  // Cost: at least one of the service's cost types must be active
+  const matchCost = s.costTypes
+    ? s.costTypes.some(c => activeCosts.has(c))
+    : true;
+
+  // Age: at least one of the service's age groups must be active
+  const matchAge = s.ageGroups
+    ? s.ageGroups.some(a => activeAges.has(a))
+    : true;
+
+  // Search: name, cat, or desc contains the search term
+  const matchSearch = !searchTerm
+    || s.name.toLowerCase().includes(searchTerm)
+    || s.cat.toLowerCase().includes(searchTerm)
+    || (s.desc || "").toLowerCase().includes(searchTerm);
+
+  return matchCat && matchCost && matchAge && matchSearch;
+}
+
+
+/* TRANSFORM DATA */
+function resolveDesc(row) {
+  /* Return the best available description for a service row.
+     If "Description on Recovery Map" is missing, blank, or
+     literally "Not on Recovery Map", fall back to Additional Notes.
+     "Not on Recovery Map" simply means the service was not in the
+     original printed map — it does NOT mean exclude it. */
+  const primary = (row["Description on Recovery Map"] || "").trim();
+  if (!primary || primary.toLowerCase() === "not on recovery map") {
+    return (row["Additional Notes"] || "").trim();
+  }
+  return primary;
+}
+
+
+function buildHoursForGroup(rows) {
+  /* Given all session rows for one location, produce a hours object
+     { Mon: "09:00-12:00 / 14:00-16:00", Tue: null, … }
+     Multiple sessions on the same day are joined with " / ".   */
+  const hours = { Mon:null, Tue:null, Wed:null, Thu:null, Fri:null, Sat:null, Sun:null };
+  rows.forEach(row => {
+    const dayFull = (row["Day"] || "").trim();
+    const idx     = DAY_FULL.indexOf(dayFull);
+    if (idx === -1) return;
+    const abbr    = DAYS[idx];
+    const range   = (row["Time Range"] || "").trim() || null;
+    if (!range) return;
+    hours[abbr] = hours[abbr] ? hours[abbr] + " / " + range : range;
+  });
+  return hours;
+}
+
+function buildSessionsForGroup(rows) {
+  /* Collect distinct session names and their per-day detail so the
+     popup can show a per-session breakdown rather than just merged hours.
+     Returns an array of { name, cat, ageGroup, cost, hours } objects. */
+  // Deduplicate by Session Name (same session can appear on multiple days)
+  const byName = {};
+  rows.forEach(row => {
+    const sName = (row["Session Name"] || "").trim() || "Session";
+    if (!byName[sName]) {
+      byName[sName] = {
+        name: sName,
+        cat: row["Category"] || "Other",
+        ageGroup: row["Age Group"],
+        cost: row["Cost Type"],
+        hours: { Mon:null,Tue:null,Wed:null,Thu:null,Fri:null,Sat:null,Sun:null },
+      };
+    }
+    const dayFull = (row["Day"] || "").trim();
+    const idx = DAY_FULL.indexOf(dayFull);
+    if (idx === -1) return;
+    const abbr = DAYS[idx];
+    const range = (row["Time Range"] || "").trim() || null;
+    if (!range) return;
+    byName[sName].hours[abbr] = byName[sName].hours[abbr]
+      ? byName[sName].hours[abbr] + " / " + range
+      : range;
+  });
+  return Object.values(byName);
+}
+
+function transformServices(rawData) {
+  /* Main grouping function.
+     Groups by the key: Organisation + Full Address.
+     Rows with no lat/lng go to virtualServices. */
+
+  const grouped = {};   // key → array of raw rows
+
+  rawData.forEach(row => {
+    const org  = (row["Organisation"] || row["Organisation "] || "").trim();
+    const addr = (row["Full Address"] || row["Address"] || "").trim();
+    const key  = `${org}|||${addr}`;
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(row);
+  });
+
+  mapServices     = [];
+  virtualServices = [];
+
+  Object.entries(grouped).forEach(([key, rows]) => {
+    const first = rows[0];
+    const org   = (first["Organisation"] || first["Organisation "] || "").trim();
+    const lat   = parseFloat(first.lat);
+    const lng   = parseFloat(first.lng);
+    const hasCoords = !isNaN(lat) && !isNaN(lng) && (lat !== 0 || lng !== 0);
+
+    // Gather all distinct categories across sessions at this location
+    const cats = [...new Set(rows.map(r => r["Category"] || "Other"))];
+    // Primary category: most common across sessions
+    const catCounts = {};
+    rows.forEach(r => { const c = r["Category"] || "Other"; catCounts[c] = (catCounts[c]||0)+1; });
+    const primaryCat = Object.entries(catCounts).sort((a,b)=>b[1]-a[1])[0][0];
+
+    // collect all distinct age groups and cost types across sessions
+    const ageGroups  = [...new Set(rows.map(r => r["Age Group"]))];
+    const costTypes  = [...new Set(rows.map(r => r["Cost Type"]))];
+
+    const entry = {
+      org,
+      name: org,
+      cat: primaryCat,
+      cats,
+      ageGroups,
+      costTypes,
+      lat, lng,
+      address: first["Full Address"] || first["Address"] || "",
+      phone: first["Phone"] || "",
+      email: first["Email"] || "",
+      website: first["Website"] || "",
+      desc: resolveDesc(first),
+      sessions: buildSessionsForGroup(rows), // per-session breakdown
+      hours: buildHoursForGroup(rows), // merged hours for open/closed logic
+      scope: (first["Council Area"] || "").trim(), // UK / Angus / Dundee City etc.
+    };
+
+    if (hasCoords) {
+      mapServices.push(entry);
+    } else {
+      virtualServices.push(entry);
+    }
+  });
+
+  console.log(`Grouped: ${mapServices.length} map services, ${virtualServices.length} virtual/sidebar services`);
+}
+
 
 
 /* MAP */
@@ -91,6 +212,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19
 }).addTo(map);
 
+/* ICON */
 /* replaces Leaflet default blue marker icon, using L.divIcon(), which allows providing any HTML
    (including inline SVG) as the pin visual.*/
 function makeIcon(cat, isOpen) {
@@ -163,64 +285,41 @@ function makePopup(s) {
 }
 
 /* MARKERS */
-/* removes all existing pins from the map and redraws only the services that match
-   the current activeDay + activeCats + searchTerm filters */
+/* removes all existing pins from the map and redraws only the services that match current filters */
 function renderMapMarkers() {
   // remove all existing markers from the map
   markers.forEach(m => map.removeLayer(m));
   markers = []; // reset the markers array to empty
 
-  let shown = 0;
-  let openToday = 0;
+  let shown = 0, openToday = 0;
 
-  SERVICES.forEach(s => {
-    // check if this service passes category and search filters
-    const matchCat = activeCats.has(s.cat); // checks if this service cat in active cats
-    const matchSearch = !searchTerm // checks name, category, and description for search term
-      || s.name.toLowerCase().includes(searchTerm)
-      || s.cat.toLowerCase().includes(searchTerm)
-      || s.desc.toLowerCase().includes(searchTerm);
+  mapServices.forEach(s => {
+	// check if this service passes category and search filters
+    if (!servicePassesFilters(s)) return;
 
-    // skip services that fail category or search filter
-    if (!matchCat || !matchSearch) return;
-
-    // is this service open on the currently viewed day?
     const isOpen = !!s.hours[activeDay];
+    const icon   = makeIcon(s.cat, isOpen);
 
-    // create the marker with custom coloured pin
-    const icon = makeIcon(s.cat, isOpen);
-    const m = L.marker([s.lat, s.lng], {
-        icon,
-        opacity: isOpen ? 1 : 0.45 // dim closed services
-      })
-      .bindPopup(makePopup(s), { maxWidth: 290 }) // attaches a popup to the marker
-      .addTo(map); //places the marker on the map and makes it interactive
+    const m = L.marker([s.lat, s.lng], { icon, opacity: isOpen ? 1 : 0.45 })
+      .bindPopup(makePopup(s), { maxWidth:310 })
+      .addTo(map);
 
     markers.push(m);
     shown++;
-
-    // count how many are open on actual today (not activeDay)
     if (s.hours[todayAbbr]) openToday++;
   });
 
-  // update the stats bar counts
+  // Stats bar
   document.getElementById("count").textContent = shown;
   const openLabel = document.getElementById("open-count-label");
-
   if (activeDay === todayAbbr) {
-    // user is viewing today, then show live "open right now" count
-    openLabel.innerHTML =
-      `<span style="color:#0f6e56;font-weight:700">${openToday} open right now</span>`;
+    openLabel.innerHTML = `<span style="color:#0f6e56;font-weight:700">${openToday} open right now</span>`;
   } else {
-    // user is browsing another day, then count open on that day
-    const openOnDay = SERVICES.filter(s =>
-      activeCats.has(s.cat) &&
-      (!searchTerm || s.name.toLowerCase().includes(searchTerm) || s.cat.toLowerCase().includes(searchTerm)) &&
-      s.hours[activeDay]
-    ).length;
-    openLabel.innerHTML =
-      `<span style="color:#555">${openOnDay} open on ${DAY_FULL[DAYS.indexOf(activeDay)]}</span>`;
+    const openOnDay = mapServices.filter(s => servicePassesFilters(s) && s.hours[activeDay]).length;
+    openLabel.innerHTML = `<span style="color:#555">${openOnDay} open on ${DAY_FULL[DAYS.indexOf(activeDay)]}</span>`;
   }
+
+  renderSidebar();
 }
 
 /* MAP LEGEND */
@@ -239,7 +338,53 @@ legend.innerHTML =
    </div>`;
   
 
+/* SIDEBAR */
+function makeSidebarCard(s) {
+  const c = CATEGORIES[s.cat] || { color:"#888", light:"#eee" };
+  const isOpen = !!s.hours[activeDay];
+  const chip = isOpen
+    ? `<span class="open-chip open">Open ${activeDay}</span>`
+    : `<span class="open-chip closed">Closed ${activeDay}</span>`;
+  const scopeBadge = s.scope
+    ? `<span class="scope-badge">${s.scope}</span>`
+    : "";
+
+  const hoursForDay = s.hours[activeDay] || "Closed";
+
+  return `
+    <div class="sidebar-card">
+      <div class="sidebar-card-header" style="border-left:4px solid ${c.color}">
+        <div>
+          <div class="sidebar-card-name">${s.name} ${chip}</div>
+          <div class="sidebar-card-cat" style="color:${c.color}">${s.cat} ${scopeBadge}</div>
+        </div>
+      </div>
+      <div class="sidebar-card-body">
+        <div class="sidebar-card-desc">${s.desc}</div>
+        ${s.phone ? `<div class="sidebar-card-info"><span>Phone:</span> ${s.phone}</div>` : ""}
+        ${s.website ? `<div class="sidebar-card-info"><span>Web:</span> <a href="${s.website.startsWith("http")?s.website:"https://"+s.website}" target="_blank">${s.website}</a></div>` : ""}
+        <div class="sidebar-card-info"><span>${activeDay}:</span> ${hoursForDay}</div>
+      </div>
+    </div>`;
+}
+
+function renderSidebar() {
+  const panel   = document.getElementById("sidebar-list");
+  const counter = document.getElementById("sidebar-count");
+  if (!panel) return;
+
+  const visible = virtualServices.filter(servicePassesFilters);
+  counter.textContent = visible.length;
+
+  if (visible.length === 0) {
+    panel.innerHTML = `<p class="sidebar-empty">No matching services for current filters.</p>`;
+    return;
+  }
+  panel.innerHTML = visible.map(makeSidebarCard).join("");
+}
+
 /* BUTTONS */
+/* DAYS */
 const dayContainer = document.getElementById("day-btns");
 
 DAYS.forEach((d, i) => {
@@ -263,7 +408,7 @@ DAYS.forEach((d, i) => {
 
 // set today badge text in the header
 document.getElementById("today-label").textContent = `Today: ${DAY_FULL[todayIdx]}`;
-
+/* CATS */
 const catContainer = document.getElementById("cat-btns");
 
 Object.entries(CATEGORIES).forEach(([name, c]) => {
@@ -312,6 +457,17 @@ document.getElementById("search").addEventListener("input", e => {
   renderMapMarkers();
 });
 
-renderMapMarkers();
+
+/* LOAD */
+fetch("./data/DundeeRecoveryServices.json")
+  .then(res => res.json())
+  .then(rawData => {
+    transformServices(rawData);
+    renderMapMarkers();
+  })
+  .catch(err => {
+    console.error("Failed to load services:", err);
+  });
+
 
 /*© 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.*/
