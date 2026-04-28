@@ -340,6 +340,7 @@ def save_clean_csv(df, filepath):
     logging.info("Review this file and check missing coordinates.")
 
 def save_json(df: pd.DataFrame, filepath: Path):
+    df = df.astype(object)
     df = df.where(pd.notna(df), None)
     records = df.to_dict(orient="records")
     with open(filepath, "w", encoding="utf-8") as f:
