@@ -325,7 +325,7 @@ def geocode_all(df):
     missing = df["lat"].isna().sum()
     if missing:
         logging.warning(f"WARNING: {missing} rows have no coordinates.")
-        logging.info("Edit services_clean.csv and add lat/lng manually for")
+        logging.info(f"Edit {OUTPUT_CSV} and add lat/lng manually for")
         for addr in df[df["lat"].isna()]["Address"].unique():
             logging.info(f" - {addr}")
 
