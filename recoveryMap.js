@@ -239,25 +239,80 @@ function makeIcon(cat, isOpen) {
 }
 
 /* POPUPS */
-/* builds the HTML string displayed inside a popup
-   when a user clicks a pin. */
-function makePopup(s) {
-  const c = CATEGORIES[s.cat] || { color: "#888", light: "#eee" };
-  const isOpenNow = s.hours[todayAbbr];
-
-  // "Open today" or "Closed today" badge
-  const chip = isOpenNow
-    ? `<span class="open-chip open">Open today</span>`
-    : `<span class="open-chip closed">Closed today</span>`;
-
-  // full week hours grid
-  const hoursHTML = Object.entries(s.hours).map(([d, h], i) => {
+function makeHoursGrid(hours) {
+  return Object.entries(hours).map(([abbr, h], i) => {
     const isToday = DAYS[i] === todayAbbr;
-    const cls = isToday ? "day-row today-row" : (h ? "day-row" : "day-row closed");
+    const isActive = DAYS[i] === activeDay;
+    let cls = "day-row";
+    if (isToday)  cls += " today-row";
+    if (!h)       cls += " closed";
+    if (isActive && !isToday) cls += " active-day-row";
     return `<div class="${cls}">
       <span>${DAY_FULL[i]}</span>
       <span>${h || "Closed"}</span>
     </div>`;
+  }).join("");
+}
+/* builds the HTML string displayed inside a popup
+   when a user clicks a pin. */
+function makePopup(s) {
+  const c = CATEGORIES[s.cat] || { color:"#888" };
+  const isOpenNow = !!s.hours[todayAbbr];
+  const chip = isOpenNow
+    ? `<span class="open-chip open">Open today</span>`
+    : `<span class="open-chip closed">Closed today</span>`;
+
+  // IF only one session, show simple flat layout
+  if (s.sessions.length === 1) {
+    const sess = s.sessions[0];
+    const sc = CATEGORIES[sess.cat] || c;
+    return `
+      <div class="popup-header" style="background:${sc.color}">
+        ${s.name} ${chip}
+      </div>
+      <div class="popup-body">
+        <div class="popup-cat" style="color:${sc.color}">${sess.cat}</div>
+        <div class="popup-desc">${s.desc}</div>
+        <div class="popup-info">
+          <div><span>Address:</span> ${s.address}</div>
+          ${s.phone ? `<div><span>Phone:</span> ${s.phone}</div>` : ""}
+          ${s.website ? `<div><span>Web:</span> <a href="${s.website.startsWith("http")?s.website:"https://"+s.website}" target="_blank">${s.website}</a></div>` : ""}
+          <div><span>Age:</span> ${sess.ageGroup}</div>
+          <div><span>Cost:</span> ${sess.cost}</div>
+        </div>
+        <div class="popup-hours">
+          <div class="popup-hours-title">Opening hours</div>
+          ${makeHoursGrid(sess.hours)}
+        </div>
+      </div>`;
+  }
+
+  // multiple sessions displys accordion layout.
+  // each session is a <details> element (expand/collapse).
+  const sessionsHTML = s.sessions.map((sess, i) => {
+    const sc = CATEGORIES[sess.cat] || c;
+    const sessOpen = !!sess.hours[todayAbbr];
+    const dot = `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${sc.color};margin-right:5px;flex-shrink:0"></span>`;
+    const badge = sessOpen
+      ? `<span class="open-chip open" style="font-size:0.6rem;padding:1px 5px">Open</span>`
+      : `<span class="open-chip closed" style="font-size:0.6rem;padding:1px 5px">Closed</span>`;
+    return `
+      <details class="session-details" ${i===0?"open":""}>
+        <summary class="session-summary">
+          ${dot}${sess.name} ${badge}
+        </summary>
+        <div class="session-body">
+          <div class="popup-cat" style="color:${sc.color};margin-bottom:4px">${sess.cat}</div>
+          <div class="popup-info" style="margin-bottom:4px">
+            <div><span>Age:</span> ${sess.ageGroup}</div>
+            <div><span>Cost:</span> ${sess.cost}</div>
+          </div>
+          <div class="popup-hours">
+            <div class="popup-hours-title">Hours</div>
+            ${makeHoursGrid(sess.hours)}
+          </div>
+        </div>
+      </details>`;
   }).join("");
 
   return `
@@ -265,24 +320,13 @@ function makePopup(s) {
       ${s.name} ${chip}
     </div>
     <div class="popup-body">
-      <div class="popup-cat" style="color:${c.color}">${s.cat}</div>
       <div class="popup-desc">${s.desc}</div>
-      <div class="popup-info">
+      <div class="popup-info" style="margin-bottom:8px">
         <div><span>Address:</span> ${s.address}</div>
-        ${s.phone ? `<div><span>Phone:</span> ${s.phone}</div>` : ""}				
-		${s.website ? `
-		  <div>
-			<span>Web:</span>
-			<a href="${s.website.startsWith("http") ? s.website : "https://" + s.website}" target="_blank">
-			  ${s.website}
-			</a>
-		  </div>
-		` : ""}
+        ${s.phone   ? `<div><span>Phone:</span> ${s.phone}</div>` : ""}
+        ${s.website ? `<div><span>Web:</span> <a href="${s.website.startsWith("http")?s.website:"https://"+s.website}" target="_blank">${s.website}</a></div>` : ""}
       </div>
-      <div class="popup-hours">
-        <div class="popup-hours-title">Opening hours</div>
-        ${hoursHTML}
-      </div>
+      <div class="session-list">${sessionsHTML}</div>
     </div>`;
 }
 
