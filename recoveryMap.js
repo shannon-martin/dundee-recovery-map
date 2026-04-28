@@ -347,7 +347,11 @@ function renderMapMarkers() {
     const icon   = makeIcon(s.cat, isOpen);
 
     const m = L.marker([s.lat, s.lng], { icon, opacity: isOpen ? 1 : 0.45 })
-      .bindPopup(makePopup(s), { maxWidth:310 })
+      .bindPopup(makePopup(s), { 
+        maxWidth:310, 
+        autoPanPaddingTopLeft: [20, 20], 
+        autoPanPaddingBottomRight: [20, 100], // extra space for popup height
+      })
       .addTo(map);
 
     markers.push(m);
@@ -538,7 +542,7 @@ const GRP_OPTS = [
   { value:"Older Adults", label:"50+" },
   { value:"Young People", label:"Young People" },
   { value:"Children", label:"Children" },
-  { value:"Unknown", label:"Age ?" },
+  { value:"Unknown", label:"Unknown" },
 ];
 
 const grpContainer = document.getElementById("grp-btns");
