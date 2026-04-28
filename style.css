@@ -1,3 +1,52 @@
+ :root {
+    --purple: #5c4d7d;
+	--darkpurple: #5c4d7d;
+    --white: #ffffff;
+	--gold: #fbb13c;
+	--grey: #7A7A7A;
+	--darkgrey: #333333;
+  }
+
+
+/* HEADER */
+header{
+	background:var(--white);
+	color:var(--purple);
+	font-family: 'Poppins',Helvetica,Arial,Lucida,sans-serif;
+	padding:12px 16px;
+	display:flex;
+	align-items:center;
+	gap:12px;
+	flex-wrap:wrap}
+	
+header h1{
+	font-size:1.8rem;
+	font-weight:700;
+	letter-spacing:0.01em}
+	
+header p{
+	color:var(--grey);
+	font-family: 'Raleway-Regular',Helvetica,Arial,Lucida,sans-serif;
+	font-size:1rem;
+	font-variant: small-caps;
+	letter-spacing:0.01em;
+	opacity:0.75;
+	margin-top:2px}
+
+.today-badge {
+  background:var(--purple);
+  color:var(--white);
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.header-text {
+  flex: 1;
+}
+
 /* MAP */
 #map {
   flex: 1;

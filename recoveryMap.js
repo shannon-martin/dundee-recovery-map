@@ -224,7 +224,6 @@ function renderMapMarkers() {
 }
 
 /* MAP LEGEND */
-
 const legend = document.getElementById("legend");
 
 legend.innerHTML =
