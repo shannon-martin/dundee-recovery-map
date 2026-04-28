@@ -1,3 +1,5 @@
+ /*TODO: fix map panning/popups, sidebar, cost/agegroup*/
+
 /* SERVICE CATS */
 /* defines the service categories, their pin colours,
    and their light background colours (used on buttons).

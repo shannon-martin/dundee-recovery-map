@@ -1,13 +1,16 @@
  /*TODO: SIDEBAR, COST/AGE GROUP BUTTONS*/
  
- :root {
-    --purple: #5c4d7d;
-	--darkpurple: #5c4d7d;
-    --white: #ffffff;
-	--gold: #fbb13c;
-	--grey: #7A7A7A;
-	--darkgrey: #333333;
-  }
+:root {
+  --purple: #5c4d7d;
+  --darkpurple: #5c4d7d;
+  --white: #ffffff;
+  --gold: #fbb13c;
+  --grey: #7A7A7A;
+  --darkgrey: #333333;
+  --border: #dde3ea;
+  --bg: #f5f5f7;
+}
+
 
 
 /* HEADER */
@@ -54,11 +57,138 @@ body{
 	font-family: 'Poppins',Helvetica,Arial,Lucida,sans-serif;
 }
 
-/* MAP */
+/* MAIN*/
+main { display: flex; flex-direction: column; flex: 1; }
+
+/* MAP AND SIDEbAR */
+.map-and-sidebar {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+}
+
 #map {
   flex: 1;
   min-height: 40rem;
 }
+
+/*SIDEBAR*/
+.sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  background: var(--white);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.sidebar-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--darkpurple);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.sidebar-subtitle {
+  font-size: 0.72rem;
+  color: var(--grey);
+}
+
+/* Scrollable card list */
+.sidebar-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-empty {
+  font-size: 0.8rem;
+  color: var(--grey);
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Individual service card in the sidebar */
+.sidebar-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.sidebar-card-header {
+  padding: 8px 10px;
+  background: var(--bg);
+  /* border-left colour is set inline from category colour */
+}
+
+.sidebar-card-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--darkgrey);
+  margin-bottom: 2px;
+}
+
+.sidebar-card-cat {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sidebar-card-body {
+  padding: 6px 10px 8px;
+}
+
+.sidebar-card-desc {
+  font-size: 0.78rem;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.sidebar-card-info {
+  font-size: 0.75rem;
+  color: #555;
+  line-height: 1.7;
+}
+.sidebar-card-info span {
+  font-weight: 600;
+  color: var(--darkgrey);
+}
+.sidebar-card-info a {
+  color: var(--darkpurple);
+  word-break: break-all;
+}
+
+/* Scope badge (UK / Scotland / City-wide) */
+.scope-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--bg);
+  color: var(--grey);
+  border: 1px solid var(--border);
+  margin-left: 4px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 
 /* BUTTONS */
 .controls {
