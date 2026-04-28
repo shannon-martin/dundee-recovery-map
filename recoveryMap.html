@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dundee Recovery Map</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+  <header>
+  <div class="header-text">
+    <h1>Dundee Recovery Map</h1>
+    <p></p>
+  </div>
+  <div class="today-badge" id="today-label">Loading...</div>
+  </header>
+
+    <main>
+
+      <div class="controls">
+
+      <!-- Row 1: Day buttons, categories, and search bar -->
+      <div class="controls-row">
+        <div class="day-btns" id="day-btns"></div>
+        <div class="cat-btns" id="cat-btns"></div>
+        <div class="search-box">
+          <input type="text" id="search" placeholder="Search services..."/>
+        </div>
+      </div>
+
+      <!-- Row 2: Other grouping filters -->
+      <div class="controls-row filter-row">
+      </div>
+
+    </div>
+
+    <div class="stats-bar">
+      <span>Showing <strong id="count">0</strong> services</span>
+      <span id="open-count-label"></span>
+      <span style="margin-left:auto;color:#888">
+        Click a pin for details
+      </span>
+    </div>
+    <div class="map-and-sidebar">
+
+      <!-- Map -->
+      <div style="position:relative;flex:1;min-width:0">
+        <div id="map"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
+
+    </main>
+  <footer>
+  © 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.
+  </footer>
+  </body>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="recoveryMap.js"></script>
+</html>
