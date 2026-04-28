@@ -191,6 +191,8 @@ main { display: flex; flex-direction: column; flex: 1; }
 
 
 /* BUTTONS */
+.divider { width: 1px; background: var(--border); height: 24px; align-self: center; }
+
 .controls {
   background: #fff;
   border-bottom: 1px solid #dde3ea;
@@ -248,6 +250,7 @@ main { display: flex; flex-direction: column; flex: 1; }
   align-self: center;
 }
 
+/*CATS*/
 .cat-btns {
   display: flex;
   gap: 4px;
@@ -268,6 +271,26 @@ main { display: flex; flex-direction: column; flex: 1; }
 .cat-btn.active {
   opacity: 1;
 }
+
+/* COST/GRP  BTNS*/
+
+.filter-btn {
+  padding: 3px 9px;
+  border-radius: 5px;
+  border: 1.5px solid var(--border);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--white);
+  color: var(--grey);
+  transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--purple); color: var(--purple); }
+.filter-btn.active {
+  background: var(--bg);
+  opacity: 1;
+}
+
 
 /* POPUPS */
 .leaflet-popup-content-wrapper {

@@ -27,12 +27,12 @@ const JS_TO_IDX = [6, 0, 1, 2, 3, 4, 5];
 
 const todayIdx = JS_TO_IDX[new Date().getDay()];
 const todayAbbr = DAYS[todayIdx];
-const ALL_AGE_GROUPS = ["Adults","Women","Older Adults","Men","All Ages","Young People","Children","Unknown"];
+const ALL_GROUPS = ["Adults","Women","Older Adults","Men","All Ages","Young People","Children","Unknown"];
 
 let activeDay = todayAbbr;
 let activeCats = new Set(Object.keys(CATEGORIES));
 let activeCosts  = new Set(["Free","Paid","Unknown"]);
-let activeAges   = new Set(ALL_AGE_GROUPS);
+let activeGrps   = new Set(ALL_GROUPS);
 let searchTerm = "";
 
 let mapServices = []; // grouped, has lat/lng to map markers
@@ -55,7 +55,7 @@ function servicePassesFilters(s) {
 
   // Age: at least one of the service's age groups must be active
   const matchAge = s.ageGroups
-    ? s.ageGroups.some(a => activeAges.has(a))
+    ? s.ageGroups.some(a => activeGrps.has(a))
     : true;
 
   // Search: name, cat, or desc contains the search term
@@ -244,8 +244,8 @@ function makeHoursGrid(hours) {
     const isToday = DAYS[i] === todayAbbr;
     const isActive = DAYS[i] === activeDay;
     let cls = "day-row";
-    if (isToday)  cls += " today-row";
-    if (!h)       cls += " closed";
+    if (isToday) cls += " today-row";
+    if (!h) cls += " closed";
     if (isActive && !isToday) cls += " active-day-row";
     return `<div class="${cls}">
       <span>${DAY_FULL[i]}</span>
@@ -492,6 +492,81 @@ Object.entries(CATEGORIES).forEach(([name, c]) => {
 
   catContainer.appendChild(btn);
 });
+
+/* COST BTNS */
+const COST_OPTS = [
+  { value:"Free", label:"Free", color:"#1A6B3C" },
+  { value:"Paid", label:"Paid", color:"#993C1D" },
+  { value:"Unknown", label:"Unknown", color:"#888" },
+];
+
+const costContainer = document.getElementById("cost-btns");
+if (costContainer) {
+  COST_OPTS.forEach(({ value, label, color }) => {
+    const btn = document.createElement("button");
+    btn.className = "filter-btn active";
+    btn.textContent = label;
+    btn.style.borderColor = color;
+    btn.style.color = color;
+    btn.title = value === "Unknown"
+      ? "Services where cost information is not recorded"
+      : `Show ${value} services`;
+
+    btn.onclick = () => {
+      if (activeCosts.has(value)) {
+        if (activeCosts.size === 1) return;
+        activeCosts.delete(value);
+        btn.classList.remove("active");
+        btn.style.opacity = "0.45";
+      } else {
+        activeCosts.add(value);
+        btn.classList.add("active");
+        btn.style.opacity = "1";
+      }
+      renderMapMarkers();
+    };
+    costContainer.appendChild(btn);
+  });
+}
+
+/* TARGET GROUP */
+const GRP_OPTS = [
+  { value:"All Ages", label:"All Ages" },
+  { value:"Adults", label:"Adults" },
+  { value:"Women", label:"Women" },
+  { value:"Men", label:"Men" },
+  { value:"Older Adults", label:"50+" },
+  { value:"Young People", label:"Young People" },
+  { value:"Children", label:"Children" },
+  { value:"Unknown", label:"Age ?" },
+];
+
+const grpContainer = document.getElementById("grp-btns");
+if (grpContainer) {
+  GRP_OPTS.forEach(({ value, label }) => {
+    const btn = document.createElement("button");
+    btn.className   = "filter-btn active";
+    btn.textContent = label;
+    btn.title = value === "Unknown"
+      ? "Services where age group is not recorded"
+      : `Show services for ${value}`;
+
+    btn.onclick = () => {
+      if (activeGrps.has(value)) {
+        if (activeGrps.size === 1) return;
+        activeGrps.delete(value);
+        btn.classList.remove("active");
+        btn.style.opacity = "0.45";
+      } else {
+        activeGrps.add(value);
+        btn.classList.add("active");
+        btn.style.opacity = "1";
+      }
+      renderMapMarkers();
+    };
+    grpContainer.appendChild(btn);
+  });
+}
 
 /* SERACH */
 /* addEventListener("input", handler) fires on every
