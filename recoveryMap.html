@@ -32,6 +32,11 @@
 
       <!-- Row 2: Other grouping filters -->
       <div class="controls-row filter-row">
+        <span class="filter-label">Cost:</span>
+        <div class="filter-btns" id="cost-btns"></div>
+        <div class="divider"></div>
+        <span class="filter-label">Eligibility group:</span>
+        <div class="filter-btns" id="eli-btns"></div>
       </div>
 
     </div>
@@ -43,15 +48,31 @@
         Click a pin for details
       </span>
     </div>
-    <div class="map-and-sidebar">
 
-      <!-- Map -->
-      <div style="position:relative;flex:1;min-width:0">
-        <div id="map"></div>
-        <div class="legend" id="legend"></div>
-      </div>
+  <!--MAP | SIDEBAR LAYOUT-->
+  <div class="map-and-sidebar">
+
+    <!-- Map area -->
+    <div style="position:relative;flex:1;min-width:0">
+      <div id="map"></div>
+      <div class="legend" id="legend"></div>
     </div>
 
+    <!-- Sidebar: UK/Scotland/city-wide services with no pin location.-->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Remote and National Services</span>
+        <span class="sidebar-subtitle">
+          Phone lines, online support, and services without a fixed location.
+          (<strong id="sidebar-count">0</strong>)
+        </span>
+      </div>
+      <div class="sidebar-list" id="sidebar-list">
+        <p class="sidebar-empty">Loading...</p>
+      </div>
+    </aside>
+
+  </div>
     </main>
   <footer>
   © 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.
