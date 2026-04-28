@@ -1,5 +1,3 @@
- /*TODO: fix map panning/popups, sidebar, cost/agegroup*/
-
 /* SERVICE CATS */
 /* defines the service categories, their pin colours,
    and their light background colours (used on buttons).
@@ -37,9 +35,10 @@ let searchTerm = "";
 
 let mapServices = []; // grouped, has lat/lng to map markers
 let virtualServices = []; // no lat/lng to sidebar list
-let markers = []; // live Leaflet marker objects
 
-/* FILTER HELPERS */
+/*let markers = []; // live Leaflet marker objects*/
+
+/* HELPERS */
 function servicePassesFilters(s) {
   /* returns true if the service should be visible given current filter state. */
 
@@ -67,6 +66,15 @@ function servicePassesFilters(s) {
   return matchCat && matchCost && matchAge && matchSearch;
 }
 
+function resolveHours(value) {
+  if (!value) return { text: "Closed", cls: "closed" };
+  const v = value.trim().toLowerCase();
+  if (v === "unknown" || v === "hours not confirmed")
+    return { text: "Hours not confirmed", cls: "hours-unknown" };
+  if (v === "by appointment" || v === "by appt" || v === "appointment")
+    return { text: "By appointment - contact to book", cls: "hours-appt" };
+  return { text: value, cls: "" };
+}
 
 /* TRANSFORM DATA */
 function resolveDesc(row) {
@@ -88,15 +96,40 @@ function buildHoursForGroup(rows) {
      { Mon: "09:00-12:00 / 14:00-16:00", Tue: null, … }
      Multiple sessions on the same day are joined with " / ".   */
   const hours = { Mon:null, Tue:null, Wed:null, Thu:null, Fri:null, Sat:null, Sun:null };
+
   rows.forEach(row => {
     const dayFull = (row["Day"] || "").trim();
-    const idx     = DAY_FULL.indexOf(dayFull);
-    if (idx === -1) return;
-    const abbr    = DAYS[idx];
     const range   = (row["Time Range"] || "").trim() || null;
+
+    // handle Unknown/Various day, mark all days as unknown
+    // so resolveHours shows "Hours not confirmed" instead of "Closed"
+    const isUnknownDay = !dayFull
+      || dayFull.toLowerCase() === "unknown"
+      || dayFull.toLowerCase() === "various";
+
+    if (isUnknownDay) {
+      DAYS.forEach(abbr => {
+        // Only upgrade null → unknown, don't overwrite real hours
+        if (!hours[abbr]) hours[abbr] = "Unknown";
+      });
+      return;
+    }
+
+    // Handle "By Appointment" as a day value
+    if (dayFull.toLowerCase() === "by appointment") {
+      DAYS.forEach(abbr => {
+        if (!hours[abbr]) hours[abbr] = "By appointment";
+      });
+      return;
+    }
+
+    const idx = DAY_FULL.indexOf(dayFull);
+    if (idx === -1) return;
+    const abbr = DAYS[idx];
     if (!range) return;
     hours[abbr] = hours[abbr] ? hours[abbr] + " / " + range : range;
   });
+
   return hours;
 }
 
@@ -118,8 +151,27 @@ function buildSessionsForGroup(rows) {
       };
     }
     const dayFull = (row["Day"] || "").trim();
-    const idx = DAY_FULL.indexOf(dayFull);
-    if (idx === -1) return;
+    const isUnknownDay = !dayFull
+    || dayFull.toLowerCase() === "unknown"
+    || dayFull.toLowerCase() === "various";
+
+    if (isUnknownDay) {
+    DAYS.forEach(abbr => {
+        if (!byName[sName].hours[abbr]) byName[sName].hours[abbr] = "Unknown";
+    });
+    return;
+    }
+    
+    if (dayFull.toLowerCase() === "by appointment") {
+        DAYS.forEach(abbr => {
+            if (!byName[sName].hours[abbr]) byName[sName].hours[abbr] = "By appointment";
+        });
+        return;
+        }
+
+        const idx = DAY_FULL.indexOf(dayFull);
+        if (idx === -1) return;
+
     const abbr = DAYS[idx];
     const range = (row["Time Range"] || "").trim() || null;
     if (!range) return;
@@ -214,6 +266,12 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19
 }).addTo(map);
 
+let clusterGroup = L.markerClusterGroup({
+  maxClusterRadius: 40, // pixels, pins must be this close to cluster
+  disableClusteringAtZoom: 16 // at max zoom, show individual pins
+});
+map.addLayer(clusterGroup);
+
 /* ICON */
 /* replaces Leaflet default blue marker icon, using L.divIcon(), which allows providing any HTML
    (including inline SVG) as the pin visual.*/
@@ -241,15 +299,18 @@ function makeIcon(cat, isOpen) {
 /* POPUPS */
 function makeHoursGrid(hours) {
   return Object.entries(hours).map(([abbr, h], i) => {
-    const isToday = DAYS[i] === todayAbbr;
+    const isToday  = DAYS[i] === todayAbbr;
     const isActive = DAYS[i] === activeDay;
+    const resolved = resolveHours(h);
+
     let cls = "day-row";
     if (isToday) cls += " today-row";
-    if (!h) cls += " closed";
     if (isActive && !isToday) cls += " active-day-row";
+    if (resolved.cls) cls += " " + resolved.cls;
+
     return `<div class="${cls}">
       <span>${DAY_FULL[i]}</span>
-      <span>${h || "Closed"}</span>
+      <span>${resolved.text}</span>
     </div>`;
   }).join("");
 }
@@ -257,10 +318,14 @@ function makeHoursGrid(hours) {
    when a user clicks a pin. */
 function makePopup(s) {
   const c = CATEGORIES[s.cat] || { color:"#888" };
-  const isOpenNow = !!s.hours[todayAbbr];
-  const chip = isOpenNow
-    ? `<span class="open-chip open">Open today</span>`
-    : `<span class="open-chip closed">Closed today</span>`;
+  const todayHours = resolveHours(s.hours[todayAbbr]);
+  const chip = todayHours.cls === "closed"
+    ? `<span class="open-chip closed">Closed today</span>`
+    : todayHours.cls === "hours-unknown"
+    ? `<span class="open-chip unknown">Hours not confirmed</span>`
+    : todayHours.cls === "hours-appt"
+    ? `<span class="open-chip appt">By appointment</span>`
+    : `<span class="open-chip open">Open today</span>`;
 
   // IF only one session, show simple flat layout
   if (s.sessions.length === 1) {
@@ -291,11 +356,15 @@ function makePopup(s) {
   // each session is a <details> element (expand/collapse).
   const sessionsHTML = s.sessions.map((sess, i) => {
     const sc = CATEGORIES[sess.cat] || c;
-    const sessOpen = !!sess.hours[todayAbbr];
-    const dot = `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${sc.color};margin-right:5px;flex-shrink:0"></span>`;
-    const badge = sessOpen
-      ? `<span class="open-chip open" style="font-size:0.6rem;padding:1px 5px">Open</span>`
-      : `<span class="open-chip closed" style="font-size:0.6rem;padding:1px 5px">Closed</span>`;
+    const dot = `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${sc.color};margin-right:5px;flex-shrink:0"></span>`
+    const sessResolved = resolveHours(sess.hours[todayAbbr]);
+    const badge = sessResolved.cls === "closed"
+        ? `<span class="open-chip closed" style="font-size:0.6rem;padding:1px 5px">Closed</span>`
+        : sessResolved.cls === "hours-unknown"
+        ? `<span class="open-chip unknown" style="font-size:0.6rem;padding:1px 5px">Hours ?</span>`
+        : sessResolved.cls === "hours-appt"
+        ? `<span class="open-chip appt" style="font-size:0.6rem;padding:1px 5px">By appt</span>`
+        : `<span class="open-chip open" style="font-size:0.6rem;padding:1px 5px">Open</span>`;
     return `
       <details class="session-details" ${i===0?"open":""}>
         <summary class="session-summary">
@@ -334,8 +403,7 @@ function makePopup(s) {
 /* removes all existing pins from the map and redraws only the services that match current filters */
 function renderMapMarkers() {
   // remove all existing markers from the map
-  markers.forEach(m => map.removeLayer(m));
-  markers = []; // reset the markers array to empty
+  clusterGroup.clearLayers();
 
   let shown = 0, openToday = 0;
 
@@ -343,18 +411,21 @@ function renderMapMarkers() {
 	// check if this service passes category and search filters
     if (!servicePassesFilters(s)) return;
 
-    const isOpen = !!s.hours[activeDay];
-    const icon   = makeIcon(s.cat, isOpen);
+    // only definitively closed pins are faded.
+    const todayH = resolveHours(s.hours[activeDay]);
+    const isOpen = todayH.cls !== "closed";
+    const opacity = todayH.cls === "closed" ? 0.45 : 1;
+    const icon = makeIcon(s.cat, isOpen);
 
-    const m = L.marker([s.lat, s.lng], { icon, opacity: isOpen ? 1 : 0.45 })
+    const m = L.marker([s.lat, s.lng], { icon, opacity })
       .bindPopup(makePopup(s), { 
         maxWidth:310, 
         autoPanPaddingTopLeft: [20, 20], 
         autoPanPaddingBottomRight: [20, 100], // extra space for popup height
       })
-      .addTo(map);
+      /*.addTo(map);*/
 
-    markers.push(m);
+    clusterGroup.addLayer(m);
     shown++;
     if (s.hours[todayAbbr]) openToday++;
   });
@@ -374,8 +445,10 @@ function renderMapMarkers() {
 
 /* MAP LEGEND */
 const legend = document.getElementById("legend");
+const legendToggle = document.querySelector(".legend-toggle");
+const legendContent = document.querySelector(".legend-content");
 
-legend.innerHTML =
+legendContent.innerHTML =
   `<div class="legend-title">Service types</div>` +
   Object.entries(CATEGORIES).map(([n, c]) => // content is generated from the CATEGORIES object
     `<div class="legend-item">
@@ -386,6 +459,16 @@ legend.innerHTML =
   `<div style="margin-top:8px;padding-top:8px;border-top:1px solid #eee;font-size:0.68rem;color:#888">
      Faded pins = closed<br>on selected day
    </div>`;
+
+legendToggle.addEventListener("click", () => {
+  const isOpen = legendContent.style.display !== "none";
+  legendContent.style.display = isOpen ? "none" : "block";
+  legendToggle.setAttribute("aria-expanded", String(!isOpen));
+  legendToggle.textContent = isOpen ? "> Service types" : "[expand] Service types";
+});
+
+// set initial toggle label, CSS controls visibility
+legendToggle.textContent = "> Service types";
   
 
 /* SIDEBAR */
@@ -464,7 +547,7 @@ const catContainer = document.getElementById("cat-btns");
 Object.entries(CATEGORIES).forEach(([name, c]) => {
   const btn = document.createElement("button");
   btn.className = "cat-btn active";
-  btn.style.bordercolour = c.color;
+  btn.style.borderColor = c.color;
   btn.style.color = c.color;
   btn.style.background = c.light;
   btn.textContent = name;
@@ -501,7 +584,7 @@ Object.entries(CATEGORIES).forEach(([name, c]) => {
 const COST_OPTS = [
   { value:"Free", label:"Free", color:"#1A6B3C" },
   { value:"Paid", label:"Paid", color:"#993C1D" },
-  { value:"Unknown", label:"Unknown", color:"#888" },
+  /*{ value:"Unknown", label:"Unknown", color:"#888" },*/
 ];
 
 const costContainer = document.getElementById("cost-btns");
@@ -542,7 +625,7 @@ const GRP_OPTS = [
   { value:"Older Adults", label:"50+" },
   { value:"Young People", label:"Young People" },
   { value:"Children", label:"Children" },
-  { value:"Unknown", label:"Unknown" },
+  /*{ value:"Unknown", label:"Unknown" },*/
 ];
 
 const grpContainer = document.getElementById("grp-btns");

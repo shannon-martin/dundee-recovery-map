@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dundee Recovery Map</title>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
@@ -31,14 +33,24 @@
         </div>
       </div>
 
-      <!-- Row 2: Other grouping filters -->
+      <!-- Row 2: Other grouping filters 
       <div class="controls-row filter-row">
         <span class="filter-label">Cost:</span>
         <div class="filter-btns" id="cost-btns"></div>
         <div class="divider"></div>
         <span class="filter-label">Target group:</span>
         <div class="filter-btns" id="grp-btns"></div>
-      </div>
+      </div>-->
+      <details class="filter-panel">
+        <summary class="filter-panel-summary">⚙ Filters</summary>
+        <div class="controls-row filter-row">
+            <span class="filter-label">Cost:</span>
+            <div class="filter-btns" id="cost-btns"></div>
+            <div class="divider"></div>
+            <span class="filter-label">Target group:</span>
+            <div class="filter-btns" id="grp-btns"></div>
+        </div>
+      </details>
 
     </div>
 
@@ -53,11 +65,18 @@
   <!--MAP | SIDEBAR LAYOUT-->
   <div class="map-and-sidebar">
 
-    <!-- Map area -->
-    <div style="position:relative;flex:1;min-width:0">
-      <div id="map"></div>
-      <div class="legend" id="legend"></div>
+    <!-- Map area --> 
+    <div class="map-column">
+    <div id="map"></div>
+
+    <div class="legend" id="legend">
+        <button class="legend-toggle" aria-expanded="false">
+        Service types
+        </button>
+        <div class="legend-content"></div>
     </div>
+    </div>
+
 
     <!-- Sidebar: UK/Scotland/city-wide services with no pin location.-->
     <aside class="sidebar" id="sidebar">
@@ -80,5 +99,6 @@
   </footer>
   </body>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="recoveryMap.js"></script>
 </html>
