@@ -1,2 +1,7 @@
-# dundee-recovery-map
-This repository contains a personal prototype and technical implementation developed by me as part of a wider group project.  The repository is maintained separately to allow focused development and clear tracking of technical contributions. Outputs may be shared with the project team and stakeholders for non-commercial evaluation.
+# Dundee Recovery Map
+
+## Rights & Usage
+© 2026 Shannon Martin. All rights reserved.
+
+This repository contains a personal prototype developed as part of a wider group project. No licence is granted for reuse, redistribution, or commercial use of the code or derived datasets without explicit permission.  
+The prototype may be shared for non-commercial evaluation or demonstration purposes only.
