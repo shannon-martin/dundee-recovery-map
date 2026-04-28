@@ -38,7 +38,7 @@ header p{
 	opacity:0.75;
 	margin-top:2px}
 
-.today-badge {
+/*.today-badge {
   background:var(--purple);
   color:var(--white);
   font-size: 1rem;
@@ -46,7 +46,7 @@ header p{
   border-radius: 5px;
   white-space: nowrap;
   font-weight: 600;
-}
+}*/
 
 .header-text {
   flex: 1;
@@ -59,6 +59,44 @@ body{
 
 /* MAIN*/
 main { display: flex; flex-direction: column; flex: 1; }
+
+.controls {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* horizontal row inside controls */
+.controls-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* second row with Cost and Age filters */
+.filter-row {
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+/* small label before each filter group */
+.filter-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--grey);
+  white-space: nowrap;
+}
+
+/* container for Cost or Trgt Group buttons */
+.filter-btns {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
 
 /* MAP AND SIDEbAR */
 .map-and-sidebar {
@@ -467,4 +505,11 @@ footer{
     text-transform: uppercase;
 }
 
+/*RESPONSIVE*/
+@media (max-width: 768px) {
+  .map-and-sidebar { flex-direction: column; }
+  .sidebar { width: 100%; border-left: none; border-top: 1px solid var(--border); max-height: 40vh; }
+  #map { min-height: 55vw; }
+  .search-box input { width: 110px; }
+}
 /*© 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.*/

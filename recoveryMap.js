@@ -453,7 +453,7 @@ DAYS.forEach((d, i) => {
 });
 
 // set today badge text in the header
-document.getElementById("today-label").textContent = `Today: ${DAY_FULL[todayIdx]}`;
+/*document.getElementById("today-label").textContent = `Today: ${DAY_FULL[todayIdx]}`;*/
 /* CATS */
 const catContainer = document.getElementById("cat-btns");
 
