@@ -1,0 +1,169 @@
+INFO:root:Loading data from: data\ServiceMappingDundee.xlsx
+INFO:root:ServiceMappingDundee.xlsx loaded successfully: 394 rows by 22 cols.
+WARNING:root:Missing values found:
+Session Name                    46
+Postcode                        17
+Lead Contact                    18
+Phone                           43
+Email                           52
+Website                         46
+Cost Amount                    357
+Eligibility                     33
+Description on Recovery Map      2
+Additional Notes               127
+dtype: int64
+INFO:root:Rows before cleaning: 394
+INFO:root:No duplicate rows found.
+INFO:root:Whitespace stripped from 22 string columns.
+INFO:root:Title-case normalisation applied to columns: Council Area (10 changes), Session Name (112 changes), Support Type (106 changes), Delivery Type (230 changes)
+INFO:root:Normalising Start / End time columns.
+INFO:root:Exact times parsed: Start Time: 349, End Time: 340
+INFO:root:Time Range construction summary: Exact ranges: 340, Partial ranges: 9, Semantic only: 45
+INFO:root:Full Address column created.
+INFO:root:Filled missing values in optional columns: Session Name (46)., Phone (43)., Email (52)., Website (46)., Cost Amount (357)., Eligibility (33)., Postcode (17)., Additional Notes (127).
+INFO:root:After cleaning: 394 rows remain.
+INFO:root:Loaded 135 cached geocodes from disk.
+INFO:root:Geocoding addresses using Nominatim (OpenStreetMap)...
+INFO:root:Cached Change Centre, South Road, Dundee > 56.471076, -3.04798
+INFO:root:Cached Douglas Community Centre, Balmoral Avenue, Dundee > 56.478979, -2.902232
+INFO:root:Cached Ardler Complex, Turnberry Avenue, Dundee > 56.488118, -3.014678
+INFO:root:Cached Saltire Leisure Centre (Indoors), Arbroath > 56.569529, -2.580454
+INFO:root:Cached Craigie Community Sports Arena, Dundee > 56.475584, -2.918612
+INFO:root:Cached Fairfield Astro Turf (outdoor), Fairfield Communit > 56.483096, -2.921193
+INFO:root:Cached Gardyne Sports Centre, Gardyne Road, Dundee > 56.472623, -2.912217
+INFO:root:Cached Change Centre Dundee, South Rd, Dundee > 56.471076, -3.04798
+INFO:root:Cached Douglas Sports Centre, Baldovie Terrace, Douglas,  > 56.477505, -2.892824
+INFO:root:Cached 134 Happyhillock Road, Dundee > 56.482483, -2.927297
+INFO:root:Cached Harp Ground, Beechwood Park, Lundie Avenue, Dundee > 56.477184, -3.002069
+INFO:root:Cached Meadowside St Paul's Church, 118 Nethergate, Dunde > 56.458319, -2.973039
+INFO:root:Cached Kigsgait Kirk, 2 King Street, Dundee > 56.465468, -2.965246
+INFO:root:Cached Enterprise House, 1st Floor, 45 North Lindsay Stre > 56.460881, -2.975658
+INFO:root:Cached 216-222 Hilltown, Dundee > 56.469442, -2.975066
+INFO:root:Cached Unit 20A, Level 3, Wellgate Shopping Centre, Dunde > 56.46434, -2.969269
+INFO:root:Cached The Centre @SWR, 4 South Ward Road, Dundee > 56.461088, -2.974508
+INFO:root:Cached 9 Tay Square, Dundee > 56.457927, -2.97613
+INFO:root:Cached The Old Bowling Green, 16 Dudhope Terrace, Dundee > 56.466268, -2.983878
+INFO:root:Cached Duntrune Community Garden, Dawson Park, Caenlochan > 56.473963, -2.893406
+INFO:root:Cached Dundee Volunteer and Voluntary Action, 10 Constitu > 56.462299, -2.97493
+INFO:root:Cached 10 Constitution Road, Dundee > 56.462403, -2.97474
+INFO:root:Cached Consitution House, 55 Constitution Road,Dundee > 56.463942, -2.97591
+INFO:root:Cached Wallacetown Health Centre, Lyon Street, Dundee > 56.468227, -2.959603
+INFO:root:Cached Women's Hub, 2 Dudhope Street, Dundee > 56.464971, -2.975326
+INFO:root:Cached 118 Nethergate Meadowside St Paul's Church (side e > 56.458385, -2.972881
+INFO:root:Cached The Wishart Centre, 50 Constable Road, Dundee > 56.465578, -2.962432
+INFO:root:Cached Angus Housing Association, Torwood Place, Ormingto > 56.492596, -2.930175
+INFO:root:Cached Outreach in the community in Dundee > 55.917198, -4.367794
+INFO:root:Cached Court Street, Stobswell, Dundee (at the lower half > 56.474667, -2.963078
+INFO:root:Cached Farmfoods car park, 3 Flights Lane, Dundee > 56.47146, -3.01038
+INFO:root:Cached The Roundhouse, Lothian Crescent. Dundee > 56.489503, -2.924921
+INFO:root:Cached Boots, 94 Albert Street, Dundee > 56.470132, -2.95791
+INFO:root:Cached The Roundhouse, Lothian Crescent, Whitfield, Dunde > 56.489503, -2.924921
+INFO:root:Cached Hillcrest Futures, 4 South Ward Road, Dundee > 56.461088, -2.974508
+INFO:root:Cached South East Pavillion, Baxter Park, Dundee > 56.474188, -2.950377
+INFO:root:Cached Unknown > 55.957517, -3.207089
+INFO:root:Cached The Friary, Tullideph Road, Dundee > 56.465868, -2.998954
+INFO:root:Cached The Friary, City Church, Tullideph Road, Dundee > 56.465978, -2.997687
+INFO:root:Cached The Windmill Christian Centre, Millgate Loan, Arbr > 56.554694, -2.591509
+INFO:root:Cached Dundee Women's Hub, 2 Dudhope Street, Dundee > 56.464971, -2.975326
+INFO:root:Cached Lochee Community Hub, 118 High Street, Lochee, Dun > 56.472339, -3.009982
+INFO:root:Cached Dundee & Angus Foodbank, 116 Albert Street, Dundee > 56.47092, -2.95742
+INFO:root:Cached Swan House, 2 Explorer Road, Dundee > 56.466311, -3.059553
+INFO:root:Cached c/o One Parent Families Scotland, 20 Grampian Gard > 56.494119, -2.937662
+INFO:root:Cached 103 High Street, Lochee, Dundee > 56.472131, -3.00958
+INFO:root:Cached 181 Blackness Road, Dundee > 56.460138, -2.99193
+INFO:root:Cached 79 Macalpine Road, Dundee > 56.487384, -3.006416
+INFO:root:Cached 71 Lothian Crescent, Dundee > 56.489789, -2.916208
+INFO:root:Cached 94 Albert Street, Dundee > 56.470132, -2.95791
+INFO:root:Cached 95 Albert Street, Dundee > 56.469611, -2.957554
+INFO:root:Cached 96 Albert Street, Dundee > 56.470225, -2.957886
+INFO:root:Cached 97 Albert Street, Dundee > 56.469611, -2.957554
+INFO:root:Cached 98 Albert Street, Dundee > 56.469611, -2.957554
+INFO:root:Cached 99 Albert Street, Dundee > 56.469611, -2.957554
+INFO:root:Cached 100 Albert Street, Dundee > 56.469611, -2.957554
+INFO:root:Cached The Salvation Army Gatehouse,Strathmore Lodge, 31  > 56.46169, -2.97784
+INFO:root:Cached Gatehouse Annex Building, The Salvation Army, 31 W > 56.46169, -2.97784
+INFO:root:Cached 1st room on right, Salvation Army Gatehouse, 31 Wa > 56.46169, -2.97784
+INFO:root:Cached Lower Church Halls, Upstairs Room, Meadowside St P > 56.458385, -2.972881
+INFO:root:Cached St Paul's Church, 118 Nethergate, Dundee > 56.458319, -2.973039
+INFO:root:Cached Glamis Room, Menzieshill Community Centre, 260 Dic > 56.468009, -3.039435
+INFO:root:Cached Friary Church, Tullideph Road, Dundee > 56.465978, -2.997687
+INFO:root:Cached Small Hall, Downfield Mains Church, 1 Haldane Stre > 56.490001, -2.993453
+INFO:root:Cached St Stephens & West Church, Dundee Road, Broughty F > 56.468112, -2.88264
+INFO:root:Cached St Peter & Pauls Church Hall, Milton Street, Dunde > 56.473281, -2.981353
+INFO:root:Cached St Andrews Church Halls, 2 King Street, Dundee > 56.465468, -2.965246
+INFO:root:Cached 81 Meadowside, Dundee > 56.4643, -2.971335
+INFO:root:Cached Carseview Centre, Tom Mcdonald Avenue, Dundee > 56.463834, -3.045668
+INFO:root:Cached 10 Consititution Road, Dundee > 56.462299, -2.97493
+INFO:root:Cached Brooksbank Centre, Pitairlie Road, Mid Craigie, Du > 56.481291, -2.937567
+INFO:root:Cached Logie & St John's Parish Church, Shaftsbury Terrac > 56.4577, -2.997523
+INFO:root:Cached The Friary, Tullidelph Road, Dundee > 56.465978, -2.997687
+INFO:root:Cached Charleston Community Centre, 66 Craigowan Road, Ch > 56.473704, -3.035385
+INFO:root:Cached The Signpost Centre, Lothian Crescent, Dundee > 56.489633, -2.918124
+INFO:root:Cached Just Bee Productions, St Paul's Church, 118 Nether > 56.458385, -2.972881
+INFO:root:Cached Dundee Adult Drugs and Alcohol Service, 4 South Wa > 56.461088, -2.974508
+INFO:root:Cached Boomerang Centre, Kemback Street, Dundee > 56.469132, -2.95661
+INFO:root:Cached Mid Lin Day Centre, 59 Pitkerro Road, Dundee > 56.482098, -2.944089
+INFO:root:Cached Menzieshill Community Centre, 260 Dickson Avenue,  > 56.467944, -3.039464
+INFO:root:Cached Hilltown Community Centre, 15 Alexander Street, Du > 56.468227, -2.971863
+INFO:root:Cached St Peter & Paul's Church, Milton Street, Dundee > 56.473281, -2.981353
+INFO:root:Cached Front Upper Hall (McCheyne Room) of The Link at Ce > 56.461503, -2.975181
+INFO:root:Cached Dundee > 56.460594, -2.97019
+INFO:root:Cached 47 Blinshall Street, Dundee > 56.462131, -2.981948
+INFO:root:Cached Level 7, South Block, Ninewells Hospital, Dundee > 56.463711, -3.039315
+INFO:root:Cached 13 Shore Terrace, Dundee > 56.45982, -2.968286
+INFO:root:Cached Quadrant House, 9 Riverside Drive, Dundee > 56.45493, -2.97285
+INFO:root:Cached Level 2, Wellgate Shopping Centre, Victoria Road,  > 56.46434, -2.969269
+INFO:root:Cached 31 South Tay Street, Dundee > 56.458878, -2.976923
+INFO:root:Cached Department of Spiritual Care, Wellbeing Centre, Ea > 56.462683, -3.014128
+INFO:root:Cached Room 1015, Kings Cross, Clepington Road, Dundee > 56.477428, -2.987497
+INFO:root:Cached 36 Artillery Lane, Dundee > 56.458489, -2.977492
+INFO:root:Cached Gate Church, 158 Perth Road, Dundee > 56.456038, -2.985398
+INFO:root:Cached Full Gospel Church, 58 Constitution Street, Dundee > 56.467299, -2.97708
+INFO:root:Cached The Steeple Church, Nethergate, Dundee > 56.459469, -2.972778
+INFO:root:Cached 1 Shore Terrace, Dundee > 56.45982, -2.968286
+INFO:root:Cached Ardler Community Centre, Turnberry Avenue, Dundee > 56.488118, -3.014678
+INFO:root:Cached The Attic, 4 Beauly Avenue, Kirkton, Dundee > 56.489517, -2.979601
+INFO:root:Cached St Mary's Community Centre,St Kilda Road, Dundee > 56.493868, -3.017043
+INFO:root:Cached St Mary's Community Centre,St Kilda Road, Dundee > 56.494171, -3.005652
+INFO:root:Cached Hilltown Communit Centre, 15 Alexander Street, Dun > 56.468393, -2.971138
+INFO:root:Cached Maxwell Centre, Carnegie Street, Dundee > 56.470046, -2.971378
+INFO:root:Cached United Free Church, Caird Avenue, Dundee > 56.476168, -2.97812
+INFO:root:Cached Dundee Foodbank Café, 116 Albert Street, Dundee > 56.47092, -2.95742
+INFO:root:Cached Morgan's Café, 1 Pitkerro Road, Dundee > 56.473135, -2.955387
+INFO:root:Cached Baxter Park Pavillion (next to the play park), Arb > 56.46999, -2.94775
+INFO:root:Cached Mill O' Mains Community Hub, Barns of Claverhouse  > 56.493166, -2.958452
+INFO:root:Cached Lifegate, 50 Haddington Crescent, Whitfield, Dunde > 56.489326, -2.918939
+INFO:root:Cached Fintry Primary School, 10 Findcastle Terrace, Dund > 56.490054, -2.945213
+INFO:root:Cached Finmill Centre, Findcastle Street, Dundee > 56.490656, -2.945867
+INFO:root:Cached The Crescent Community Centre, Lothian Crescent, D > 56.489789, -2.916208
+INFO:root:Cached Douglas Community Centre Library, Balmoral Avenue, > 56.478979, -2.902232
+INFO:root:Cached Douglas Community Centre, Café Area, Balmoral Aven > 56.478979, -2.902232
+INFO:root:Cached Brooksbank Centre Main Hall, Pitairlie Road, Dunde > 56.481396, -2.937224
+INFO:root:Cached Constitution Road, Next to Bell St Car Park, Dunde > 56.462299, -2.97493
+INFO:root:Cached The Gatehouse, c/o Strathmore Lodge, 31 Ward Road, > 56.46169, -2.97784
+INFO:root:Cached Saint Luke's Church, Saint Luke's Road, Dundee > 56.494407, -2.994676
+INFO:root:Cached Unit 6, Block 1 Manor Farm Business Park, Stirling > 56.13738, -3.88566
+INFO:root:Cached City Wide > None, None
+INFO:root:Cached Number 10, 10 Constitution Road, Dundee > 56.462299, -2.97493
+INFO:root:Cached Based on Ward Road, Dundee > 56.461895, -2.974814
+INFO:root:Cached 163 Albert Street, Dundee > 56.471221, -2.957071
+INFO:root:Cached The Cottage, Kings Cross Hospital, 10 Hospital Str > 56.477428, -2.987497
+INFO:root:Cached Lothian Crescent, Dundee > 56.489029, -2.918681
+INFO:root:Cached UK wide > None, None
+INFO:root:Cached Scotland wide > None, None
+INFO:root:Cached Dundee Carers Centre, Seagate House, Dundee > 56.46346, -2.966359
+INFO:root:Cached 10 Kemback Street, Dundee > 56.469132, -2.95661
+INFO:root:Cached Fairfield Community Hub Food Larder, Drumgeith Roa > 56.483096, -2.921193
+INFO:root:Cached Side entrance, Meadowside St Paul's Church, 118 Ne > 56.458385, -2.972881
+INFO:root:Cached 95 Turnberry Avenue, Dundee > 56.487414, -3.014612
+INFO:root:Cached 15 Whorterbank, Dundee > 56.470954, -3.006068
+INFO:root:Cached Gilfillan Memorial Church, 24 Whitehall Crescent,  > 56.458997, -2.969413
+INFO:root:Cached Pitairlie Road, Mid Craigie Road, Dundee > 56.481396, -2.937224
+WARNING:root:WARNING: 18 rows have no coordinates.
+INFO:root:Edit ServiceMappingDundee_clean.csv and add lat/lng manually for
+INFO:root: - City Wide
+INFO:root: - UK wide
+INFO:root: - Scotland wide
+INFO:root:Saved cleaned CSV: data\ServiceMappingDundee_clean.csv
+INFO:root:Review this file and check missing coordinates.
+INFO:root:Saved JSON to data\DundeeRecoveryServices.json
