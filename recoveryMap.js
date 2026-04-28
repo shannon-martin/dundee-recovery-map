@@ -63,16 +63,37 @@ function servicePassesFilters(s) {
     || s.cat.toLowerCase().includes(searchTerm)
     || (s.desc || "").toLowerCase().includes(searchTerm);
 
-  return matchCat && matchCost && matchAge && matchSearch;
+  const matchAccess = activeAccess.has(s.activityStatus || "Unknown");
+
+  return matchCat && matchCost && matchAge && matchSearch && matchAccess;
 }
 
-function resolveHours(value) {
+function resolveHours(value, activityStatus) {
+  /* Determine display txt and CSS class for an hours value.
+     activityStatus (optional) takes priority when indicate
+     something more specific than the hours value alone. */
+
+  const status = (activityStatus || "").trim().toLowerCase();
+
+  // By Appointment — regardless of what the hours field says,
+  // the user must contact the service first
+  if (status === "by appointment") {
+    return { text: "By appointment", cls: "hours-appt" };
+  }
+
+  // Now check the hours value itself
   if (!value) return { text: "Closed", cls: "closed" };
   const v = value.trim().toLowerCase();
   if (v === "unknown" || v === "hours not confirmed")
     return { text: "Hours not confirmed", cls: "hours-unknown" };
-  if (v === "by appointment" || v === "by appt" || v === "appointment")
-    return { text: "By appointment - contact to book", cls: "hours-appt" };
+  if (v === "by appointment" || v === "by appt")
+    return { text: "By appointment — contact to book", cls: "hours-appt" };
+
+  // Open Access — no appointment needed, hours are a guide not a gate
+  if (status === "open access" && value) {
+    return { text: value + " (drop-in)", cls: "" };
+  }
+
   return { text: value, cls: "" };
 }
 
@@ -80,16 +101,13 @@ function resolveHours(value) {
 function resolveDesc(row) {
   /* Return the best available description for a service row.
      If "Description on Recovery Map" is missing, blank, or
-     literally "Not on Recovery Map", fall back to Additional Notes.
-     "Not on Recovery Map" simply means the service was not in the
-     original printed map — it does NOT mean exclude it. */
+     literally "Not on Recovery Map", fall back to Additional Notes. */
   const primary = (row["Description on Recovery Map"] || "").trim();
   if (!primary || primary.toLowerCase() === "not on recovery map") {
     return (row["Additional Notes"] || "").trim();
   }
   return primary;
 }
-
 
 function buildHoursForGroup(rows) {
   /* Given all session rows for one location, produce a hours object
@@ -147,6 +165,7 @@ function buildSessionsForGroup(rows) {
         cat: row["Category"] || "Other",
         ageGroup: row["Age Group"],
         cost: row["Cost Type"],
+        activityStatus: (row["Activity Status"] || "").trim(),
         hours: { Mon:null,Tue:null,Wed:null,Thu:null,Fri:null,Sat:null,Sun:null },
       };
     }
@@ -161,7 +180,7 @@ function buildSessionsForGroup(rows) {
     });
     return;
     }
-    
+
     if (dayFull.toLowerCase() === "by appointment") {
         DAYS.forEach(abbr => {
             if (!byName[sName].hours[abbr]) byName[sName].hours[abbr] = "By appointment";
@@ -211,6 +230,14 @@ function transformServices(rawData) {
     const cats = [...new Set(rows.map(r => r["Category"] || "Other"))];
     // Primary category: most common across sessions
     const catCounts = {};
+
+    const statusCounts = {};
+    rows.forEach(r => {
+    const st = (r["Activity Status"] || "Unknown").trim();
+    statusCounts[st] = (statusCounts[st] || 0) + 1;
+    });
+    const primaryStatus = Object.entries(statusCounts).sort((a,b) => b[1]-a[1])[0][0];
+
     rows.forEach(r => { const c = r["Category"] || "Other"; catCounts[c] = (catCounts[c]||0)+1; });
     const primaryCat = Object.entries(catCounts).sort((a,b)=>b[1]-a[1])[0][0];
 
@@ -225,6 +252,7 @@ function transformServices(rawData) {
       cats,
       ageGroups,
       costTypes,
+      activityStatus: primaryStatus,
       lat, lng,
       address: first["Full Address"] || first["Address"] || "",
       phone: first["Phone"] || "",
@@ -297,11 +325,11 @@ function makeIcon(cat, isOpen) {
 }
 
 /* POPUPS */
-function makeHoursGrid(hours) {
+function makeHoursGrid(hours, activityStatus) {
   return Object.entries(hours).map(([abbr, h], i) => {
     const isToday  = DAYS[i] === todayAbbr;
     const isActive = DAYS[i] === activeDay;
-    const resolved = resolveHours(h);
+    const resolved = resolveHours(h, activityStatus);
 
     let cls = "day-row";
     if (isToday) cls += " today-row";
@@ -318,7 +346,7 @@ function makeHoursGrid(hours) {
    when a user clicks a pin. */
 function makePopup(s) {
   const c = CATEGORIES[s.cat] || { color:"#888" };
-  const todayHours = resolveHours(s.hours[todayAbbr]);
+  const todayHours = resolveHours(s.hours[todayAbbr], s.activityStatus);
   const chip = todayHours.cls === "closed"
     ? `<span class="open-chip closed">Closed today</span>`
     : todayHours.cls === "hours-unknown"
@@ -347,7 +375,7 @@ function makePopup(s) {
         </div>
         <div class="popup-hours">
           <div class="popup-hours-title">Opening hours</div>
-          ${makeHoursGrid(sess.hours)}
+          ${makeHoursGrid(sess.hours, sess.activityStatus)}
         </div>
       </div>`;
   }
@@ -357,7 +385,7 @@ function makePopup(s) {
   const sessionsHTML = s.sessions.map((sess, i) => {
     const sc = CATEGORIES[sess.cat] || c;
     const dot = `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${sc.color};margin-right:5px;flex-shrink:0"></span>`
-    const sessResolved = resolveHours(sess.hours[todayAbbr]);
+    const sessResolved = resolveHours(sess.hours[todayAbbr], sess.activityStatus);
     const badge = sessResolved.cls === "closed"
         ? `<span class="open-chip closed" style="font-size:0.6rem;padding:1px 5px">Closed</span>`
         : sessResolved.cls === "hours-unknown"
@@ -378,7 +406,7 @@ function makePopup(s) {
           </div>
           <div class="popup-hours">
             <div class="popup-hours-title">Hours</div>
-            ${makeHoursGrid(sess.hours)}
+            ${makeHoursGrid(sess.hours, sess.activityStatus)}
           </div>
         </div>
       </details>`;
@@ -482,7 +510,7 @@ function makeSidebarCard(s) {
     ? `<span class="scope-badge">${s.scope}</span>`
     : "";
 
-  const hoursForDay = s.hours[activeDay] || "Closed";
+  const hoursForDay = resolveHours(s.hours[activeDay], s.activityStatus).text;
 
   return `
     <div class="sidebar-card">
@@ -654,6 +682,40 @@ if (grpContainer) {
     grpContainer.appendChild(btn);
   });
 }
+
+/* ACCESS FILTR */
+const ACCESS_OPTS = [
+  { value:"Open Access", label:"Drop-in", title:"Walk-in, no appointment needed" },
+  { value:"Scheduled Activity",label:"Scheduled", title:"Runs at specific times" },
+  { value:"By Appointment", label:"By appointment",title:"Must contact service first" },
+  { value:"Unknown", label:"Unknown", title:"Access type not recorded" },
+];
+let activeAccess = new Set(ACCESS_OPTS.map(o => o.value));
+
+const accessContainer = document.getElementById("access-btns");
+if (accessContainer) {
+  ACCESS_OPTS.forEach(({ value, label, title }) => {
+    const btn = document.createElement("button");
+    btn.className   = "filter-btn active";
+    btn.textContent = label;
+    btn.title       = title;
+    btn.onclick = () => {
+      if (activeAccess.has(value)) {
+        if (activeAccess.size === 1) return;
+        activeAccess.delete(value);
+        btn.classList.remove("active");
+        btn.style.opacity = "0.45";
+      } else {
+        activeAccess.add(value);
+        btn.classList.add("active");
+        btn.style.opacity = "1";
+      }
+      renderMapMarkers();
+    };
+    accessContainer.appendChild(btn);
+  });
+}
+
 
 /* SERACH */
 /* addEventListener("input", handler) fires on every
