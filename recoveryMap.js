@@ -75,13 +75,13 @@ function resolveHours(value, activityStatus) {
 
   const status = (activityStatus || "").trim().toLowerCase();
 
-  // By Appointment — regardless of what the hours field says,
+  // By Appointment = regardless of what the hours field says,
   // the user must contact the service first
   if (status === "by appointment") {
     return { text: "By appointment", cls: "hours-appt" };
   }
 
-  // Now check the hours value itself
+  // check the hours value itself
   if (!value) return { text: "Closed", cls: "closed" };
   const v = value.trim().toLowerCase();
   if (v === "unknown" || v === "hours not confirmed")
@@ -89,12 +89,19 @@ function resolveHours(value, activityStatus) {
   if (v === "by appointment" || v === "by appt")
     return { text: "By appointment — contact to book", cls: "hours-appt" };
 
-  // Open Access — no appointment needed, hours are a guide not a gate
+  // Open Access = no appointment needed, hours are a guide
   if (status === "open access" && value) {
     return { text: value + " (drop-in)", cls: "" };
   }
 
   return { text: value, cls: "" };
+}
+
+/* returns true if marker should show on the selected day.
+   Only definitively closed markers (cls === "closed") are hidden.
+   Unknown and By Appointment always show. */
+function isDayVisible(hoursValue, activityStatus) {
+  return resolveHours(hoursValue, activityStatus).cls !== "closed";
 }
 
 /* TRANSFORM DATA */
@@ -154,7 +161,7 @@ function buildHoursForGroup(rows) {
 function buildSessionsForGroup(rows) {
   /* Collect distinct session names and their per-day detail so the
      popup can show a per-session breakdown rather than just merged hours.
-     Returns an array of { name, cat, ageGroup, cost, hours } objects. */
+     Returns an array of { name, cat, tgtGroup, cost, hours } objects. */
   // Deduplicate by Session Name (same session can appear on multiple days)
   const byName = {};
   rows.forEach(row => {
@@ -163,7 +170,7 @@ function buildSessionsForGroup(rows) {
       byName[sName] = {
         name: sName,
         cat: row["Category"] || "Other",
-        ageGroup: row["Age Group"],
+        tgtGroup: row["Age Group"],
         cost: row["Cost Type"],
         activityStatus: (row["Activity Status"] || "").trim(),
         hours: { Mon:null,Tue:null,Wed:null,Thu:null,Fri:null,Sat:null,Sun:null },
@@ -370,7 +377,7 @@ function makePopup(s) {
           <div><span>Address:</span> ${s.address}</div>
           ${s.phone ? `<div><span>Phone:</span> ${s.phone}</div>` : ""}
           ${s.website ? `<div><span>Web:</span> <a href="${s.website.startsWith("http")?s.website:"https://"+s.website}" target="_blank">${s.website}</a></div>` : ""}
-          <div><span>Age:</span> ${sess.ageGroup}</div>
+          <div><span>Target Group:</span> ${sess.tgtGroup}</div>
           <div><span>Cost:</span> ${sess.cost}</div>
         </div>
         <div class="popup-hours">
@@ -401,7 +408,7 @@ function makePopup(s) {
         <div class="session-body">
           <div class="popup-cat" style="color:${sc.color};margin-bottom:4px">${sess.cat}</div>
           <div class="popup-info" style="margin-bottom:4px">
-            <div><span>Age:</span> ${sess.ageGroup}</div>
+            <div><span>Target Group:</span> ${sess.tgtGroup}</div>
             <div><span>Cost:</span> ${sess.cost}</div>
           </div>
           <div class="popup-hours">
@@ -438,6 +445,7 @@ function renderMapMarkers() {
   mapServices.forEach(s => {
 	// check if this service passes category and search filters
     if (!servicePassesFilters(s)) return;
+    if (!isDayVisible(s.hours[activeDay], s.activityStatus)) return; // hides cloased services
 
     // only definitively closed pins are faded.
     const todayH = resolveHours(s.hours[activeDay]);
@@ -483,10 +491,10 @@ legendContent.innerHTML =
        <div class="legend-dot" style="background:${c.color}"></div>
        ${n}
      </div>`
-  ).join("") +
+  ).join("")/* +
   `<div style="margin-top:8px;padding-top:8px;border-top:1px solid #eee;font-size:0.68rem;color:#888">
      Faded pins = closed<br>on selected day
-   </div>`;
+   </div>`*/; // faded pins legend txt
 
 legendToggle.addEventListener("click", () => {
   const isOpen = legendContent.style.display !== "none";
