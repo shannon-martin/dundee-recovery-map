@@ -1,0 +1,103 @@
+Initial prototype
+
+   - Basic Leaflet.js map centred on Dundee using OpenStreetMap tiles
+   - Hardcoded SERVICES array inside map.js
+   - Custom SVG teardrip pin icons, coloured by service category
+   - Day-of-week filter buttons (Mon-Sun), active day highlighted
+   - Category filter buttons, one per CATEGORIES entry
+   - Text search filtering by name, category, and description
+   - Popup on pin click showing service name, address, phone,
+     website, age group, cost, and full weekly hours grid
+   - Today's row highlighted green in hours grid
+   - "Open today" / "Closed today" chip in popup header
+   - Floating legend panel showing category colour key
+   - Stats bar showing count of visible services
+   - Footer with attribution
+
+
+Data pipeline and JSON separation
+
+   - SERVICES array moved out of map.js into external JSON file
+     (DundeeRecoveryServices.json), loaded via fetch() on startup
+   - Python cleaning script (ServiceMappingDundee_cleaningScript.py) added:
+     reads raw CSV, fixes time typos, filters rows, geocodes
+     addresses using Nominatim API, exports cleaned JSON
+   - resolveDesc() added: falls back to Additional Notes column
+     when Description on Recovery Map is blank or "Not on Recovery Map"
+     ("Not on Recovery Map" means absent from original leaflet,
+     not excluded from the new map)
+   - Data loads via fetch("./data/DundeeRecoveryServices.json")
+   - save_json() updated to drop internal helper columns and write
+     null for NaN/NaT values
+
+
+Grouping and multi-session popups
+
+   - transformServices() added: groups raw one-row-per-session JSON
+     into one entry per Organisation + Address, preventing overlapping
+     pins at the same location
+   - buildHoursForGroup(): merges multiple sessions on the same day
+     with " / " separator (e.g. "11:00-12:00 / 13:00-15:00")
+   - buildSessionsForGroup(): preserves individual session detail
+     (name, category, age group, cost, hours) for popup display
+   - Multi-session popup: accordion layout using native HTML
+     <details>/<summary> elements, first session open by default
+   - Single-session popup: flat layout unchanged
+   - Coloured dot indicator before each session name in accordion
+   - Per-session open/closed badge in accordion summary
+   - Services without valid lat/lng routed to sidebar panel
+     (virtualServices array) instead of being silently dropped
+
+
+Sidebar, cluster markers, and new filters
+   - Sidebar panel added for UK/Scotland/city-wide services
+     with no fixed map location (e.g. helplines)
+   - makeSidebarCard(): renders each virtual service as a card
+     with category colour accent, open/closed chip, scope badge,
+     phone, website, and hours for selected day
+   - renderSidebar() wired to update alongside renderMapMarkers()
+     so sidebar respects all active filters
+   - leaflet.markercluster plugin added: nearby pins merge into
+     numbered cluster bubbles, expanding on click
+   - clusterGroup replaces individual marker management;
+     clusterGroup.clearLayers() used instead of iterating markers[]
+   - Cost filter added (Free / Paid; Unknown shown by default,
+     no button shown to avoid clutter)
+   - Target group filter added (All Ages / Adults / Women / Men /
+     50+ / Young People / Children; Unknown shown by default)
+   - borderColor typo fixed (was bordercolour - CSS property not set)
+   - dot variable (coloured circle in session summary) was missing
+     from multi-session popup - added back
+
+
+Hours states and activity status
+
+   - resolveHours(value, activityStatus) added: interprets hours
+     values into three display states:
+       "closed" to "Closed" (grey, dimmed)
+       "hours-unknown" to "Hours not confirmed" (amber italic)
+       "hours-appt" to "By appointment - contact to book" (purple italic)
+     activityStatus field takes priority (By Appointment services
+     show appointment text regardless of hours data)
+   - isDayVisible() added: returns false only for definitively closed
+     markers; Unknown and By Appointment always show
+   - buildHoursForGroup() updated: rows with Day = "Unknown" or
+     "Various" now set all hours to "Unknown" string instead of
+     leaving as null (which was incorrectly displaying as "Closed")
+   - buildSessionsForGroup() updated: same Unknown/Various day fix
+   - Activity Status column added to sessions and grouped entries
+   - Activity Status filter added (Drop-in / Scheduled / By appt)
+   - makeChip() helper added: centralises the open/closed chip HTML
+     for both popup headers and session badges
+   - Open Access services show "(drop-in)" suffix on hours display
+   - Popup shows Access field (activityStatus) alongside Age and Cost
+   - Closed markers now hidden entirely rather than faded (0.45 opacity)
+     - Unknown and By Appointment still render at full opacity
+   - Pin opacity parameter removed from makeIcon() - no longer needed
+   - makeIcon() simplified: always renders at full opacity
+   - openCount in stats bar now only counts services with confirmed
+     open hours (cls === ""), not unknown/appointment
+   - resetAllFilters() added: restores all filter Sets to fully active,
+     resets button visual states, clears search input, re-renders
+   - maxBounds removed from map initialisation to prevent popup
+     clipping at Dundee boundary edges
