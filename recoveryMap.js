@@ -285,15 +285,15 @@ function transformServices(rawData) {
 
 /* MAP */
 const DUNDEE_BOUNDS = L.latLngBounds(
-  [56.430, -3.120], // South-West corner
-  [56.500, -2.900]  // North-East corner
+  [56.3102, -3.3626], // South-West corner, increased from 56.430, -3.120
+  [56.6198, -2.6674]  // North-East corner, increased from 56.500, -2.900
 );
 
 const map = L.map("map", {
   maxBounds: DUNDEE_BOUNDS,
-  maxBoundsViscosity: 0.9, // edge springyness (0-1)
+  maxBoundsViscosity: 0.7, // edge springyness (0-1)
   minZoom: 12,
-  maxZoom: 17
+  maxZoom: 19
 }).setView([56.462, -2.971], 14);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
