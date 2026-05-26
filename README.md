@@ -249,15 +249,18 @@ Standardised patient rates per 100,000 population for combined psychiatric and n
 ---
 
 #### Alignment with policy and system changes (context, not causation)
-Several major changes in mental health policy and service delivery occurred during the study period. While this analysis cannot establish causality, the observed trends align in time with key system shifts.
+Several major changes in mental health policy and service delivery occurred during the study period. While this analysis cannot establish causality, the observed trends align in time with key system shifts.  
+
 **Late 1990s to early 2000s: higher inpatient use**  
 -	Greater reliance on inpatient care for mental health conditions
 -	Fewer community-based alternatives
 -	Higher levels of unmet need in deprived urban areas
+
 **Mid-2000s to 2010s: declining inpatient admissions**  
 -	Expansion of community mental health teams
 -	Policy focus on care in the community rather than hospital settings
 -	Reductions in psychiatric bed numbers across Scotland
+
 **Recent years: persistent local inequalities**  
 -	Overall inpatient rates remain lower than historic levels
 -	Dundee continues to record higher rates than Scotland overall
