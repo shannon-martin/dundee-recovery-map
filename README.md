@@ -777,25 +777,43 @@ The project poster summarises the main findings from our analysis and presents t
 
 
 # References
-Dundee City Council (2025) Dundee Poverty Profile 2025. Available at: https://www.dundeecity.gov.uk/sites/default/files/Dundee_Poverty_Profile_2025.pdf  (Accessed: 26 March 2026). 
-Dundee City Council (2025) Fairness and local child poverty plan [2024/25]. Available at: https://www.dundeecity.gov.uk/sites/default/files/Final%20191-2025%20Fairness%20and%20Local%20Child%20Poverty%20Action%20Plan%20-%20Annual.pdf (Accessed: 26 March 2026).
-Dundee City Council (2020) DUNDEE CITY - SIMD2020 Version 2 Briefing Note. Available at: https://www.dundeecity.gov.uk/sites/default/files/publications/simd2020_version2_briefing.pdf (Accessed 23 May 2026).
-Dundee Health and Social Care Partnership (2026) Mental Health Services Performance Indicators 2025-26 Quarter 2, Dundeehscp.com. Available at: https://www.dundeehscp.com/mental-health-services-performance-indicators-2025-26-quarter-2 (Accessed: 19 May 2026).
-Dundee Partnership (2023) Dundee Alcohol and Drug Partnership Strategic Framework 2023-2028. Available at: https://www.dundeeadp.co.uk/sites/default/files/2023-01/ADP%20FRAMEWORK%2023.pdf (Accessed: 15 May 2026).
-Lopez, M. (2020)  Achieving fairness? Challenging poverty and social exclusion through partnership working, University of Dundee. Available at: https://discovery.dundee.ac.uk/ws/portalfiles/portal/49045628/Achieving_fairness_Final_version.pdf (Accessed 18 May 2026).
-‌National Records of Scotland (NRS) (2025) Drug-related deaths in Scotland, 2024. Available at: https://www.nrscotland.gov.uk/publications/drug-related-deaths-in-scotland-2024/ (Accessed: 16 March 2026).
-Open Government Licence (OGL v3.0) (2026) Nationalarchives.gov.uk. Available at: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/ (Accessed: 16 March 2026).
-Parish Nursing Dundee (2026) Parishnursingdundee.org.uk. Available at: https://parishnursingdundee.org.uk/ (Accessed: 1 April 2026).
-Public Health Scotland (2024) Alcohol related hospital statistics. Available at: https://publichealthscotland.scot/publications/alcohol-related-hospital-statistics/alcohol-related-hospital-statistics-scotland-financial-year-202223/ (Accessed: 27 March 2026).
-‌Public Health Scotland (2024) Mental health inpatient activity. Available at: https://publichealthscotland.scot/publications/mental-health-inpatient-activity/mental-health-inpatient-activity-10-december-2024/data-explorer/ (Accessed: 27 March 2026).
-‌Public Health Scotland (2025) Child and Adolescent Mental Health Services (CAMHS) waiting times. Available at: https://publichealthscotland.scot/publications/child-and-adolescent-mental-health-services-camhs-waiting-times/child-and-adolescent-mental-health-services-camhs-waiting-times-quarter-ending-september-2025/ (Accessed: 26 March 2026).
-‌Public Health Scotland (2026) Drug-Related Hospital Statistics Scotland - Scottish Health and Social Care Open Data, Nhs.scot. Available at: https://www.opendata.nhs.scot/dataset/drug-related-hospital-statistics-scotland (Accessed: 16 March 2026).
-‌Public Health Scotland (2026) Completeness - Scottish Morbidity Records (SMR), Publichealthscotland.scot. Available at: https://publichealthscotland.scot/resources-and-tools/health-intelligence-and-data-management/data-management-in-secondary-care-hospital-activity/scottish-morbidity-records-smr/completeness/ (Accessed: May 15, 2026).
-‌Scotland’s Census (2022) Scotland’s Census 2022 reports. Available at: https://www.scotlandscensus.gov.uk/2022-reports/ (Accessed: 16 March 2026).
-‌Scottish Government (2025) Data Zone Boundaries 2011 © Scottish Government, contains Ordnance Survey data © Crown copyright and database right (2026), SpatialData.gov.scot. Available at: https://www.data.gov.uk/dataset/ab9f1f20-3b7f-4efa-9bd2-239acf63b540/data-zone-boundaries-2011 (Accessed: 16 March 2026). 
-Stone, J. (2025) Local indicators of child poverty after housing costs, 2023/24 Estimates of child poverty after housing costs in parliamentary constituencies and local authorities. Available at: https://endchildpoverty.org.uk/wp-content/uploads/2025/05/Local-indicators-of-child-poverty-after-housing-costs_2025_final-1.pdf (Accessed: 23 May 2026).
-‌The Scottish Government (2025) Child poverty pathfinders in Dundee and Glasgow: phase two evaluation, Gov.scot. Available at: https://www.gov.scot/publications/phase-2-evaluation-child-poverty-pathfinders-dundee-glasgow/ (Accessed: 26 March 2026).
-The Scottish Government (2020) Scottish Index of Multiple Deprivation (SIMD), Gov.scot. Available at: https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/ (Accessed: 16 March 2026).
+Dundee City Council (2025) Dundee Poverty Profile 2025. Available at: https://www.dundeecity.gov.uk/sites/default/files/Dundee_Poverty_Profile_2025.pdf  (Accessed: 26 March 2026).   
+
+Dundee City Council (2025) Fairness and local child poverty plan [2024/25]. Available at: https://www.dundeecity.gov.uk/sites/default/files/Final%20191-2025%20Fairness%20and%20Local%20Child%20Poverty%20Action%20Plan%20-%20Annual.pdf (Accessed: 26 March 2026). 
+
+Dundee City Council (2020) DUNDEE CITY - SIMD2020 Version 2 Briefing Note. Available at: https://www.dundeecity.gov.uk/sites/default/files/publications/simd2020_version2_briefing.pdf (Accessed 23 May 2026).  
+
+Dundee Health and Social Care Partnership (2026) Mental Health Services Performance Indicators 2025-26 Quarter 2, Dundeehscp.com. Available at: https://www.dundeehscp.com/mental-health-services-performance-indicators-2025-26-quarter-2 (Accessed: 19 May 2026).  
+
+Dundee Partnership (2023) Dundee Alcohol and Drug Partnership Strategic Framework 2023-2028. Available at: https://www.dundeeadp.co.uk/sites/default/files/2023-01/ADP%20FRAMEWORK%2023.pdf (Accessed: 15 May 2026).  
+
+Lopez, M. (2020)  Achieving fairness? Challenging poverty and social exclusion through partnership working, University of Dundee. Available at: https://discovery.dundee.ac.uk/ws/portalfiles/portal/49045628/Achieving_fairness_Final_version.pdf (Accessed 18 May 2026).  
+
+‌National Records of Scotland (NRS) (2025) Drug-related deaths in Scotland, 2024. Available at: https://www.nrscotland.gov.uk/publications/drug-related-deaths-in-scotland-2024/ (Accessed: 16 March 2026).  
+
+Open Government Licence (OGL v3.0) (2026) Nationalarchives.gov.uk. Available at: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/ (Accessed: 16 March 2026).  
+
+Parish Nursing Dundee (2026) Parishnursingdundee.org.uk. Available at: https://parishnursingdundee.org.uk/ (Accessed: 1 April 2026).  
+
+Public Health Scotland (2024) Alcohol related hospital statistics. Available at: https://publichealthscotland.scot/publications/alcohol-related-hospital-statistics/alcohol-related-hospital-statistics-scotland-financial-year-202223/ (Accessed: 27 March 2026).  
+
+‌Public Health Scotland (2024) Mental health inpatient activity. Available at: https://publichealthscotland.scot/publications/mental-health-inpatient-activity/mental-health-inpatient-activity-10-december-2024/data-explorer/ (Accessed: 27 March 2026).  
+
+‌Public Health Scotland (2025) Child and Adolescent Mental Health Services (CAMHS) waiting times. Available at: https://publichealthscotland.scot/publications/child-and-adolescent-mental-health-services-camhs-waiting-times/child-and-adolescent-mental-health-services-camhs-waiting-times-quarter-ending-september-2025/ (Accessed: 26 March 2026).  
+
+‌Public Health Scotland (2026) Drug-Related Hospital Statistics Scotland - Scottish Health and Social Care Open Data, Nhs.scot. Available at: https://www.opendata.nhs.scot/dataset/drug-related-hospital-statistics-scotland (Accessed: 16 March 2026).  
+
+‌Public Health Scotland (2026) Completeness - Scottish Morbidity Records (SMR), Publichealthscotland.scot. Available at: https://publichealthscotland.scot/resources-and-tools/health-intelligence-and-data-management/data-management-in-secondary-care-hospital-activity/scottish-morbidity-records-smr/completeness/ (Accessed: May 15, 2026). 
+
+‌Scotland’s Census (2022) Scotland’s Census 2022 reports. Available at: https://www.scotlandscensus.gov.uk/2022-reports/ (Accessed: 16 March 2026).  
+
+‌Scottish Government (2025) Data Zone Boundaries 2011 © Scottish Government, contains Ordnance Survey data © Crown copyright and database right (2026), SpatialData.gov.scot. Available at: https://www.data.gov.uk/dataset/ab9f1f20-3b7f-4efa-9bd2-239acf63b540/data-zone-boundaries-2011 (Accessed: 16 March 2026).   
+
+Stone, J. (2025) Local indicators of child poverty after housing costs, 2023/24 Estimates of child poverty after housing costs in parliamentary constituencies and local authorities. Available at: https://endchildpoverty.org.uk/wp-content/uploads/2025/05/Local-indicators-of-child-poverty-after-housing-costs_2025_final-1.pdf (Accessed: 23 May 2026).  
+
+‌The Scottish Government (2025) Child poverty pathfinders in Dundee and Glasgow: phase two evaluation, Gov.scot. Available at: https://www.gov.scot/publications/phase-2-evaluation-child-poverty-pathfinders-dundee-glasgow/ (Accessed: 26 March 2026).  
+
+The Scottish Government (2020) Scottish Index of Multiple Deprivation (SIMD), Gov.scot. Available at: https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/ (Accessed: 16 March 2026).  
 
 
 ## Rights & Usage
