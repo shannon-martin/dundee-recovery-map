@@ -476,23 +476,331 @@ Addressing substance-related harm and mental health requires both preventative m
 This analysis examines drug and alcohol service activity in Dundee between 2022 and 2025, with a focus on treatment access and retention, referral patterns across drug and alcohol pathways, the relationship between prevention activity and hospital admissions, and trends in crisis and emergency incidents. The analysis was carried out in Microsoft Excel, and the underlying data was taken from the Dundee Health and Social Care Partnership's Drug and Alcohol Service Indicators 2025–26 Quarter 2 report, published by the Chief Finance Officer and presented to the Performance and Audit Committee. The dashboard below brings together the key findings in a single visual summary.
 
 ![Figure 17](figures/figure17.png)
-> *Dundee Alcohol & Drug Partnership: Performance Overview Dashboard (2022-2025). Analysis conducted in Microsoft Excel. Data source: Drug and Alcohol Service Indicators 2025–26 Quarter 2 (Dundee Health and Social Care Partnership).*
+> *Figure 17: Dundee Alcohol & Drug Partnership: Performance Overview Dashboard (2022-2025).*
+
+*Analysis conducted in Microsoft Excel. Data source: Drug and Alcohol Service Indicators 2025–26 Quarter 2 (Dundee Health and Social Care Partnership).
 
 #### Comparison of Treatment Referrals: Drugs vs Alcohol
 The referrals comparison chart plots the number of new referrals for drug treatment and for alcohol treatment across each rolling quarter from 2022/23 Quarter 2 through to 2024/25 Quarter 2. The two lines reveal sharply diverging trends over this period.  
 
 ![Figure 18](figures/figure18.png)
-> *Comparison of Treatment Referrals: Drugs vs Alcohol.*
+> *Figure 18: Comparison of Treatment Referrals: Drugs vs Alcohol.*
 
 Alcohol treatment referrals have fallen steadily and substantially, from 654 in 2022/23 Quarter 2 to 453 in 2024/25 Quarter 2, a decline of approximately 31% over two years. Drug treatment referrals, by contrast, have risen across the same period, reaching 606 in the most recent quarter. The practical significance of this crossing is considerable: for the first time in the reporting period, new referrals for drug treatment have meaningfully exceeded referrals for alcohol treatment. The two pathways, which had previously operated at broadly comparable volumes, now represent different trajectories of demand.  
 
 This divergence has implications for how the Dundee Drug and Alcohol Recovery Service (DDARS) allocates capacity between the two pathways. While a reduction in alcohol treatment referrals may partly reflect the impact of prevention work and Alcohol Brief Interventions, it may also reflect changing patterns in how people seek help, or reduced visibility of harm at the early intervention stage. The rising trend in drug referrals, reaching its highest point in the reporting period, reinforces the importance of maintaining and expanding the assertive outreach and rapid access components of the service model for drug treatment.  
 
+#### Access to Treatment vs Service User Retention
+The access and retention chart plots two measures simultaneously over the same reporting period: the proportion of people who began treatment within 21 days of referral (the 21-day access standard, shown as a line), and the number of unplanned discharges where service users disengaged from treatment before completion (shown as bars).
 
+![Figure 19](figures/figure19.png)
+> *Figure 19: Access to Treatment vs Service User Retention.*
+
+On the access side, performance has improved substantially since the earlier part of the period, rising from 61% in 2022/23 Quarter 2 to a stabilised range of 89% to 94% in more recent quarters. The national standard is 90%, and Dundee has broadly met or closely approached this for sustained periods, reflecting the positive impact of the Medication Assisted Treatment (MAT) standards implementation and same-day access ambitions embedded in the service model.  
+
+However, the retention picture tells a different and more concerning story. Unplanned discharges — where service users disengaged before completing treatment — reached a sharp peak of 353 cases in 2023/24 Quarter 4, at exactly the point when the access rate was at its highest at 94%. This pattern, sometimes described as a scissors effect, reveals a structural tension in the system: the processes that enable rapid intake do not automatically translate into sustained engagement once treatment begins. At the most recent data point, unplanned discharges had stabilised at 275, but this figure remains 31% higher than the 210 recorded two years earlier. Despite the genuine achievement represented by high access rates, the primary challenge for the partnership has shifted towards retention. This points to the need for strengthened psychosocial support, particularly during the first weeks of treatment when disengagement risk is highest.
+
+#### Alcohol Prevention (ABI) vs Hospital Admissions
+The prevention and admissions chart plots the number of Alcohol Brief Interventions (ABIs) delivered alongside the number of alcohol-related emergency hospital admissions across the reporting period. ABIs are structured conversations carried out by trained staff in a range of settings, including primary care, emergency departments, and community services, designed to identify risky alcohol use and encourage behaviour change before dependency or crisis develops.
+
+![Figure 20](figures/figure20.png)
+> *Figure 20: Alcohol Prevention (ABI) vs Hospital Admissions.*
+
+The number of ABIs delivered has increased over the period, reaching 1,322 in 2024/25 Quarter 2, up from 1,210 in 2022/23 Quarter 2. The number of emergency hospital admissions due to alcohol has remained broadly stable across the same period, fluctuating in a narrow band between 256 and 288, with the most recent figure at 279. The pattern suggests that sustained delivery of ABIs at scale is contributing to holding alcohol-related admissions relatively flat in a city where deprivation levels would otherwise be expected to drive them upward. This does not establish a causal relationship, but the stability of hospital admissions against a background of high population-level need is a positive signal, and is consistent with wider evidence on the effectiveness of brief interventions when delivered as part of a systematic training programme. An ongoing ABI training programme supports continued delivery capacity across services.  
+
+#### Crisis and Emergency Incident Trends
+The crisis and emergency chart tracks three indicators simultaneously across the full reporting period: drug-related emergency hospital admissions, alcohol-related emergency hospital admissions, and non-fatal overdose (NFOD) incidents reported by Scottish Ambulance Service and Police Scotland.  
+
+![Figure 21](figures/figure21.png)
+> *Figure 21: Crisis and Emergency Incident Trends.*
+
+Drug-related emergency admissions, the highest of the three indicators, reached a peak of 488 in 2023/24 Quarter 1 and have since declined modestly to 452 in 2024/25 Quarter 2. Alcohol-related admissions have remained broadly stable throughout, with only slight variation across the period and a current figure of 279. Non-fatal overdose incidents have shown similarly flat movement, sitting at 206 in 2024/25 Quarter 2 compared with 201 in 2022/23 Quarter 2 — a change of five cases over two years.  
+
+The overall message from this chart is that crisis-level harm in Dundee is neither rising sharply nor declining. The modest fall in drug-related admissions is a cautious positive, particularly given the continued rise in drug treatment referrals noted above, but the overall level of critical incidents remains persistently high. Dundee continues to carry one of the highest rates of drug-related mortality in Scotland, second only to Glasgow City over the five-year period 2019 to 2023. The flat trajectory of non-fatal overdose incidents in particular underscores the ongoing relevance of the NFOD multi-agency rapid response team, which meets daily to provide support to people who have experienced an overdose, and of the early-stage discussions underway with the Scottish Government to explore the development of a Safer Consumption Facility in the city.
+
+#### Conclusion
+Considered together, the four charts from this dashboard describe a service operating under sustained and complex pressure. Access to treatment has improved markedly since 2022, with the majority of people now beginning treatment within the national 21-day standard. But retention remains a live challenge, the balance of demand between drug and alcohol pathways has shifted significantly, and crisis-level harm has not declined at a pace that reflects the scale of investment in prevention and treatment. Addressing these challenges will require continued focus on what happens after the point of first contact, as well as place-based responses to the acute deprivation that drives much of the harm seen across Dundee's communities.
+
+---
+
+###	Local Mental Health Service Performance and Geographical Inequality (2022-2025)
+This analysis examines mental health service activity across Dundee's Local Community Planning Partnership (LCPP) areas between 2022 and 2025, with a focus on access to psychological therapies, emergency hospital admissions, regional disparities, and demographic trends. The analysis was carried out in Microsoft Excel, and the underlying data was taken from the Dundee Health and Social Care Partnership's Mental Health Services Indicators 2025–26 Quarter 2 report, published by the Chief Finance Officer and presented to the Performance and Audit Committee. The dashboard below brings together the key findings in a single visual summary.  
+
+![Figure 22](figures/figure22.png)
+> *Figure 22: Dundee Mental Health Crisis: Access and Admission Analysis Dashboard (2022–2025).*
+
+*Analysis conducted in Microsoft Excel. Data source: Mental Health Services Indicators 2025–26 Quarter 2 (Dundee Health and Social Care Partnership).
+
+#### System Efficiency: Target vs Actual Waiting Times
+The target-versus-actual chart tracks the proportion of patients referred to Psychological Therapies who began treatment within 18 weeks of referral. The Scottish Government standard requires that 90% of patients commence treatment within this window. Across the period from 2022/23 Quarter 1 through to 2024/25 Quarter 2, Dundee's actual performance declined from 75% to 70.4%, sitting consistently and significantly below the 90% aim line.  
+
+![Figure 23](figures/figure23.png)
+> *Figure 23: System Efficiency: Target vs Actual Waiting Times.*
+
+Dundee is one of seven mainland health board areas placed in Enhanced Support by the Scottish Government as a direct result of this failure to meet the 18-week standard. The gap this creates is not a marginal shortfall: almost 30% of patients referred for psychological therapies are not being seen within the target period. This matters because delayed access to early intervention is associated with deterioration in mental health, which in turn drives increased reliance on crisis and inpatient services.
+
+#### Admission Rate by LCPP Area
+The admission rate chart presents mental health emergency hospitalisation rates per 1,000 population across Dundee's eight LCPP areas. The range across the city is striking. The Ferry records the lowest emergency admission rate at 1.5 per 1,000 population, while Lochee records 5.4 and Coldside records 5.7. The admission rate in Lochee is therefore 3.6 times higher than in The Ferry.  
+
+![Figure 24](figures/figure24.png)
+> *Figure 24: Admission Rate by LCPP Area.*
+
+This disparity maps almost exactly onto the pattern of social deprivation across Dundee. The areas with the highest admission rates - Coldside, Lochee, and Maryfield - are consistently among the most deprived localities in the city, and in the 2022 Census they also recorded the highest rates of self-reported mental health conditions per 1,000 population. The Ferry, which records the lowest admission rate, had the lowest rate of self-reported mental health conditions in the same Census. This pattern confirms that the distribution of mental health crisis presentations across the city is not random: it closely follows the geography of poverty, poor housing, and reduced access to preventative support.  
+
+#### Hospital Admission Statistics by Region in Dundee
+The regional hospital admissions chart plots both total bed days (bars) and emergency hospitalisation rates (line) across all eight LCPP areas. An important anomaly is visible in Coldside. While several areas show elevated total admission volumes, Coldside records the highest emergency hospitalisation rate in the city at 5.7 per 1,000 population - substantially higher than its total admission figure might initially suggest.  
+
+![Figure 25](figures/figure25.png)
+> *Figure 25: Hospital Admission Statistics by Region in Dundee.*
+
+This pattern indicates a structural problem with access to primary and preventive mental health care in Coldside. A high emergency rate relative to overall admissions suggests that residents are not reaching services at an earlier stage of need. Instead, they are presenting in crisis, when hospitalisation becomes unavoidable. This is consistent with findings from the 2022 Census, which identified Coldside as having one of the highest rates of people living with a mental health condition in Dundee, and with the broader pattern of limited preventive service capacity in the most deprived localities. The data makes a strong case for prioritising outreach, community-based support, and earlier intervention specifically in Coldside and Lochee, rather than waiting for demand to arrive at emergency services.  
+
+#### Demographic Trends: Admissions and Bed Days by Age Group
+Two related charts examine mental health hospitalisations and bed day use across two broad age groups: people aged 18 to 64, and people aged 65 and over. Together, they reveal an important contrast in how the two groups experience and use mental health inpatient services.  
+
+![Figure 26](figures/figure26.png)
+> *Figure 26: Hospital admissions by age group.*
+
+The admissions trend shows that the 18 to 64 age group accounts for the substantial majority of mental health hospital admissions across all quarters in the period, with numbers rising from 443 in 2022/23 Quarter 1 to 481 in 2024/25 Quarter 2. Admissions for the 65 and over group are considerably lower and have remained broadly stable, fluctuating between 89 and 99 across the same period.  
+
+However, when these figures are examined alongside the bed day distribution chart, a different picture emerges. The 65 and over group accounts for a share of total bed days that is substantially larger relative to their admission numbers, indicating that when older people are admitted for mental health care they tend to stay significantly longer.  
+
+![Figure 27](figures/figure27.png)
+> *Figure 27: Number of hospital bed days distribution by age group.*
+
+This contrast points to two distinct patterns of need. People of working age are being admitted more frequently, suggesting an increasing volume of acute mental health crises in this group, but their stays are typically shorter. For older people, admissions are less frequent but episodes of care are more intensive and prolonged, reflecting the greater complexity often associated with mental health conditions in later life, including dementia and comorbid physical conditions. The fact that the 18 to 64 group is the primary driver of rising admission numbers has wider implications for the city: mental health crisis in Dundee is disproportionately affecting the working-age population, which carries long-term risks for workforce participation, family stability, and economic activity across the city as a whole.  
+
+#### Conclusion
+Taken together, these five charts from the dashboard present a consistent and troubling picture. Dundee's mental health services are operating under significant strain, with a system that is consistently missing its access targets, unevenly distributed across the city in a way that disadvantages the most deprived communities, and facing growing demand from working-age residents. The geographic concentration of emergency admissions in Coldside and Lochee makes clear that place-based inequalities in mental health outcomes are not improving. Addressing this will require more than general increases in capacity: it will require targeted investment in early intervention and community-based support specifically in the areas where need is highest and preventive provision is weakest.  
+
+---
+
+### ADP Framework Analysis: Progress, Risk and Deprivation
+Research was carried out using the ADP Framework (2023) and the National Records of Scotland Drug-related Deaths in Scotland (2023) report to understand how wider social and economic inequalities can contribute to substance-related harm.
+
+Using data from the ADP Framework, a raw dataset was created, cleaned, information structured, and visuals were developed to help identify key patterns and trends. Both sources were then used to compare and contrast the reporting on drug and alcohol issues in Dundee, highlighting where the evidence aligned and where there were gaps or tensions in the narrative. This helped build a clearer picture of how deprivation, mental health, and addiction are interconnected, and why local responses need to consider the wider social factors behind substance-related harm.  
+
+The Dundee Alcohol and Drug Partnership Strategic Framework 2023–2028 sets out an ambitious public health response to alcohol and drug harm, with a focus on prevention, harm reduction, trauma-informed practice, same-day prescribing, Medication Assisted Treatment standards, lived experience, and improved partnership working. This aligns closely with the wider purpose of our project, as it recognises that alcohol and drug harm cannot be understood separately from deprivation, mental health, trauma, and access to support.  
+
+The ADP Framework suggests that Dundee has made progress in some areas, particularly in relation to drug harm. It highlights a shift towards a public health approach, stronger links with mental health services, residential rehabilitation pathways, primary care support, and rapid responses for people experiencing non-fatal overdose. The local data also shows some positive movement, including reductions in drug deaths from 72 in 2019 to 52 in 2021, and reductions in non-fatal overdoses from 636 in 2019 to 319 in 2022.  
+
+However, this progress needs to be interpreted with caution. National Records of Scotland data shows that drug misuse deaths in Scotland increased again in 2023, and that Dundee City remained one of the areas with the highest age-adjusted rates of drug misuse deaths. This creates an important tension between local improvement activity and the continuing scale of harm. It suggests that while Dundee’s strategy is directionally appropriate, progress remains fragile and should not be read as evidence that the underlying problem has been resolved.  
+
+Deprivation is a key issue across both sources. The ADP Framework highlights that more than half of Dundee’s drug deaths in 2021 occurred in the areas of greatest socioeconomic deprivation, while the NRS data confirms the wider national pattern that people in the most deprived areas are significantly more likely to experience drug misuse death. This supports one of the central arguments of our group project: substance-related harm is not only a health or treatment issue, but is strongly connected to poverty, inequality, poor mental health, and wider social conditions.  
+
+The alcohol data raises an additional concern. While some drug-related indicators improved between 2019 and 2021/22, alcohol deaths in Dundee increased from 30 in 2019 to 46 in 2021, and 2021/22 recorded the highest number of alcohol-related hospital discharges in Dundee. The ADP Framework acknowledges that more focus had previously been placed on drug harm and that further work is needed around alcohol. This is important because the data suggests alcohol harm is not a minor gap, but a significant and ongoing public health pressure.  
+
+Overall, the evidence presents a mixed picture. Dundee has a clear and compassionate strategic response, and some indicators show improvement. However, the continued impact of deprivation, the high rate of drug deaths, and rising alcohol-related harm show that local intervention must remain strongly focused on prevention, treatment access, retention, and wider social support. This provides a strong evidence base for the practical intervention element of our project, including the recovery map and improved signposting to community services.  
+
+The following visuals were created from the ADP Framework data to show the relationship between drug harm, alcohol harm, treatment demand, and deprivation in Dundee. They help illustrate where the ADP Framework shows signs of progress, while also highlighting areas where risk remains high.  
+
+This visual shows reductions in drug deaths and non-fatal overdoses between 2019 and 2021/22, suggesting some signs of local progress. However, the number of drug-related hospital admissions, new referrals and people receiving treatment each month shows that demand for drug support services remains substantial.
+
+![Figure 28](figures/figure28.png)
+> *Figure 28: Dundee drug harm indicators from the ADP Framework 2023–2028.*
+
+This visual shows that alcohol-related harm remains a significant pressure in Dundee. Alcohol deaths increased from 30 in 2019 to 46 in 2021, while alcohol service referrals, monthly treatment numbers and deprivation-related hospitalisation risk highlight continuing demand. The data suggests that alcohol harm requires sustained focus alongside drug-related harm.  
+
+![Figure 29](figures/figure29.png)
+> *Figure 29: Dundee alcohol harm indicators from the ADP Framework 2023–2028.*
+
+---
+
+## StoryMap Personas
+An ArcGIS StoryMap was created as a public-facing output to make the findings of the project easier to understand for non-technical audiences. While the technical report presents detailed analysis, the StoryMap uses a more visual and narrative format to show how deprivation, child poverty, mental health pressures, substance-related harm, and access to support services are connected in Dundee.  
+
+![Figure 30](figures/figure30.png)
+> *Figure 30: StoryMap opening page introducing the project focus and Dundee context.*
+
+Across Dundee, local organisations provide services with trust, belonging, and hope. Behind every statistic is a person trying to rebuild routine, confidence, and stability. These journeys demonstrate how community-based support can help people move from isolation towards connection, resilience, and recovery.
+Personas were included to help connect the data with realistic service-user experiences. They do not represent real individuals, but they help illustrate how people facing poverty, mental health challenges, addiction, social isolation, or housing insecurity may experience barriers when trying to find support.
+
+
+![Figure 31](figures/figure31.png)
+> *Figure 31: Persona ‘Sophie’ story section showing how the StoryMap connects the analysis with realistic community experiences.*
+
+
+![Figure 32](figures/figure32.png)
+> *Figure 32: Persona ‘Sophie’ map section showing how the StoryMap visualises potential community services accessed.*
+
+![Figure 33](figures/figure33.png)
+> *Figure 33: Persona ‘Liam' story section showing how the StoryMap connects the analysis with realistic community experiences.*
+
+![Figure 34](figures/figure34.png)
+> *Figure 34: Persona ‘Liam' map section showing how the StoryMap visualises potential community services accessed.*
+
+![Figure 35](figures/figure35.png)
+> *Figure 35: Persona ‘Isla’ story section showing how the StoryMap connects the analysis with realistic community experiences.*
+
+![Figure 36](figures/figure36.png)
+> *Figure 36: Persona ‘Isla' map section showing how the StoryMap visualises potential community services used by persona.*
+
+### Impact of Accessible Community Services
+These persona journeys show why timely and accessible information matters. A person may be willing to seek help only at a particular moment, so unclear opening times, unknown eligibility, or outdated service information can become a practical barrier to support.  
+
+They highlight that recovery is not only an individual journey, but a collective one, shaped through relationships, shared experiences, and community support.  
+
+The StoryMap links the evidence base to the practical output of the project: a Recovery Map prototype that helps users identify available local services by day, category, and type of support.  
+
+![Figure 37](figures/figure37.png)
+> *Figure 37: StoryMap section showing how the Recovery Map prototype responds to the needs identified in the analysis.*
+
+Research suggests that recovery is rarely shaped by one service alone. Instead, it emerges through networks of support, trust and relationships - often built in community settings rather than formal systems
+
+Although each persona experiences different challenges, the stories reveal common themes across Dundee's support network. The stories also show that mental health, poverty, addiction, trauma and social isolation are deeply connected. Early support, safe environments and local community-based services can help prevent crisis and strengthen long-term wellbeing.
+
+Key findings:
+- Local support services are most effective when they are visible, informal and easy to access.
+- Recovery pathways often depend on trust and relationships rather than one-off interventions. 
+- Mental health, poverty and addiction are interconnected social issues. 
+- Community-based support can reduce isolation and strengthen resilience before crisis occurs.
+- Different groups require different types of support, including youth-focused, women-centred and peer-led services.
+
+# Parish Nursing Dundee
+Parish Nursing Dundee look to work with those who are stuck in a cycle of substance use, alcoholism, poverty, violence and other life struggles. They have asked us if we could design an updated leaflet and/or an interactive map which shows which services are available/open each day of the week.  
+
+## Stakeholder Engagement and Problem Definition
+Stakeholder engagement was carried out to ground the project in real-world needs around service access and signposting for health and social issues, including poverty, addiction, and mental health. This included initiating and conducting meetings with Parish Nursing services and the Dundee Recovery Coordinator. These discussions shifted the project from a broad exploration of social challenges to a more focused opportunity: improving access to up-to-date, local service information for frontline workers and community use.  
+
+Stakeholder input directly informed the functional direction of the project, including requirements around accessibility, eligibility information, and real-time usability.  
+
+
+### Data Collection and System Development
+A structured a dataset of over 400 local services was compiled, including key attributes such as service type, availability, eligibility criteria, referral pathways, cost, service lead, description of service offering and contact details. This dataset forms the foundational layer of the current mapping prototype and provides a scalable structure for further development and analysis. The dataset was designed to support both visual mapping and service filtering, enabling more practical, place-based navigation of local support services. It's designed to filter available services by day of the week and service type.  
+
+Parish Nurses advised that they would really value a deliverable whereby they could easily signpost clients to support services that were available on that particular day. They explained that clients tend to engage with services there and then, if they're going to engage at all. If they signpost clients to a service that clients have to go to at a later time, the window of opportunity for engagement may be lost, and clients may lose motivation to seek support if not immediate. Parish Nursing was encouraging of the project, stating it would be valued with local Police services also, as they frequently bring clients to Parish Nursing for signposting to suitable support. They advised it would be valuable to extend across Tayside region and indeed nation-wide.  
+
+### Prototype Development and Iterative Feedback
+The initial prototype was developed using the structured dataset and showed the map of Dundee, with services being able to be filtered by day and service type. This has been reviewed with the Dundee Recovery Coordinator, who provided feedback on usability and suggested refinements, including enhanced geographic breakdown (neighbourhood-level access), improved eligibility visibility, and inclusion of both services and activities. This feedback was shared with the team to inform ongoing and possible future development.  
+
+### Analysis and Evaluation
+Analysis of service provision was completed within the dataset to identify gaps, patterns, and areas of unmet need across different types of support services. This analysis will contribute to the evaluation section of the project and support evidence-based recommendations.  
+
+### Scope and Project Direction
+Given the project timeframe and the need to prepare for final outputs and showcase presentation, the focus has shifted from expanding the dataset to consolidating, analysing, and refining existing work. This ensures that outputs remain coherent, demonstrable, and aligned with assessment expectations.  
+
+## Dundee Recovery Map Prototype
+The Recovery Road Map was originally developed as a visual resource for Dundee, displaying the network of services available to people experiencing difficulties related to mental health, addiction, homelessness, and social isolation. It provided information on mental health support, addiction services, health and wellbeing provision, rehabilitation pathways, peer support, and family and carer support. In the years following its launch, the app became widely used across the city, both by people seeking help for themselves and by frontline organisations seeking to connect people with appropriate support.  
+
+When the costs of maintaining the app became unsustainable and it was taken offline, a practical gap opened at the point where reliable information is most needed. Parish Nurses in Dundee described a situation in which the police bring people to them in crisis - people who need immediate signposting to the right service at the right time. Without a maintained, up-to-date digital resource, practitioners have been falling back on a printed leaflet produced in 2023. That leaflet is known to be incomplete and, for some services, out of date. In response to a direct request from Parish Nursing Dundee, our group explored what could be rebuilt using free and open source tools within the scope of a data analysis project. The result was an interactive, filterable web map prototype of recovery and support services across Dundee, which demonstrates what a maintained community resource of this kind could look like, and provides a working foundation on which a more fully featured application could be built upon.  
+
+The value of a recovery service map is also clearly reflected in the analysis carried out as part of our project. Our analysis of deprivation, drug-related harm, mental health pressures, and poverty across Dundee and the wider Tay cities area shows where need is most concentrated. Viewed alongside this evidence, the Recovery Map offers a practical and immediate way of helping people navigate support in the places where it is most needed. For this reason, our analysis and prototype are presented together as a connected response to what the evidence shows about the challenges facing communities across Dundee.
+
+### Overview
+The prototype is a single-page web application centred on an interactive map of Dundee. The sections below describe its key features.
+
+#### Map and Marker Display
+Services with confirmed Dundee locations are displayed as custom teardrop pin icons on a Leaflet.js interactive map, rendered against OpenStreetMap tile imagery. Each pin is coloured according to its service category using a palette derived from Parish Nursing Dundee's existing website and leaflet. Ten categories are currently represented: Activity Based, Mental Health, Addiction Support, Rehab Information, Health and Wellbeing, Harm Reduction, Peer Support, Family and Carer Support, Food Resources, and Housing.  
+
+Where multiple services are located in close proximity, pins are automatically merged into cluster bubbles by the Leaflet.markercluster plugin. Cluster size scales with the number of contained services, separating into individual pins as the user zooms in. Multi-session services are grouped under a single pin. Services that are definitively closed on the selected day are hidden. Services with unconfirmed hours or appointment-only access are always shown, with their status clearly indicated. This prevents the overlapping markers that would otherwise appear when multiple CSV rows share identical coordinates, and ensures that clicking any location opens a complete picture of everything available there rather than a partial view of a single session.  
+
+![Figure 38](figures/figure38.png)
+> *Figure 38: Recovery Map prototype map and marker display.*
+
+#### Popups
+Clicking a map pin opens a popup panel displaying the full details of the service or services at that location. The popup header shows the service name alongside a colour-coded status chip indicating one of four states: Open today, Closed today, Hours not confirmed, or By appointment. The header background matches the service’s category colour, providing immediate visual identification consistent with the map legend and category filter buttons.  
+
+The popup body displays the service category, a description, address, phone number, and website link where available. The Access field indicates whether the service operates as a drop-in, runs to a fixed schedule, or requires an appointment to be made in advance, information that is particularly important for someone in crisis who needs to know whether they can simply arrive or must contact the service first.  
+
+The weekly hours grid lists all seven days with their respective opening times. Today’s row is highlighted in green representing the currently selected day, if different from today, is highlighted in an accent colour. Days on which a service is closed are shown in muted grey. Days with unconfirmed hours display an amber italic note; appointment-only services display a purple italic note across all days.  
+
+Where a location hosts multiple distinct sessions, the popup uses a native HTML accordion layout. Each session is presented as an expandable panel showing its name, category colour dot, open or closed status for today, age group, cost, and access type. The first session is expanded by default. Single-session locations use a simpler flat layout.
+
+#### Filtering and Search
+Primary filters include day-of-the-week buttons, category buttons, and a text search across name, category, and description. At least one category must remain selected at all times.  
+
+A secondary collapsible panel provides cost, target group, and access-type filters. Services with unknown values are included by default. “Show all” and “Clear all” controls reset all filters. A stats bar displays the number of visible services and, when relevant, how many are open on the selected day.  
+
+#### Remote and National Services Sidebar
+Not all support services relevant to Dundee residents have a fixed physical location. UK-wide helplines, Scotland-wide phone services, and organisations that operate across council areas without a single address cannot be meaningfully placed on a city-level map. Rather than excluding these services from the application, they are presented in a dedicated sidebar panel labelled Remote and National Services, positioned alongside the map on desktop screens and stacked below it on mobile devices.  
+
+Each entry in the sidebar is presented as a card displaying the service name, category, geographic scope badge (UK, Scotland, or the relevant council area), a status chip for the selected day, phone number, website, and opening hours for the selected day. The sidebar respects the same filter logic as the map: category, cost, target group, access type, and search term filters all apply, and the sidebar updates in real time alongside the map whenever any filter changes. A count of matching sidebar services is displayed in the sidebar header.  
+
+#### Legend and Mobile Considerations
+A collapsible legend panel shows the category colour key. Responsive layout adjustments support smaller viewports. Colours and typography align with Parish Nursing Dundee materials.
+
+#### Hosting
+The prototype is a static web application with all processing done client-side. Cleaned JSON data is served alongside the HTML and JavaScript, enabling no cost hosting via platforms such as GitHub Pages. Data-access and exposure decisions would need review before public deployment.
+
+### Looking into the Future
+The main limitation of the prototype is its static dataset. Two feasible approaches to data maintenance may be considered: a managed backend or automated data retrieval from service providers websites. A hybrid approach combining both is likely most realistic.  
+
+**Backend Architecture**: Replacing the static JSON with a backend would enable authentication, logging, and moderated updates. A lightweight API built using Flask, supported by a database such as SQLite for simplicity or PostgreSQL for scalability, would be sufficient. This solution could also be deployed using low-cost or free hosting services.  
+
+**Mobile Application**: A full mobile application could be developed using React Native to provide consistent and high-performance user experience across both iOS and Android platforms. This approach would enable integration with device-specific features such as push notifications, geolocation, and offline storage, improving both usability and responsiveness.  
+
+#### Enhanced Functionality
+Potential enhancements include:
+-	Real-time open/closed status.
+-	Directions and routing.
+-	Optional deprivation-analysis overlays.
+-	Accessibility filtering.
+-	Referral pathway information.
+-	Multi-language support.
+-	User feedback and update suggestions.
+
+#### Limitations
+Current limitations include:
+-	The dataset has not been formally verified with all service providers.
+-	Some information may already be out of date.
+-	Services with unconfirmed hours are clearly labelled but not verified.
+-	Geocoding accuracy varies for incomplete addresses.
+-	Improvements to accessibility are needed.
+-	The prototype is not yet suitable to be publicly deployed.
+
+### Development Process
+The prototype was built through four iterative stages, each responding to problems and limitations identified in the previous stage. This section describes each stage in turn, from the initial working prototype through to the version presented here. 
+
+Tools used:
+-	Python (data cleaning using Pandas and geocoding using Nominatim API)
+-	HTML, CSS, JavaScript
+-	GitHub for version control and GitHub Pages (proposed hosting)
+
+
+#### Stage 1: Initial Prototype
+The first stage produced a working interactive map centred on Dundee, built using Leaflet.js and OpenStreetMap tiles. At this point, service data was hardcoded directly in the JavaScript file as a static array, which was sufficient for early testing and layout development. The main interface was designed in this stage: custom pin icons coloured by service category to match the Revovery Map leaflet; day-of-the-week filter buttons; category filter buttons; a text search box; and a popup for each pin displaying the service name, address, phone number, website, age group, cost, and a full weekly hours grid. Today's row in the hours grid was highlighted, and each popup carried an open/closed chip in the header. A floating legend panel and a stats bar showing the count of visible services were also introduced at this stage.  
+
+#### Stage 2: Data Pipeline and JSON
+The second stage addressed the limitations of hardcoded data by introducing a proper data pipeline. A Python cleaning script was written to process the raw Excel dataset compiled by the team. The script standardised inconsistent formatting across fields, corrected errors, geocoded service addresses to latitude and longitude coordinates using the Nominatim API (OpenStreetMap’s geocoding service), and exported the cleaned data as both a CSV file for validation and a structured JSON file for use by the web application. The service data was moved out of the JavaScript file and into an external JSON file, loaded by the application via a fetch() call. A description fallback function was also added at this stage: if a service's primary description field was blank or contained the exact text value "Not on Recovery Map" - indicating it was absent from the original Recovery Map or Parish Nursing leaflet, then the application falls back to an additional notes field. This ensured that as many services as possible had meaningful descriptions displayed to users. The Python script handles cleaning and geocoding only and outputs a flat row-per-session JSON file where each row represents a single session of a single service. The grouping of those rows into per-location service entries is handled by the JavaScript application at runtime.  
+
+#### Stage 3: Grouping, Multi Session Popups, and Sidebar
+The third stage addressed a significant limitation of the flat JSON structure. Because the dataset contains one row per session, organisations offering multiple sessions at the same location would otherwise generate multiple overlapping pins at identical coordinates. A grouping function was introduced in the JavaScript layer to combine all session rows sharing the same organisation name and address into a single map entry before markers were rendered. This introduced the need for two different popup layouts. Where a location has only a single session, a simple flat popup is shown with the service details and a full weekly hours grid. Where a location has multiple sessions, an accordion layout is used, implemented with native HTML details and summary elements. Each session appears as a collapsible row showing its name, category, target group, cost, and individual hours, with a colour dot and an open/closed badge in the header of each row. The first session is expanded by default. This stage also introduced the sidebar panel for services without a fixed geographic location. This includes national helplines, online services, and Scotland or UK-wide provision that cannot be placed as a pin on the Dundee map. Previously, services without valid coordinates were being silently dropped; the sidebar ensured they remained accessible. These services respond to all active filters in the same way as map markers, with their count displayed alongside the map.  
+
+#### Stage 4: Hours States, Access Filters, and Clustering
+The fourth stage addressed several problems with how hours data was being interpreted and displayed. A central hours-resolution function was added to translate raw hours values into one of several display states: confirmed open hours, "Hours not confirmed" for services where opening times were unknown or variable, and "By appointment" for services requiring prior contact. The day-of-the-week filter behaviour was also revised. Previously, services with NULL hours for a given day were being displayed as "Closed", causing services with genuinely unknown hours to be incorrectly filtered out. Unknown and "various" day values are now treated as "Unknown" rather than NULL, so these services remain visible when a day filter is applied. Only services that are definitively closed on the selected day are hidden. Marker clustering was introduced using the Leaflet.markercluster plugin. Nearby pins merge into numbered cluster bubbles at lower zoom levels and disperse as the user zooms in. Additional filter controls were added to a collapsible filter panel: a cost filter (Free/Paid), a target-group filter (All Ages/Adults/Women/Men/50+/Young People/Children), and an access-type filter (Drop-in/Scheduled/By appointment). "Show all" and "Clear all" buttons were added to reset filters in a single action, though the logic for these buttons was not yet added in this stage. Finally, the map boundary constraints were relaxed. Restricting panning to the Dundee boundary caused popups near the edge of the map to be clipped. Removing this constraint resolved the issue while keeping a sensible default view centred on the city.
+
+### Recovery Leaflet Re-Design
+The project poster summarises the main findings from our analysis and presents the key outputs of the project in a clear visual format. It brings together the evidence on deprivation, child poverty, mental health, substance-related harm, and access to community support services in Dundee. The poster was designed as a public-facing output for the final showcase and helps communicate the purpose, findings, and practical value of the project to a wider audience.  
+
+![Figure 43](figures/figure43.png)
+> *Figure 43: Final project poster summarising the Dundee deprivation, health, and community support mapping project.*
+
+
+# References
+Dundee City Council (2025) Dundee Poverty Profile 2025. Available at: https://www.dundeecity.gov.uk/sites/default/files/Dundee_Poverty_Profile_2025.pdf  (Accessed: 26 March 2026). 
+Dundee City Council (2025) Fairness and local child poverty plan [2024/25]. Available at: https://www.dundeecity.gov.uk/sites/default/files/Final%20191-2025%20Fairness%20and%20Local%20Child%20Poverty%20Action%20Plan%20-%20Annual.pdf (Accessed: 26 March 2026).
+Dundee City Council (2020) DUNDEE CITY - SIMD2020 Version 2 Briefing Note. Available at: https://www.dundeecity.gov.uk/sites/default/files/publications/simd2020_version2_briefing.pdf (Accessed 23 May 2026).
+Dundee Health and Social Care Partnership (2026) Mental Health Services Performance Indicators 2025-26 Quarter 2, Dundeehscp.com. Available at: https://www.dundeehscp.com/mental-health-services-performance-indicators-2025-26-quarter-2 (Accessed: 19 May 2026).
+Dundee Partnership (2023) Dundee Alcohol and Drug Partnership Strategic Framework 2023-2028. Available at: https://www.dundeeadp.co.uk/sites/default/files/2023-01/ADP%20FRAMEWORK%2023.pdf (Accessed: 15 May 2026).
+Lopez, M. (2020)  Achieving fairness? Challenging poverty and social exclusion through partnership working, University of Dundee. Available at: https://discovery.dundee.ac.uk/ws/portalfiles/portal/49045628/Achieving_fairness_Final_version.pdf (Accessed 18 May 2026).
+‌National Records of Scotland (NRS) (2025) Drug-related deaths in Scotland, 2024. Available at: https://www.nrscotland.gov.uk/publications/drug-related-deaths-in-scotland-2024/ (Accessed: 16 March 2026).
+Open Government Licence (OGL v3.0) (2026) Nationalarchives.gov.uk. Available at: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/ (Accessed: 16 March 2026).
+Parish Nursing Dundee (2026) Parishnursingdundee.org.uk. Available at: https://parishnursingdundee.org.uk/ (Accessed: 1 April 2026).
+Public Health Scotland (2024) Alcohol related hospital statistics. Available at: https://publichealthscotland.scot/publications/alcohol-related-hospital-statistics/alcohol-related-hospital-statistics-scotland-financial-year-202223/ (Accessed: 27 March 2026).
+‌Public Health Scotland (2024) Mental health inpatient activity. Available at: https://publichealthscotland.scot/publications/mental-health-inpatient-activity/mental-health-inpatient-activity-10-december-2024/data-explorer/ (Accessed: 27 March 2026).
+‌Public Health Scotland (2025) Child and Adolescent Mental Health Services (CAMHS) waiting times. Available at: https://publichealthscotland.scot/publications/child-and-adolescent-mental-health-services-camhs-waiting-times/child-and-adolescent-mental-health-services-camhs-waiting-times-quarter-ending-september-2025/ (Accessed: 26 March 2026).
+‌Public Health Scotland (2026) Drug-Related Hospital Statistics Scotland - Scottish Health and Social Care Open Data, Nhs.scot. Available at: https://www.opendata.nhs.scot/dataset/drug-related-hospital-statistics-scotland (Accessed: 16 March 2026).
+‌Public Health Scotland (2026) Completeness - Scottish Morbidity Records (SMR), Publichealthscotland.scot. Available at: https://publichealthscotland.scot/resources-and-tools/health-intelligence-and-data-management/data-management-in-secondary-care-hospital-activity/scottish-morbidity-records-smr/completeness/ (Accessed: May 15, 2026).
+‌Scotland’s Census (2022) Scotland’s Census 2022 reports. Available at: https://www.scotlandscensus.gov.uk/2022-reports/ (Accessed: 16 March 2026).
+‌Scottish Government (2025) Data Zone Boundaries 2011 © Scottish Government, contains Ordnance Survey data © Crown copyright and database right (2026), SpatialData.gov.scot. Available at: https://www.data.gov.uk/dataset/ab9f1f20-3b7f-4efa-9bd2-239acf63b540/data-zone-boundaries-2011 (Accessed: 16 March 2026). 
+Stone, J. (2025) Local indicators of child poverty after housing costs, 2023/24 Estimates of child poverty after housing costs in parliamentary constituencies and local authorities. Available at: https://endchildpoverty.org.uk/wp-content/uploads/2025/05/Local-indicators-of-child-poverty-after-housing-costs_2025_final-1.pdf (Accessed: 23 May 2026).
+‌The Scottish Government (2025) Child poverty pathfinders in Dundee and Glasgow: phase two evaluation, Gov.scot. Available at: https://www.gov.scot/publications/phase-2-evaluation-child-poverty-pathfinders-dundee-glasgow/ (Accessed: 26 March 2026).
+The Scottish Government (2020) Scottish Index of Multiple Deprivation (SIMD), Gov.scot. Available at: https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/ (Accessed: 16 March 2026).
 
 
 ## Rights & Usage
-Group project analysis and visualisations each group member
+Group project analysis and visualisations created belong to each respective group member.  
+
 This repository contains a prototype developed by me as part of a wider group project. No licence is granted for reuse, redistribution, or commercial use of the code or derived datasets without explicit permission.  
 The prototype may be shared for non-commercial evaluation or demonstration purposes only.  
 © 2026 Shannon Martin. All rights reserved.
