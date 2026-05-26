@@ -130,7 +130,7 @@ Taken together, the dashboard functions as an evidence tool rather than just a v
 
 
 ![Figure 1](figures/figure1.png)
-> *ArcGIS Dashboard visualising child poverty in Dundee and neighbouring Tay Cities.*
+> *Figure 1: ArcGIS Dashboard visualising child poverty in Dundee and neighbouring Tay Cities.*
 
 ---
 
@@ -199,7 +199,7 @@ Mental health inpatient rates have changed substantially over time in both Dunde
 Although rates decline in both Dundee and Scotland over time, the gap between Dundee and the national average persists, indicating a long-standing difference rather than short-term variation. This indicates that Dundee’s higher rates are not driven by short-term fluctuations but reflect longer-standing differences in population need, service use, or both.
 
 ![Figure 2](figures/figure2.png)
-> *Mental health inpatient rates (total cases), Dundee City vs Scotland, 1997/98–2023/24.
+> *Figure 2: Mental health inpatient rates (total cases), Dundee City vs Scotland, 1997/98–2023/24.
 Standardised patient rates per 100,000 population for total inpatient activity (combining psychiatric and non-psychiatric admissions).*
 
 #####  Dundee City: psychiatric vs non-psychiatric activity (Figure 3)  
@@ -207,7 +207,7 @@ Within Dundee City, both psychiatric and non-psychiatric admissions contribute t
 Overall trends in Dundee are therefore driven primarily by psychiatric inpatient activity.
 
 ![Figure 3](figures/figure3.png)
-> *Psychiatric vs non-psychiatric inpatient rates in Dundee City, 1997/98–2023/24.
+> *Figure 3: Psychiatric vs non-psychiatric inpatient rates in Dundee City, 1997/98–2023/24.
 Standardised patient rates per 100,000 population for psychiatric and non-psychiatric mental health inpatient admissions in Dundee City.*
 
 ##### Excess mental health inpatient admissions in Dundee relative to Scotland (Figure 4)  
@@ -215,7 +215,7 @@ By subtracting the Scottish inpatient rate from the Dundee rate, the analysis hi
 The difference between Dundee and Scotland remains positive across most of the time period. Dundee rarely falls below the national average. The size of the gap varies over time but remains persistent. This indicates a sustained inequality in mental health inpatient burden.
 
 ![Figure 4](figures/figure4.png)
-> *Excess mental health inpatient hospitalisation rates in Dundee City relative to Scotland, 1997/98–2023/24.
+> *Figure 4: Excess mental health inpatient hospitalisation rates in Dundee City relative to Scotland, 1997/98–2023/24.
 Difference in standardised mental health inpatient rates per 100,000 population (Dundee minus Scotland).
 Values above zero indicate higher rates in Dundee than the national average. The dashed horizontal line marks parity with the national average.*
 
@@ -224,14 +224,14 @@ For psychiatric mental health admissions, both Dundee and Scotland show marked d
 For psychiatric admissions only, Dundee records consistently higher psychiatric inpatient rates across most of the time series, suggesting sustained pressure on specialist mental health services relative to the national picture.
 
 ![Figure 5](figures/figure5.png)
-> *Psychiatric inpatient rates, Dundee City vs Scotland, 1997/98–2023/24.*
+> *Figure 5: Psychiatric inpatient rates, Dundee City vs Scotland, 1997/98–2023/24.*
 
 ##### Non-psychiatric mental health admissions: Dundee City versus Scotland (Figure 6)  
 For non-psychiatric mental health admissions, rates are substantially lower than for psychiatric admissions in both Dundee and Scotland.
 Although Dundee remains above the national average in most years, the difference is smaller than for psychiatric admissions. This reinforces the finding that psychiatric inpatient care is the main driver of Dundee’s relative excess.
 
 ![Figure 6](figures/figure6.png)
-> *Non-psychiatric inpatient rates, Dundee City vs Scotland, 1997/98–2023/24.*
+> *Figure 6: Non-psychiatric inpatient rates, Dundee City vs Scotland, 1997/98–2023/24.*
 
 ##### Dundee within Scotland: council area comparison, 2023/24 (Figure 7)  
 Council-level comparisons for 2023/24 show wide variation in mental health inpatient hospitalisation rates across Scotland.
@@ -243,7 +243,7 @@ In 2023/24, council-level variation is clear:
 This pattern indicates that Dundee’s higher inpatient rates are not shared evenly across the region and are not simply a feature of Tayside as a whole.
 
 ![Figure 7](figures/figure7.png)
-> *Mental health inpatient hospitalisation rates by council area, Scotland, 2023/24.
+> *Figure 7: Mental health inpatient hospitalisation rates by council area, Scotland, 2023/24.
 Standardised patient rates per 100,000 population for combined psychiatric and non-psychiatric mental health inpatient admissions. Dundee City is highlighted in red, Tayside cities are highlighted in blue, and Scottish average shown for reference.*
 
 ---
@@ -316,21 +316,21 @@ Study design
 Alcohol-related hospital admission rates in Scotland show large changes over time, with a general rise from the late 1990s into the mid-2000s, followed by periods of stabilisation and decline. Despite some reduction from peak levels, rates remain high in recent years, indicating that alcohol-related harm continues to place pressure on hospital services.
 
 ![Figure 8](figures/figure8.png)
-> *National trends in alcohol-related hospital admissions, Scotland, 1997/98–2023/24.
+> *Figure 8: National trends in alcohol-related hospital admissions, Scotland, 1997/98–2023/24.
 European age-standardised rates (EASR) of alcohol-related hospital admissions per 100,000 population in Scotland, combining general acute and psychiatric admissions, from 1997/98 to 2023/24.*
 
 ##### Dundee City versus Scotland: all alcohol conditions (Figure 9)
 Across the entire time series, **Dundee City consistently records higher alcohol-related hospital admission rates than the Scottish average**. The gap between Dundee and Scotland is persistent rather than temporary, suggesting long-standing local or structural factors rather than short-term fluctuations.
 
 ![Figure 9](figures/figure9.png)
-> *Alcohol-related hospital admission rates: Dundee City compared with Scotland, 1997/98–2023/24.
+> *Figure 9: Alcohol-related hospital admission rates: Dundee City compared with Scotland, 1997/98–2023/24.
 Comparison of alcohol-related hospital admission rates (EASR per 100,000) between Dundee City and Scotland overall, 1997/98–2023/24.*
 
 ##### Mental and behavioural disorders due to alcohol (Figure 10)
 Differences between Dundee and Scotland are **even more pronounced** for alcohol-related mental and behavioural disorders. Dundee’s admission rates exceed the national average in most years, indicating a disproportionate concentration of alcohol-related mental health harm and sustained pressure on psychiatric services.
 
 ![Figure 10](figures/figure10.png)
-> *Alcohol-related mental and behavioural disorder hospital admissions: Dundee City compared with Scotland, 1997/98–2023/24.
+> *Figure 10: Alcohol-related mental and behavioural disorder hospital admissions: Dundee City compared with Scotland, 1997/98–2023/24.
 European age-standardised rates (EASR per 100,000) of hospital admissions for mental and behavioural disorders due to alcohol, comparing Dundee City with Scotland overall, 1997/98–2023/24.*
 
 ##### Excess admissions in Dundee (Figure 11)
@@ -338,9 +338,9 @@ By directly subtracting the Scottish rate from the Dundee rate, the analysis sho
 Although the size of the gap varies, Dundee rarely falls to or below the national average.
 
 ![Figure 11](figures/figure11.png)
-> *Excess admissions in Dundee (Figure 11)
-By directly subtracting the Scottish rate from the Dundee rate, the analysis shows that Dundee’s excess admission rate is sustained over time.
-Although the size of the gap varies, Dundee rarely falls to or below the national average.*
+> *Figure 11: Excess alcohol-related hospital admissions in Dundee City relative to Scotland, 1997/98–2023/24.
+Difference between Dundee City and Scotland alcohol-related hospital admission rates (Dundee minus Scotland), expressed as excess EASR per 100,000 population, 1997/98–2023/24.
+Values above zero indicate higher rates in Dundee, values below zero indicate lower rates in Dundee than national average. The dashed horizontal line at zero indicates years when Dundee City and Scotland had the same rate.*
 
 ##### Condition-specific comparison (Figure 12)
 When averaging rates across the full period:
@@ -349,7 +349,7 @@ When averaging rates across the full period:
 This indicates that Dundee’s higher rates reflect system-wide alcohol-related harm, rather than one specific clinical category.
 
 ![Figure 12](figures/figure12.png)
-> *Mean alcohol-related hospital admission rates by condition, Dundee City compared with Scotland, 1997/98–2023/24.
+> *Figure 12: Mean alcohol-related hospital admission rates by condition, Dundee City compared with Scotland, 1997/98–2023/24.
 Mean European age-standardised rates (EASR) of alcohol-related hospital admissions by diagnostic category, averaged across all years (1997/98–2023/24), comparing Dundee City with Scotland overall.
 Each horizontal line represents a condition, with points indicating the average rate in Dundee City and in Scotland. Conditions are ordered by the average rate in Dundee City. Differences between the two points illustrate where hospitalisation rates in Dundee City are higher or lower than the national average.*
 
@@ -366,7 +366,7 @@ Council-level comparisons for 2023/24 show clear variation within Tayside:
 
 
 ![Figure 13](figures/figure13.png)
-> *Alcohol-related hospital admissions across Tayside council areas, 2023/24.
+> *Figure 13: Alcohol-related hospital admissions across Tayside council areas, 2023/24.
 Alcohol-related hospital admission rates (EASR per 100,000 population) for Dundee City, Angus, Perth and Kinross, and Fife in 2023/24 with the Scottish average shown for reference.
 Dundee City is highlighted in red, Tayside council areas are highlighted in blue and the dashed vertical line indicates the Scotland national average for the same year. Council areas are ranked from highest to lowest rate.*
 
@@ -377,7 +377,7 @@ The same pattern appears **for alcohol-related mental and behavioural disorder a
 This indicates that Dundee’s high admission rates are not shared evenly across the region
 
 ![Figure 14](figures/figure14.png)
-> *Alcohol-related mental and behavioural disorder admissions across Tayside council areas, 2023/24.
+> *Figure 14: Alcohol-related mental and behavioural disorder admissions across Tayside council areas, 2023/24.
 Hospital admission rates for mental and behavioural disorders due to alcohol (EASR per 100,000 population) across Tayside council areas in 2023/24.
 Dundee City is highlighted in red, Tayside council areas are highlighted in blue and the dashed vertical line indicates the Scotland national average for the same year. Council areas are ranked from highest to lowest rate.*
 
@@ -427,6 +427,66 @@ This section looks at what interventions exist across Dundee, how they are distr
 ## Community Services
 For many people, their journey to recovery starts in a community setting – a food bank, a drop-in chat, or an activity. The graphic below shows how that first contact, when met with support and compassion, can build the trust and routine from which recovery grows.
 
+![Figure 15](figures/figure15.png)
+> *Figure 15: Journey showing how service access barriers can affect people seeking support.*
+
+###	Mapping and Analysis of Community Support Service Accessibility and Provision
+####	Summary
+The dashboard presents an overview of community support services based on a structured mapping derived from the Parish Nursing Recovery Map framework, supplemented with additional food-related and activity-based services identified through publicly available sources. The classification of services reflects this guiding framework, although it does not represent a comprehensive mapping of all services within the local area. Areas such as housing, benefits advice, and debt support were outside the scope of this project due to time and methodological constraints.
+Overall, the analysis highlights a service landscape that is predominantly free and broadly accessible, but with variation in temporal availability, demographic targeting, and transparency of information. These factors may influence how easily individuals can identify and access appropriate support within the local area.
+
+![Figure 16](figures/figure16.png)
+> *Figure 16: Power BI dashboard visualising the distribution and accessibility of community support services across temporal, demographic, and cost dimensions.*
+
+#### Service Classification and Scope of Mapping
+The categorisation of services within this dataset was primarily guided by the structure of the original Parish Nursing Recovery Map, which provided the foundational framework for grouping types of support. This included core categories such as mental health, addiction support, and peer support services.  
+
+Additional categories were incorporated to reflect the broader local support landscape, including food-related services (such as food banks and community larders) and selected activity-based services identified as relevant to community wellbeing and inclusion.  
+
+It is important to note that the dataset does not represent an exhaustive mapping of all available services within the area. Certain types of provision - such as housing support, benefits advice, debt advice, and condition-specific health services - fall outside the scope of this project due to the limitations of a course-based study and the focus of the original recovery map framework. As a result, the analysis reflects a structured but partial representation of local support provision.
+
+#### Service Availability by Day of Week
+The analysis of service availability by day of the week demonstrates a clear concentration of provision during weekdays, with Wednesday (84 services) and Thursday (76 services) showing the highest levels of availability. In contrast, weekend provision is significantly lower, with only 22 services available on Saturdays and 11 on Sundays. This suggests that access to support is primarily structured around the standard working week, which may present barriers for individuals requiring support outside typical weekday hours.  
+
+In addition, a number of services are categorised as “Unknown” (30) or “Various” (8), reflecting inconsistencies or gaps in publicly available scheduling information. This lack of clarity may itself impact accessibility, as service users may experience difficulty identifying when support is available.  
+Overall, the findings highlight a concentration of services during midweek periods alongside the importance of clear and consistent scheduling information to support accessibility and navigation. 
+
+#### Service Availability by Focus Demographic
+The analysis of services by focus demographic indicates that the majority of provision is broadly targeted, with 207 services categorised as supporting “All Ages” and 120 services focused on adults. Comparatively fewer services are explicitly targeted towards young people (18), women (27), older adults (10), men (10), and children (2).  
+
+This distribution suggests that many services are positioned as broadly accessible rather than explicitly targeted toward specific demographic groups, although certain populations appear comparatively less represented within the mapped provision. In particular, services aimed at children and older adults are limited within the dataset.  
+
+A proportion of services (29) were categorised as “Unknown” due to limited or unclear demographic information being publicly available online. It should also be noted that categorisation was based solely on publicly accessible service descriptions, meaning findings reflect visible targeting rather than confirmed eligibility criteria.
+
+#### Service Accessibility by Cost Type
+The analysis of service provision by cost type indicates that the majority of mapped services are free to access, with 317 services identified as offering free provision. Comparatively fewer services are categorised as paid (46) or mixed-cost (8), suggesting that most support within the mapped landscape is intended to remain financially accessible.  
+
+Paid services are primarily associated with selected community cafés, food-related provision, and wellbeing or activity-based services, while mixed-cost categories reflect services where elements of provision vary between free and chargeable.  
+
+A further 52 services were categorised as “Unknown” due to unclear or incomplete cost information being publicly available online. As the dataset was compiled using publicly accessible information only, findings reflect the visibility of cost information rather than verified pricing structures.  
+
+Overall, the findings suggest a predominantly free and accessible service landscape, although inconsistent cost transparency may still create uncertainty for individuals navigating available support.  
+
+---
+
+## Prevention and Treatment
+Addressing substance-related harm and mental health requires both preventative measures and accessible treatment options. This section examines what prevention and treatment provision looks like across Dundee, and where the data shows unmet need.
+
+### Dundee Alcohol & Drug Partnership: Performance Overview 2022-2025
+This analysis examines drug and alcohol service activity in Dundee between 2022 and 2025, with a focus on treatment access and retention, referral patterns across drug and alcohol pathways, the relationship between prevention activity and hospital admissions, and trends in crisis and emergency incidents. The analysis was carried out in Microsoft Excel, and the underlying data was taken from the Dundee Health and Social Care Partnership's Drug and Alcohol Service Indicators 2025–26 Quarter 2 report, published by the Chief Finance Officer and presented to the Performance and Audit Committee. The dashboard below brings together the key findings in a single visual summary.
+
+![Figure 17](figures/figure17.png)
+> *Dundee Alcohol & Drug Partnership: Performance Overview Dashboard (2022-2025). Analysis conducted in Microsoft Excel. Data source: Drug and Alcohol Service Indicators 2025–26 Quarter 2 (Dundee Health and Social Care Partnership).*
+
+#### Comparison of Treatment Referrals: Drugs vs Alcohol
+The referrals comparison chart plots the number of new referrals for drug treatment and for alcohol treatment across each rolling quarter from 2022/23 Quarter 2 through to 2024/25 Quarter 2. The two lines reveal sharply diverging trends over this period.  
+
+![Figure 18](figures/figure18.png)
+> *Comparison of Treatment Referrals: Drugs vs Alcohol.*
+
+Alcohol treatment referrals have fallen steadily and substantially, from 654 in 2022/23 Quarter 2 to 453 in 2024/25 Quarter 2, a decline of approximately 31% over two years. Drug treatment referrals, by contrast, have risen across the same period, reaching 606 in the most recent quarter. The practical significance of this crossing is considerable: for the first time in the reporting period, new referrals for drug treatment have meaningfully exceeded referrals for alcohol treatment. The two pathways, which had previously operated at broadly comparable volumes, now represent different trajectories of demand.  
+
+This divergence has implications for how the Dundee Drug and Alcohol Recovery Service (DDARS) allocates capacity between the two pathways. While a reduction in alcohol treatment referrals may partly reflect the impact of prevention work and Alcohol Brief Interventions, it may also reflect changing patterns in how people seek help, or reduced visibility of harm at the early intervention stage. The rising trend in drug referrals, reaching its highest point in the reporting period, reinforces the importance of maintaining and expanding the assertive outreach and rapid access components of the service model for drug treatment.  
 
 
 
