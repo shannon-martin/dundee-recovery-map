@@ -17,7 +17,6 @@ Dundee has some of Scotland’s highest rates of child poverty, substance-abuse,
 - [Legal, Social, Ethical, and Professional Issues](#legal-social-ethical-and-professional-issues)
 - [Equality, Diversity, and Inclusion Considerations](#equality-diversity-and-inclusion-considerations)
 - [Data Sources](#data-sources)
-  - [Data Quality Notes](#data-quality-notes)
 - [Deprivation](#deprivation)
   - [Child Poverty](#child-poverty)
   - [Mental Health](#mental-health)
@@ -108,11 +107,11 @@ All our outputs are designed to be accessible, we provide plain-English labels a
 | [Alcohol Related Hospital Statistics](https://publichealthscotland.scot/publications/alcohol-related-hospital-statistics/alcohol-related-hospital-statistics-scotland-financial-year-202223/) | Substance Harm / Alcohol Misuse | Public Health Scotland | 2022–2023 | OGL v3.0 | Local Authority / NHS Board | Excel (.xlsx) |
 | [Mental Health Services Performance Indicators 2025–26 Quarter 2](https://www.dundeehscp.com/mental-health-services-performance-indicators-2025-26-quarter-2) | Intervention | Dundee Health and Social Care Partnership | 2025–2026 | OGL v3.0 | Dundee | PDF |
 
-> *Table 2: Datasets used or referenced throughout our project.*
+> *Table 2: Reports and datasets used or referenced throughout our project.*
 
-## Data Quality Notes
-Some statistical disclosure control has been applied to Public Health Scotland datasets to protect patient confidentiality.  
-Scottish Index of Multiple Deprivation (SIMD) 2020 is over 6 years old, and so may not fully reflect current deprivation statistics.
+**Data Quality Notes**:
+- Some statistical disclosure control has been applied to Public Health Scotland datasets to protect patient confidentiality.  
+- Scottish Index of Multiple Deprivation (SIMD) 2020 is over 6 years old, and so may not fully reflect current deprivation statistics.
 
 ---
 
