@@ -20,15 +20,15 @@ Dundee has some of Scotland’s highest rates of child poverty, substance-abuse,
 - [Deprivation](#deprivation)
   - [Child Poverty](#child-poverty)
   - [Mental Health](#mental-health)
-    - [Inpatient Hospitalisations in Scotland: Dundee City Focus (1997/98–2023/24)](#inpatient-hospitalisations-in-scotland-dundee-city-focus-199798202324)
+    - [Inpatient Hospitalisations in Scotland: Dundee City Focus (1997/98-2023/24)](#inpatient-hospitalisations-in-scotland-dundee-city-focus-199798202324)
   - [Substance Abuse](#substance-abuse)
-    - [Alcohol-Related Hospital Admissions in Scotland: Dundee City Focus (1997/98–2023/24)](#alcohol-related-hospital-admissions-in-scotland-dundee-city-focus-199798202324)
+    - [Alcohol-Related Hospital Admissions in Scotland: Dundee City Focus (1997/98-2023/24)](#alcohol-related-hospital-admissions-in-scotland-dundee-city-focus-199798202324)
 - [Intervention](#intervention)
   - [Community Services](#community-services)
     - [Mapping and Analysis of Community Support Service Accessibility and Provision](#mapping-and-analysis-of-community-support-service-accessibility-and-provision)
   - [Prevention and Treatment](#prevention-and-treatment)
-    - [Dundee Alcohol & Drug Partnership: Performance Overview 2022–2025](#dundee-alcohol--drug-partnership-performance-overview-20222025)
-    - [Local Mental Health Service Performance and Geographical Inequality (2022–2025)](#local-mental-health-service-performance-and-geographical-inequality-20222025)
+    - [Dundee Alcohol & Drug Partnership: Performance Overview 2022-2025](#dundee-alcohol--drug-partnership-performance-overview-2022-2025)
+    - [Local Mental Health Service Performance and Geographical Inequality (2022-2025)](#local-mental-health-service-performance-and-geographical-inequality-2022-2025)
     - [ADP Framework Analysis: Progress, Risk and Deprivation](#adp-framework-analysis-progress-risk-and-deprivation)
   - [StoryMap Personas](#storymap-personas)
     - [Impact of Accessible Community Services](#impact-of-accessible-community-services)
@@ -522,7 +522,7 @@ Considered together, the four charts from this dashboard describe a service oper
 
 ---
 
-###	Local Mental Health Service Performance and Geographical Inequality (2022-2025)
+### Local Mental Health Service Performance and Geographical Inequality (2022-2025)
 This analysis examines mental health service activity across Dundee's Local Community Planning Partnership (LCPP) areas between 2022 and 2025, with a focus on access to psychological therapies, emergency hospital admissions, regional disparities, and demographic trends. The analysis was carried out in Microsoft Excel, and the underlying data was taken from the Dundee Health and Social Care Partnership's Mental Health Services Indicators 2025–26 Quarter 2 report, published by the Chief Finance Officer and presented to the Performance and Audit Committee. The dashboard below brings together the key findings in a single visual summary.  
 
 ![Figure 22](figures/figure22.png)
@@ -705,15 +705,35 @@ The weekly hours grid lists all seven days with their respective opening times. 
 
 Where a location hosts multiple distinct sessions, the popup uses a native HTML accordion layout. Each session is presented as an expandable panel showing its name, category colour dot, open or closed status for today, age group, cost, and access type. The first session is expanded by default. Single-session locations use a simpler flat layout.
 
+<img src="figures/figure39.png" alt="Figure 39" width="300">
+<blockquote>
+  <em>Figure 39: Recovery Map prototype popup display.</em>
+</blockquote>
+
 #### Filtering and Search
 Primary filters include day-of-the-week buttons, category buttons, and a text search across name, category, and description. At least one category must remain selected at all times.  
 
+<img src="figures/figure40.png" alt="Figure 40" width="300">
+<blockquote>
+  <em>Figure 40: Prototype service category and day filters.</em>
+</blockquote>
+
 A secondary collapsible panel provides cost, target group, and access-type filters. Services with unknown values are included by default. “Show all” and “Clear all” controls reset all filters. A stats bar displays the number of visible services and, when relevant, how many are open on the selected day.  
+
+<img src="figures/figure41.png" alt="Figure 41" width="300">
+<blockquote>
+  <em>Figure 40: Prototype optional filter buttons.</em>
+</blockquote>
 
 #### Remote and National Services Sidebar
 Not all support services relevant to Dundee residents have a fixed physical location. UK-wide helplines, Scotland-wide phone services, and organisations that operate across council areas without a single address cannot be meaningfully placed on a city-level map. Rather than excluding these services from the application, they are presented in a dedicated sidebar panel labelled Remote and National Services, positioned alongside the map on desktop screens and stacked below it on mobile devices.  
 
 Each entry in the sidebar is presented as a card displaying the service name, category, geographic scope badge (UK, Scotland, or the relevant council area), a status chip for the selected day, phone number, website, and opening hours for the selected day. The sidebar respects the same filter logic as the map: category, cost, target group, access type, and search term filters all apply, and the sidebar updates in real time alongside the map whenever any filter changes. A count of matching sidebar services is displayed in the sidebar header.  
+
+<img src="figures/figure42.png" alt="Figure 42" width="300">
+<blockquote>
+  <em>Figure 42: Prototype sidebar.</em>
+</blockquote>
 
 #### Legend and Mobile Considerations
 A collapsible legend panel shows the category colour key. Responsive layout adjustments support smaller viewports. Colours and typography align with Parish Nursing Dundee materials.
