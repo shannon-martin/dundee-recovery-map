@@ -1,5 +1,10 @@
 # Investigating Deprivation and Community Intervention in Dundee + Dundee Recovery Map Prototype
 
+[![Report](https://img.shields.io/badge/Read_Report-blue?style=for-the-badge)](./report/)
+[![PDF](https://img.shields.io/badge/Download-PDF-red?style=for-the-badge&logo=adobeacrobatreader)](./report/Investigating_Deprivation_and_Community_Intervention_in_Dundee.pdf)
+
+
+
 ## My Contributions
 **Project Management**: Led the overall direction and coordination of the project from initial scoping through to final submission. Responsibilities included facilitating group discussions, maintaining the project timeline, assigning and tracking work across the team, and ensuring all outputs were delivered to a consistent standard.
 
