@@ -1,7 +1,7 @@
 # Investigating Deprivation and Community Intervention in Dundee
 Dundee has some of Scotland’s highest rates of child poverty, substance-abuse, and mental health issues, yet it also has hundreds of community support services – many of them poorly signposted, difficult to find, and not listed anywhere accessible. This project examines the first problem by combining spatial mapping, statistical analysis, and interactive dashboards to analyse deprivation and intervention across Dundee and the wider Tay Cities, then begins to address the second by exploring practical community outcomes.  
 
-[![PDF](https://img.shields.io/badge/Download-PDF-red?style=for-the-badge&logo=adobeacrobatreader)](./report/Investigating_Deprivation_and_Community_Intervention_in_Dundee.pdf)
+[![PDF](https://img.shields.io/badge/Download-PDF-red?style=for-the-badge&logo=adobeacrobatreader)](Investigating_Deprivation_and_Community_Intervention_in_Dundee.pdf)
 # Contents
 
 - [Project Overview](#project-overview)
