@@ -32,7 +32,8 @@ This prototype demonstrates that a fully functional replacement can be built and
 
 **Report Collation and Writing**: Responsible for compiling the final group report, integrating contributions from all six members into a single coherent document, and contributing to framing the report's overall narrative and structure. This included writing connecting sections to contextualise our analytical work that follows.
 
-
+## Data
+Service data was collated by the data lead in our project team from publicly available sources including the Parish Nursing Dundee printed directory, individual organisation websites, and direct verification with services. Data was then processed through a Python cleaning script that standardises and validates fields, geocodes addresses via Nominatim, and exports clean JSON for the web application. Data is used with the knowledge of Parish Nursing Dundee for educational and community benefit purposes. All contact details are publicly listed by the respective organisations.
 
 
 ## Rights & Usage
