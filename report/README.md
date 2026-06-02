@@ -1,6 +1,7 @@
 # Investigating Deprivation and Community Intervention in Dundee
-Dundee has some of Scotland’s highest rates of child poverty, substance-abuse, and mental health issues, yet it also has hundreds of community support services – many of them poorly signposted, difficult to find, and not listed anywhere accessible. This project examines the first problem by combining spatial mapping, statistical analysis, and interactive dashboards to analyse deprivation and intervention across Dundee and the wider Tay Cities, then begins to address the second by exploring practical community outcomes.
+Dundee has some of Scotland’s highest rates of child poverty, substance-abuse, and mental health issues, yet it also has hundreds of community support services – many of them poorly signposted, difficult to find, and not listed anywhere accessible. This project examines the first problem by combining spatial mapping, statistical analysis, and interactive dashboards to analyse deprivation and intervention across Dundee and the wider Tay Cities, then begins to address the second by exploring practical community outcomes.  
 
+[![PDF](https://img.shields.io/badge/Download-PDF-red?style=for-the-badge&logo=adobeacrobatreader)](Investigating_Deprivation_and_Community_Intervention_in_Dundee.pdf)
 # Contents
 
 - [Project Overview](#project-overview)
@@ -647,6 +648,8 @@ Key findings:
 - Community-based support can reduce isolation and strengthen resilience before crisis occurs.
 - Different groups require different types of support, including youth-focused, women-centred and peer-led services.
 
+---
+
 # Parish Nursing Dundee
 Parish Nursing Dundee look to work with those who are stuck in a cycle of substance use, alcoholism, poverty, violence and other life struggles. They have asked us if we could design an updated leaflet and/or an interactive map which shows which services are available/open each day of the week.  
 
@@ -697,15 +700,35 @@ The weekly hours grid lists all seven days with their respective opening times. 
 
 Where a location hosts multiple distinct sessions, the popup uses a native HTML accordion layout. Each session is presented as an expandable panel showing its name, category colour dot, open or closed status for today, age group, cost, and access type. The first session is expanded by default. Single-session locations use a simpler flat layout.
 
+<img src="figures/figure39.png" alt="Figure 39" width="300">
+<blockquote>
+  <em>Figure 39: Recovery Map prototype popup display.</em>
+</blockquote>
+
 #### Filtering and Search
 Primary filters include day-of-the-week buttons, category buttons, and a text search across name, category, and description. At least one category must remain selected at all times.  
 
+<img src="figures/figure40.png" alt="Figure 40">
+<blockquote>
+  <em>Figure 40: Prototype service category and day filters.</em>
+</blockquote>
+
 A secondary collapsible panel provides cost, target group, and access-type filters. Services with unknown values are included by default. “Show all” and “Clear all” controls reset all filters. A stats bar displays the number of visible services and, when relevant, how many are open on the selected day.  
+
+<img src="figures/figure41.png" alt="Figure 41">
+<blockquote>
+  <em>Figure 41: Prototype optional filter buttons.</em>
+</blockquote>
 
 #### Remote and National Services Sidebar
 Not all support services relevant to Dundee residents have a fixed physical location. UK-wide helplines, Scotland-wide phone services, and organisations that operate across council areas without a single address cannot be meaningfully placed on a city-level map. Rather than excluding these services from the application, they are presented in a dedicated sidebar panel labelled Remote and National Services, positioned alongside the map on desktop screens and stacked below it on mobile devices.  
 
 Each entry in the sidebar is presented as a card displaying the service name, category, geographic scope badge (UK, Scotland, or the relevant council area), a status chip for the selected day, phone number, website, and opening hours for the selected day. The sidebar respects the same filter logic as the map: category, cost, target group, access type, and search term filters all apply, and the sidebar updates in real time alongside the map whenever any filter changes. A count of matching sidebar services is displayed in the sidebar header.  
+
+<img src="figures/figure42.png" alt="Figure 42" width="300">
+<blockquote>
+  <em>Figure 42: Prototype sidebar.</em>
+</blockquote>
 
 #### Legend and Mobile Considerations
 A collapsible legend panel shows the category colour key. Responsive layout adjustments support smaller viewports. Colours and typography align with Parish Nursing Dundee materials.
