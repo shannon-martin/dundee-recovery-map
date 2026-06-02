@@ -579,7 +579,13 @@ function renderSidebar() {
 }
 
 /* BUTTONS */
-/* SHOW?CLEAR ALL */
+
+
+/* SHOW ALL */
+
+
+
+/*CLEAR ALL */
 
 
 /* DAYS */
@@ -645,43 +651,56 @@ Object.entries(CATEGORIES).forEach(([name, c]) => {
   catContainer.appendChild(btn);
 });
 
+
+/* FILTER BUTTONS
+   opts : array of { value, label, title?, color? }
+   activeSet : the Set that tracks which values are active
+   containerId : id of the <div> to append buttons into
+   btnClass : CSS class for the button (e.g. "filter-btn" or "cat-btn")
+   styleActive : fn(btn, opt), applies active visual styles
+   styleInactive: fn(btn, opt), applies inactive visual styles */
+
+function buildFilterButtons(opts, activeSet, containerId, btnClass, styleActive, styleInactive) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  opts.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.className = `${btnClass} active`;
+    btn.textContent = opt.label;
+    if (opt.title) btn.title = opt.title;
+    styleActive(btn, opt); // apply initial active styles
+
+    btn.onclick = () => {
+      if (activeSet.has(opt.value)) {
+        if (activeSet.size === 1) return; // prevent deactivating the last one
+        activeSet.delete(opt.value);
+        btn.classList.remove("active");
+        styleInactive(btn, opt);
+      } else {
+        activeSet.add(opt.value);
+        btn.classList.add("active");
+        styleActive(btn, opt);
+      }
+      renderMapMarkers();
+    };
+    container.appendChild(btn);
+  });
+}
+
 /* COST BTNS */
 const COST_OPTS = [
   { value:"Free", label:"Free", color:"#1A6B3C" },
   { value:"Paid", label:"Paid", color:"#993C1D" },
-  /*{ value:"Unknown", label:"Unknown", color:"#888" },*/
+  /*{ value:"Unknown", label:"Unknown", title:"Access type not recorded", color:"#888" },*/
 ];
+buildFilterButtons(
+  COST_OPTS, activeCosts, "cost-btns", "filter-btn",
+  (btn, opt) => {btn.style.borderColor = opt.color; btn.style.color = opt.color; btn.style.opacity = "1"; },
+  (btn, opt) => {btn.style.opacity = "0.45"; }
+);
 
-const costContainer = document.getElementById("cost-btns");
-if (costContainer) {
-  COST_OPTS.forEach(({ value, label, color }) => {
-    const btn = document.createElement("button");
-    btn.className = "filter-btn active";
-    btn.textContent = label;
-    btn.style.borderColor = color;
-    btn.style.color = color;
-    btn.title = value === "Unknown"
-      ? "Services where cost information is not recorded"
-      : `Show ${value} services`;
-
-    btn.onclick = () => {
-      if (activeCosts.has(value)) {
-        if (activeCosts.size === 1) return;
-        activeCosts.delete(value);
-        btn.classList.remove("active");
-        btn.style.opacity = "0.45";
-      } else {
-        activeCosts.add(value);
-        btn.classList.add("active");
-        btn.style.opacity = "1";
-      }
-      renderMapMarkers();
-    };
-    costContainer.appendChild(btn);
-  });
-}
-
-/* TARGET GROUP */
+/* TARGET GROUP BTNS */
 const GRP_OPTS = [
   { value:"All Ages", label:"All Ages" },
   { value:"Adults", label:"Adults" },
@@ -692,67 +711,25 @@ const GRP_OPTS = [
   { value:"Children", label:"Children" },
   /*{ value:"Unknown", label:"Unknown" },*/
 ];
+buildFilterButtons(
+  GRP_OPTS, activeGrps, "grp-btns", "filter-btn",
+  (btn, opt) => {btn.style.opacity = "1";},
+  (btn, opt) => {btn.style.opacity = "0.45";}
+);
 
-const grpContainer = document.getElementById("grp-btns");
-if (grpContainer) {
-  GRP_OPTS.forEach(({ value, label }) => {
-    const btn = document.createElement("button");
-    btn.className   = "filter-btn active";
-    btn.textContent = label;
-    btn.title = value === "Unknown"
-      ? "Services where age group is not recorded"
-      : `Show services for ${value}`;
-
-    btn.onclick = () => {
-      if (activeGrps.has(value)) {
-        if (activeGrps.size === 1) return;
-        activeGrps.delete(value);
-        btn.classList.remove("active");
-        btn.style.opacity = "0.45";
-      } else {
-        activeGrps.add(value);
-        btn.classList.add("active");
-        btn.style.opacity = "1";
-      }
-      renderMapMarkers();
-    };
-    grpContainer.appendChild(btn);
-  });
-}
-
-/* ACCESS FILTR */
+/* ACCESS BTNS */
 const ACCESS_OPTS = [
   { value:"Open Access", label:"Drop-in", title:"Walk-in, no appointment needed" },
-  { value:"Scheduled Activity",label:"Scheduled", title:"Runs at specific times" },
-  { value:"By Appointment", label:"By appointment",title:"Must contact service first" },
+  { value:"Scheduled Activity", label:"Scheduled", title:"Runs at specific times" },
+  { value:"By Appointment", label:"By appointment", title:"Must contact service first" },
   { value:"Unknown", label:"Unknown", title:"Access type not recorded" },
 ];
 let activeAccess = new Set(ACCESS_OPTS.map(o => o.value));
-
-const accessContainer = document.getElementById("access-btns");
-if (accessContainer) {
-  ACCESS_OPTS.forEach(({ value, label, title }) => {
-    const btn = document.createElement("button");
-    btn.className   = "filter-btn active";
-    btn.textContent = label;
-    btn.title       = title;
-    btn.onclick = () => {
-      if (activeAccess.has(value)) {
-        if (activeAccess.size === 1) return;
-        activeAccess.delete(value);
-        btn.classList.remove("active");
-        btn.style.opacity = "0.45";
-      } else {
-        activeAccess.add(value);
-        btn.classList.add("active");
-        btn.style.opacity = "1";
-      }
-      renderMapMarkers();
-    };
-    accessContainer.appendChild(btn);
-  });
-}
-
+buildFilterButtons(
+  ACCESS_OPTS, activeAccess, "access-btns", "filter-btn",
+  (btn, opt) => { btn.style.opacity = "1"; },
+  (btn, opt) => { btn.style.opacity = "0.45"; }
+);
 
 /* SERACH */
 /* addEventListener("input", handler) fires on every
