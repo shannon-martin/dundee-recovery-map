@@ -104,6 +104,20 @@ function isDayVisible(hoursValue, activityStatus) {
   return resolveHours(hoursValue, activityStatus).cls !== "closed";
 }
 
+
+/* JITTER - nudges co-located pins slightly so they don't stack.
+   Uses a seeded deterministic offset based on the org name,
+   so the same service always lands in the same spot. */
+function seededJitter(str) {
+  // simple hash > consistent tiny float for this string
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+  }
+  // map to range ±0.00018 (roughly ±15 metres)
+  return ((h & 0xFFFF) / 0xFFFF - 0.5) * 0.00036;
+}
+
 /* TRANSFORM DATA */
 function resolveDesc(row) {
   /* Return the best available description for a service row.
@@ -272,6 +286,15 @@ function transformServices(rawData) {
     };
 
     if (hasCoords) {
+      // if another service already sits on these exact coords, jitter this one
+      const coordKey = `${lat.toFixed(5)},${lng.toFixed(5)}`;
+      const alreadyTaken = mapServices.some(
+        e => e.lat.toFixed(5) === lat.toFixed(5) && e.lng.toFixed(5) === lng.toFixed(5)
+      );
+      if (alreadyTaken) {
+        entry.lat = lat + seededJitter(org + "lat");
+        entry.lng = lng + seededJitter(org + "lng");
+      }
       mapServices.push(entry);
     } else {
       virtualServices.push(entry);
@@ -303,7 +326,10 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 let clusterGroup = L.markerClusterGroup({
   maxClusterRadius: 40, // pixels, pins must be this close to cluster
-  disableClusteringAtZoom: 16 // at max zoom, show individual pins
+  disableClusteringAtZoom: 17, // at max zoom, show individual pins
+  spiderfyOnMaxZoom: true,
+  zoomToBoundsOnClick: true,
+  spiderfyDistanceMultiplier: 1.5,
 });
 map.addLayer(clusterGroup);
 
@@ -553,6 +579,9 @@ function renderSidebar() {
 }
 
 /* BUTTONS */
+/* SHOW?CLEAR ALL */
+
+
 /* DAYS */
 const dayContainer = document.getElementById("day-btns");
 
@@ -569,7 +598,7 @@ DAYS.forEach((d, i) => {
     activeDay = d;
     document.querySelectorAll(".day-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    renderMapMarkers();;
+    renderMapMarkers();
   };
 
   dayContainer.appendChild(btn);
