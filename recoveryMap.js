@@ -473,6 +473,7 @@ function renderMapMarkers() {
     if (!servicePassesFilters(s)) return;
     if (!isDayVisible(s.hours[activeDay], s.activityStatus)) return; // hides cloased services
 
+
     // only definitively closed pins are faded.
     const todayH = resolveHours(s.hours[activeDay]);
     const isOpen = todayH.cls !== "closed";
@@ -495,7 +496,9 @@ function renderMapMarkers() {
   // Stats bar
   document.getElementById("count").textContent = shown;
   const openLabel = document.getElementById("open-count-label");
-  if (activeDay === todayAbbr) {
+  if (shown === 0) {
+    openLabel.innerHTML = `<span style="color:#a32d2d">No services match/have been selected, click on 'Show All' or filter buttons</span>`;
+  } else if (activeDay === todayAbbr) {
     openLabel.innerHTML = `<span style="color:#0f6e56;font-weight:700">${openToday} open right now</span>`;
   } else {
     const openOnDay = mapServices.filter(s => servicePassesFilters(s) && s.hours[activeDay]).length;
@@ -504,7 +507,7 @@ function renderMapMarkers() {
 
   renderSidebar();
 }
-
+  
 /* MAP LEGEND */
 const legend = document.getElementById("legend");
 const legendToggle = document.querySelector(".legend-toggle");
@@ -582,11 +585,47 @@ function renderSidebar() {
 
 
 /* SHOW ALL */
+document.getElementById("show-all-filters").onclick = () => {
+  // restore all sets to full
+  Object.keys(CATEGORIES).forEach(k => activeCats.add(k));
+  COST_OPTS.forEach(o => activeCosts.add(o.value));
+  GRP_OPTS.forEach(o => activeGrps.add(o.value));
+  ACCESS_OPTS.forEach(o => activeAccess.add(o.value));
 
+  // reset all button visuals
+  document.querySelectorAll(".cat-btn").forEach(btn => {
+    btn.classList.add("active");
+    const name = btn.textContent;
+    const c = CATEGORIES[name];
+    if (c) { btn.style.background = c.light; btn.style.opacity = "1"; }
+  });
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.classList.add("active");
+    btn.style.opacity = "1";
+  });
+  renderMapMarkers();
+};
 
 
 /*CLEAR ALL */
+document.getElementById("clear-filters").onclick = () => {
+  activeCats.clear();
+  activeCosts.clear();
+  activeGrps.clear();
+  activeAccess.clear();
 
+  // dim all buttons
+  document.querySelectorAll(".cat-btn").forEach(btn => {
+    btn.classList.remove("active");
+    btn.style.background = "#fff";
+    btn.style.opacity = "0.5";
+  });
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.classList.remove("active");
+    btn.style.opacity = "0.45";
+  });
+  renderMapMarkers();
+};
 
 /* DAYS */
 const dayContainer = document.getElementById("day-btns");
@@ -673,7 +712,7 @@ function buildFilterButtons(opts, activeSet, containerId, btnClass, styleActive,
 
     btn.onclick = () => {
       if (activeSet.has(opt.value)) {
-        if (activeSet.size === 1) return; // prevent deactivating the last one
+        /*if (activeSet.size === 1) return; // prevent deactivating the last one*/
         activeSet.delete(opt.value);
         btn.classList.remove("active");
         styleInactive(btn, opt);
