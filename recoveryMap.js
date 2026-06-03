@@ -85,7 +85,7 @@ function resolveHours(value, activityStatus) {
   if (!value) return { text: "Closed", cls: "closed" };
   const v = value.trim().toLowerCase();
   if (v === "unknown" || v === "hours not confirmed")
-    return { text: "Hours not confirmed", cls: "hours-unknown" };
+    return { text: "Hours unknown", cls: "hours-unknown" };
   if (v === "by appointment" || v === "by appt")
     return { text: "By appointment — contact to book", cls: "hours-appt" };
 
@@ -359,14 +359,32 @@ function makeIcon(cat, isOpen) {
 
 /* POPUPS */
 function makeHoursGrid(hours, activityStatus) {
+  const status = (activityStatus || "").trim().toLowerCase();
+
+  // if By Appointment with no real day data, then don't show a weekly grid at all
+  const allUnknownOrNull = DAYS.every(d => !hours[d] || 
+    hours[d].toLowerCase() === "unknown" ||
+    hours[d].toLowerCase() === "by appointment");
+
+  if (allUnknownOrNull) {
+    if (status === "by appointment") {
+      return `<div class="hours-note-appt">Contact the service to arrange an appointment.</div>`;
+    }
+    return `<div class="hours-note-unknown">Hours not confirmed, please contact the service for details.</div>`;
+  }
+
+  // only show days that have actual nonnull hours
+  const activeDayCount = DAYS.filter(d => hours[d] !== null).length;
+  const showAll = activeDayCount >= 1; // show full grid if more than value
+
   return Object.entries(hours).map(([abbr, h], i) => {
-    const isToday  = DAYS[i] === todayAbbr;
-    const isActive = DAYS[i] === activeDay;
+    if (h === null && !showAll) return "";
+
+    const isToday = DAYS[i] === todayAbbr;
     const resolved = resolveHours(h, activityStatus);
 
     let cls = "day-row";
     if (isToday) cls += " today-row";
-    if (isActive && !isToday) cls += " active-day-row";
     if (resolved.cls) cls += " " + resolved.cls;
 
     return `<div class="${cls}">
@@ -383,7 +401,7 @@ function makePopup(s) {
   const chip = todayHours.cls === "closed"
     ? `<span class="open-chip closed">Closed today</span>`
     : todayHours.cls === "hours-unknown"
-    ? `<span class="open-chip unknown">Hours not confirmed</span>`
+    ? `<span class="open-chip unknown">Hours unknown</span>`
     : todayHours.cls === "hours-appt"
     ? `<span class="open-chip appt">By appointment</span>`
     : `<span class="open-chip open">Open today</span>`;
@@ -422,7 +440,7 @@ function makePopup(s) {
     const badge = sessResolved.cls === "closed"
         ? `<span class="open-chip closed" style="font-size:0.6rem;padding:1px 5px">Closed</span>`
         : sessResolved.cls === "hours-unknown"
-        ? `<span class="open-chip unknown" style="font-size:0.6rem;padding:1px 5px">Hours ?</span>`
+        ? `<span class="open-chip unknown" style="font-size:0.6rem;padding:1px 5px">Hours unknown</span>`
         : sessResolved.cls === "hours-appt"
         ? `<span class="open-chip appt" style="font-size:0.6rem;padding:1px 5px">By appt</span>`
         : `<span class="open-chip open" style="font-size:0.6rem;padding:1px 5px">Open</span>`;

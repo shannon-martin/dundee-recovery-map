@@ -6,7 +6,11 @@
   --white: #ffffff;
   --gold: #fbb13c;
   --grey: #7A7A7A;
+  --appt: #534AB7;
   --darkgrey: #333333;
+  --red: #a32d2d;
+  --green: #0f6e56;
+  --orange: #B8650A;
   --border: #dde3ea;
   --bg: #f5f5f7;
 }
@@ -137,7 +141,7 @@ main { display: flex; flex-direction: column; flex: 1; }
 .marker-cluster-medium div,
 .marker-cluster-large  div {
   background-color: var(--darkpurple);
-  color: #fff;
+  color:var(--white);
   font-family: 'Poppins', Arial, sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
@@ -276,13 +280,13 @@ main { display: flex; flex-direction: column; flex: 1; }
 .divider { width: 1px; background: var(--border); height: 24px; align-self: center; }
 
 .controls {
-  background: #fff;
+  background:var(--white);
   border-bottom: 1px solid #dde3ea;
   padding: 10px 12px;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: left;
 }
 
 .day-btns {
@@ -372,6 +376,46 @@ main { display: flex; flex-direction: column; flex: 1; }
   background: var(--bg);
   opacity: 1;
 }
+
+/*SHOW/CLEAR ALL*/
+.filter-action-row {
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  gap: 6px;
+}
+ 
+.filter-action-btn {
+  padding: 4px 12px;
+  border-radius: 5px;
+  border: 1.5px solid;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+ 
+.filter-action-btn.show-all {
+  border-color: var(--darkpurple);
+  color: var(--darkpurple);
+  background: var(--white);
+}
+.filter-action-btn.show-all:hover {
+  background: var(--darkpurple);
+  color: var(--white);
+}
+ 
+.filter-action-btn.clear-all {
+  border-color: var(--grey);
+  color: var(--grey);
+  background: var(--white);
+}
+.filter-action-btn.clear-all:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+
 /* FILLTER PANEL */
 .filter-panel {
   border-top: 1px solid var(--border);
@@ -401,13 +445,13 @@ main { display: flex; flex-direction: column; flex: 1; }
 .leaflet-popup-content {
   margin: 0; /* remove Leaflet default margin */
   min-width: 220px;
-  max-width: 280px;
+  max-width: 320px;
 }
 
 /* coloured header bar at top of each popup */
 .popup-header {
   padding: 10px 14px 8px;
-  color: #fff;
+  color:var(--white);
   font-weight: 700;
   font-size: 0.9rem;
 }
@@ -415,7 +459,7 @@ main { display: flex; flex-direction: column; flex: 1; }
 /* white body area below coloured header */
 .popup-body {
   padding: 8px 14px 12px;
-  background: #fff;
+  background:var(--white);
 }
 
 /* small cat label */
@@ -487,17 +531,32 @@ main { display: flex; flex-direction: column; flex: 1; }
 
 /* hour ststes*/
 .day-row.hours-unknown span:last-child {
-  color: #B8650A;
+  color:var(--orange);
   font-style: italic;
 }
+
 .day-row.hours-appt span:last-child {
-  color: #534AB7;
+  color:var(--appt);
   font-style: italic;
 }
 /* dont grey these rows out like .closed does */
 .day-row.hours-unknown,
 .day-row.hours-appt {
   color: inherit;
+}
+
+.hours-note-appt {
+  font-size: 0.73rem;
+  color:var(--appt);
+  font-style: italic;
+  padding: 2px 0;
+}
+
+.hours-note-unknown {
+  font-size: 0.73rem;
+  color:var(--orange);
+  font-style: italic;
+  padding: 2px 0;
 }
 
 /* "Open today" / "Closed today" badges */
@@ -513,27 +572,27 @@ main { display: flex; flex-direction: column; flex: 1; }
 
 .open-chip.open {
   background: #e0f4f2;
-  color: #0f6e56;
+  color:var(--green);
 }
 
 .open-chip.closed {
   background: #fce8e8;
-  color: #a32d2d;
+  color: var(--red);
 }
 
 .open-chip.unknown {
   background: #FEF3E2;
-  color: #B8650A;
+  color:var(--orange);
 }
 .open-chip.appt {
   background: #EEEDFE;
-  color: #534AB7;
+  color:var(--appt);
 }
 
 /* style default Leaflet close (X) button white so it's
    visible against the coloured popup header */
 .leaflet-popup-close-button {
-  color: #fff !important;
+  color:var(--white) !important;
   font-size: 1rem !important;
   padding: 6px 8px !important;
 }
@@ -545,7 +604,7 @@ main { display: flex; flex-direction: column; flex: 1; }
   bottom: 28px;
   right: 10px;
   z-index: 1000;
-  background: #fff;
+  background:var(--white);
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 0.72rem;
