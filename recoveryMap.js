@@ -304,7 +304,29 @@ function transformServices(rawData) {
   console.log(`Grouped: ${mapServices.length} map services, ${virtualServices.length} virtual/sidebar services`);
 }
 
+function isOpenRightNow(hoursStr) {
+  if (!hoursStr) return false;
+  const str = hoursStr.toLowerCase().trim();
+  if (str === "closed" || str === "unknown" || str === "by appointment") return false;
 
+  // get current time as minutes since midnight
+  const now = new Date();
+  const nowMins = now.getHours() * 60 + now.getMinutes();
+
+  // handle multiple sessions e.g. "09:30-12:00, 13:00-15:00"
+  const sessions = str.split(",").map(s => s.trim());
+
+  return sessions.some(session => {
+    // strip any bracketed notes e.g. "(drop-in)" or "(last assessment at 11:00)"
+    const clean = session.replace(/\(.*?\)/g, "").trim();
+    const match = clean.match(/^(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})$/);
+    if (!match) return false;
+
+    const openMins = parseInt(match[1]) * 60 + parseInt(match[2]);
+    const closeMins = parseInt(match[3]) * 60 + parseInt(match[4]);
+    return nowMins >= openMins && nowMins < closeMins;
+  });
+}
 
 /* MAP */
 const DUNDEE_BOUNDS = L.latLngBounds(
@@ -484,7 +506,7 @@ function renderMapMarkers() {
   // remove all existing markers from the map
   clusterGroup.clearLayers();
 
-  let shown = 0, openToday = 0;
+  let shown = 0, openToday = 0,  openNow = 0;
 
   mapServices.forEach(s => {
 	// check if this service passes category and search filters
@@ -493,7 +515,7 @@ function renderMapMarkers() {
 
 
     // only definitively closed pins are faded.
-    const todayH = resolveHours(s.hours[activeDay]);
+    const todayH = resolveHours(s.hours[activeDay], s.activityStatus);
     const isOpen = todayH.cls !== "closed";
     const opacity = todayH.cls === "closed" ? 0.45 : 1;
     const icon = makeIcon(s.cat, isOpen);
@@ -508,16 +530,23 @@ function renderMapMarkers() {
 
     clusterGroup.addLayer(m);
     shown++;
-    if (s.hours[todayAbbr]) openToday++;
+    // if (s.hours[todayAbbr]) openToday++;
+    const todayHours = s.hours[todayAbbr];
+    if (todayHours && todayHours.toLowerCase() !== "closed") openToday++;
+    if (isOpenRightNow(todayHours)) openNow++;
+    
   });
 
   // Stats bar
   document.getElementById("count").textContent = shown;
   const openLabel = document.getElementById("open-count-label");
   if (shown === 0) {
-    openLabel.innerHTML = `<span style="color:#a32d2d">No services match/have been selected, click on 'Show All' or filter buttons</span>`;
+    openLabel.innerHTML = `<span style="color:#a32d2d">No services match or have been selected, try 'Show All' or other filter buttons</span>`;
   } else if (activeDay === todayAbbr) {
-    openLabel.innerHTML = `<span style="color:#0f6e56;font-weight:700">${openToday} open right now</span>`;
+    openLabel.innerHTML = `
+    <span style="color:#0f6e56;font-weight:700"> · ${openToday} open today · </span>
+    <span style="color:#0f6e56;font-weight:700">${openNow} open right now</span>
+    `;
   } else {
     const openOnDay = mapServices.filter(s => servicePassesFilters(s) && s.hours[activeDay]).length;
     openLabel.innerHTML = `<span style="color:#555">${openOnDay} open on ${DAY_FULL[DAYS.indexOf(activeDay)]}</span>`;
