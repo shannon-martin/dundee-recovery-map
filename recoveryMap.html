@@ -102,9 +102,19 @@
       <!-- Map area -->
       <div class="map-column">
         <div id="map"></div>
-        <div class="legend" id="legend">
-          <button class="legend-toggle" aria-expanded="false">Service types</button>
-          <div class="legend-content"></div>
+
+          <div class="legend" id="legend">
+            <button class="legend-toggle" aria-expanded="false" aria-controls="legend-content">
+              <span>Map Key</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+          <div class="legend-content" id="legend-content"></div>
+
         </div>
       </div>
 
@@ -136,7 +146,7 @@
       <p>Created as part of a project to improve access to recovery services 
       across Dundee and the wider Tay Cities region, developed in 
       partnership with Parish Nursing Dundee.</p>
-      <p>To update a service listing: <a href="name@email.com">contact us</a></p>
+      <p>To update a service listing: <a href="name@email.com">contact me</a></p>
     </div>
 
     <div class="footer-col">

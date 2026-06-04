@@ -587,12 +587,14 @@ legendToggle.addEventListener("click", () => {
   const isOpen = legendContent.style.display !== "none";
   legendContent.style.display = isOpen ? "none" : "block";
   legendToggle.setAttribute("aria-expanded", String(!isOpen));
-  legendToggle.textContent = isOpen ? "> Service types" : "[expand] Service types";
+  //legendToggle.textContent = isOpen ? "> Service types" : "[expand] Service types";
+  legendToggle.classList.toggle("open", !isOpen);
 });
 
-// set initial toggle label, CSS controls visibility
-legendToggle.textContent = "> Service types";
-  
+const isMobile = window.innerWidth <= 768;
+legendContent.style.display = isMobile ? "none" : "block";
+legendToggle.setAttribute("aria-expanded", String(!isMobile));
+if (!isMobile) legendToggle.classList.add("open");
 
 /* SIDEBAR */
 function makeSidebarCard(s) {
@@ -836,8 +838,8 @@ buildFilterButtons(
 );
 
 const filterToggleBtn = document.getElementById("filter-toggle");
-const filterPanel     = document.getElementById("filter-panel");
-const sheetBackdrop   = document.getElementById("sheet-backdrop");
+const filterPanel = document.getElementById("filter-panel");
+const sheetBackdrop = document.getElementById("sheet-backdrop");
 
 function openFilterPanel() {
   filterPanel.classList.add("open");

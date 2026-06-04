@@ -177,7 +177,7 @@ header p{
   font-family: inherit;
   transition: all 0.15s;
 }
-.filter-pill:hover                 { border-color: var(--purple); color: var(--purple); }
+.filter-pill:hover { border-color: var(--purple); color: var(--purple); }
 .filter-pill[aria-expanded="true"] { border-color: var(--purple); background: var(--bg); color: var(--purple); }
 
 /* Active filter count badge on the pill */
@@ -390,8 +390,8 @@ header p{
   transition: all 0.15s;
   font-family: inherit;
 }
-.filter-btn:hover    { border-color: var(--purple); color: var(--purple); }
-.filter-btn.active   { background: var(--bg); opacity: 1; }
+.filter-btn:hover { border-color: var(--purple); color: var(--purple); }
+.filter-btn.active { background: var(--bg); opacity: 1; }
 
 /* Show All / Clear All inside drawer */
 .filter-actions {
@@ -764,8 +764,7 @@ header p{
   color:var(--appt);
 }
 
-/* style default Leaflet close (X) button white so it's
-   visible against the coloured popup header */
+/* style default Leaflet close (X) button white so visible against the coloured popup header */
 .leaflet-popup-close-button {
   color:var(--white) !important;
   font-size: 1rem !important;
@@ -789,6 +788,7 @@ header p{
 
 .legend-title {
   font-weight: 700;
+  margin-top: 6px;
   margin-bottom: 6px;
   color:var(--darkgrey);
   font-size: 0.75rem;
@@ -813,16 +813,32 @@ header p{
 .legend-toggle {
   background: none;
   border: none;
+  font-family: 'Raleway-Regular', Helvetica, Arial, Lucida, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
   font-weight: 700;
   font-size: 0.75rem;
   color: var(--darkgrey);
   cursor: pointer;
   padding: 0;
   width: 100%;
-  text-align: left;
-  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-family: inherit;
 }
-.legend-toggle:hover { color: var(--purple); }
+
+.legend-toggle:hover { color: var(--darkpurple); }
+
+/* rotate chevron when open */
+.legend-toggle svg {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+.legend-toggle.open svg {
+  transform: rotate(180deg);
+}
 
 /*BOTTOMFILTER SHEET*/
 .sheet-backdrop {
@@ -920,7 +936,17 @@ footer{
 
   /* Legend collapsed by default on mobile */
   .legend-content { display: none; }
-  .legend { min-width: unset; padding: 6px 10px; }
+  .legend { 
+    min-width: unset; 
+    padding: 6px 10px;
+    /* subtle pulse border to draw attention, removes after user has clicked once */
+    border: 1.5px solid var(--gold); 
+  }
+
+  .legend-toggle {
+    font-size: 0.8rem;
+    color: var(--purple);
+  }
 
   /* BOTTOM SHEET */
      /*The filter-drawer is repurposed as a bottom sheet on mobile.
@@ -968,7 +994,7 @@ footer{
 
   /* cat pills wrap in columns on mobile */
   .cat-btns { gap: 5px; }
-  .cat-btn  { font-size: 0.75rem; padding: 4px 10px; }
+  .cat-btn { font-size: 0.75rem; padding: 4px 10px; }
 }
 
 /*© 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.*/
