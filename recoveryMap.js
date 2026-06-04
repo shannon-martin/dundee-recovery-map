@@ -513,6 +513,11 @@ function renderMapMarkers() {
     if (!servicePassesFilters(s)) return;
     if (!isDayVisible(s.hours[activeDay], s.activityStatus)) return; // hides cloased services
 
+    // open-now filter: if toggle is on, only show services open right now
+    // (only applies when viewing today's tab)
+    if (openNowActive && activeDay === todayAbbr) {
+      if (!isOpenRightNow(s.hours[todayAbbr])) return;
+    }
 
     // only definitively closed pins are faded.
     const todayH = resolveHours(s.hours[activeDay], s.activityStatus);
@@ -539,19 +544,25 @@ function renderMapMarkers() {
 
   // Stats bar
   document.getElementById("count").textContent = shown;
+
   const openLabel = document.getElementById("open-count-label");
+  const openNowLbl = document.getElementById("open-now-label");
+
   if (shown === 0) {
     openLabel.innerHTML = `<span style="color:#a32d2d">No services match or have been selected, try 'Show All' or other filter buttons</span>`;
+    openNowLbl.innerHTML = "";
   } else if (activeDay === todayAbbr) {
     openLabel.innerHTML = `
-    <span style="color:#0f6e56;font-weight:700"> · ${openToday} open today · </span>
+    <span style="color:#0f6e56;font-weight:700">${openToday} open today · </span>
     <span style="color:#0f6e56;font-weight:700">${openNow} open right now</span>
     `;
   } else {
-    const openOnDay = mapServices.filter(s => servicePassesFilters(s) && s.hours[activeDay]).length;
+    const openOnDay = mapServices.filter(s => servicePassesFilters(s) && s.hours[activeDay] && s.hours[activeDay].toLowerCase() !== "closed").length;
     openLabel.innerHTML = `<span style="color:#555">${openOnDay} open on ${DAY_FULL[DAYS.indexOf(activeDay)]}</span>`;
+    openNowLbl.innerHTML = "";
   }
-
+  
+  updateFilterBadge();
   renderSidebar();
 }
   
@@ -629,8 +640,6 @@ function renderSidebar() {
 }
 
 /* BUTTONS */
-
-
 /* SHOW ALL */
 document.getElementById("show-all-filters").onclick = () => {
   // restore all sets to full
@@ -676,13 +685,22 @@ document.getElementById("clear-filters").onclick = () => {
 
 /* DAYS */
 const dayContainer = document.getElementById("day-btns");
+const calendarIcon = `<svg width="13" height="13" viewBox="0 0 24 24"
+  fill="none" stroke="currentColor" stroke-width="2.2"
+  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="3" y="4" width="18" height="18" rx="2"/>
+  <line x1="3"  y1="10" x2="21" y2="10"/>
+  <line x1="8"  y1="2"  x2="8"  y2="6"/>
+  <line x1="16" y1="2"  x2="16" y2="6"/>
+</svg>`;
 
 DAYS.forEach((d, i) => {
   const btn = document.createElement("button");
   btn.className = "day-btn"
     + (i === todayIdx ? " today-btn" : "") // adds the "today-btn" class
     + (d === activeDay ? " active" : ""); //  adds "active" initially (today's btn)
-  btn.textContent = d + (i === todayIdx ? " <" : ""); // mark today visual
+    btn.innerHTML = (i === todayIdx ? calendarIcon + " " : "") + d;
+  //btn.textContent = d + (i === todayIdx ? " <" : ""); // mark today visual
   btn.title = DAY_FULL[i] + (i === todayIdx ? " (today)" : ""); // day name tooltip on hover
 
   /* updates activeDay state variable, removes "active" from all day buttons, adds "active" back to just the clicked button, calls buildMarkers() to re-render the map */
@@ -816,6 +834,124 @@ buildFilterButtons(
   (btn, opt) => { btn.style.opacity = "1"; },
   (btn, opt) => { btn.style.opacity = "0.45"; }
 );
+
+const filterToggleBtn = document.getElementById("filter-toggle");
+const filterPanel     = document.getElementById("filter-panel");
+const sheetBackdrop   = document.getElementById("sheet-backdrop");
+
+function openFilterPanel() {
+  filterPanel.classList.add("open");
+  filterPanel.setAttribute("aria-hidden", "false");
+  filterToggleBtn.setAttribute("aria-expanded", "true");
+
+  // mobile: also show the backdrop
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    sheetBackdrop.style.display = "block";
+    // force reflow so the opacity transition fires
+    sheetBackdrop.getBoundingClientRect();
+    sheetBackdrop.classList.add("visible");
+  }
+}
+
+function closeFilterPanel() {
+  filterPanel.classList.remove("open");
+  filterPanel.setAttribute("aria-hidden", "true");
+  filterToggleBtn.setAttribute("aria-expanded", "false");
+
+  sheetBackdrop.classList.remove("visible");
+  // wait for fade-out before hiding
+  sheetBackdrop.addEventListener("transitionend", () => {
+    sheetBackdrop.style.display = "none";
+  }, { once: true });
+}
+
+filterToggleBtn.addEventListener("click", () => {
+  const isOpen = filterPanel.classList.contains("open");
+  isOpen ? closeFilterPanel() : openFilterPanel();
+});
+
+// tapping the backdrop closes the sheet on mobile
+sheetBackdrop.addEventListener("click", closeFilterPanel);
+
+// FILTER BADGE COUNT
+/* Counts how many filter groups have anything deactivated,
+   so the badge reflects "active" (non-default) filter state. */
+
+const filterBadge = document.getElementById("filter-badge");
+
+function updateFilterBadge() {
+  // count how many filter groups are not fully selected
+  let activeFilterGroups = 0;
+  if (activeCats.size < Object.keys(CATEGORIES).length) activeFilterGroups++;
+  if (activeCosts.size < COST_OPTS.length) activeFilterGroups++;
+  if (activeGrps.size < GRP_OPTS.length) activeFilterGroups++;
+  if (activeAccess.size < ACCESS_OPTS.length) activeFilterGroups++;
+  
+  if (activeFilterGroups > 0) {
+    filterBadge.textContent = activeFilterGroups;
+    filterBadge.classList.add("visible");
+  } else {
+    filterBadge.textContent = "0";
+    filterBadge.classList.remove("visible");
+  }
+  /* FULL count of all UNSELECTED cats
+  const totalCats = Object.keys(CATEGORIES).length;
+  const totalCosts = COST_OPTS.length;
+  const totalGrps = GRP_OPTS.length;
+  const totalAccess = ACCESS_OPTS.length;
+  
+  const inactive =
+    (totalCats - activeCats.size)  +
+    (totalCosts - activeCosts.size) +
+    (totalGrps - activeGrps.size)  +
+    (totalAccess - activeAccess.size);
+  
+  if (inactive > 0) {
+    filterBadge.textContent = inactive;
+    filterBadge.classList.add("visible");
+  } else {
+    filterBadge.textContent = "0";
+    filterBadge.classList.remove("visible");
+  }
+    */
+}
+// OPEN NOW TOGGLE
+/* Parses time strings like "09:30-12:00" or "09:30-12:00 / 13:00-15:00"
+   and checks whether the current clock time falls within any session.
+   Returns false safely for unparseable formats. */
+
+let openNowActive = false;
+
+function isOpenRightNow(hoursStr) {
+  if (!hoursStr) return false;
+  const str = hoursStr.toLowerCase().trim();
+  if (str === "closed" || str === "unknown" || str === "by appointment") return false;
+
+  const now = new Date();
+  const nowMins = now.getHours() * 60 + now.getMinutes();
+
+  // handle multiple sessions joined by " / "
+  const sessions = str.split(/\s*\/\s*/);
+
+  return sessions.some(session => {
+    // strip any bracketed notes e.g. "(drop-in)" or "(last assessment at 11:00)"
+    const clean = session.replace(/\(.*?\)/g, "").trim();
+    const match = clean.match(/^(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})$/);
+    if (!match) return false;
+    const openMins = parseInt(match[1]) * 60 + parseInt(match[2]);
+    const closeMins = parseInt(match[3]) * 60 + parseInt(match[4]);
+    return nowMins >= openMins && nowMins < closeMins;
+  });
+}
+
+const openNowBtn = document.getElementById("open-now-btn");
+
+openNowBtn.addEventListener("click", () => {
+  openNowActive = !openNowActive;
+  openNowBtn.setAttribute("aria-pressed", String(openNowActive));
+  renderMapMarkers();
+});
 
 /* SERACH */
 /* addEventListener("input", handler) fires on every

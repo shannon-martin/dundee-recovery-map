@@ -13,74 +13,100 @@
   <body>
   <header>
   <div class="header-text">
-    <h1>Dundee Recovery Map</h1>
-    <p></p>
+    <p>Supporting recovery across Dundee</p>
+    <h1><span>Dundee Recovery Road Map</span></h1>
+    
   </div>
   <!--<div class="today-badge" id="today-label">Loading...</div>-->
   </header>
 
     <main>
-
-      <div class="controls">
-
-      <!-- Row 1: Day buttons, categories, and search bar -->
-      <div class="controls-row">
+      <!-- DAY BTNS -->
+      <div class="day-bar">
         <div class="day-btns" id="day-btns"></div>
-        <div class="divider"></div>
-        <div class="cat-btns" id="cat-btns"></div>
-        <div class="search-box">
-          <input type="text" id="search" placeholder="Search services..."/>
-        </div>
       </div>
 
-      <!-- Row 2: Other grouping filters-->
-      <details class="filter-panel">
-        <summary class="filter-panel-summary">⚙ Filters</summary>
-        <div class="controls-row filter-row">
-            <span class="filter-label">Cost:</span>
-            <div class="filter-btns" id="cost-btns"></div>
-            <div class="divider"></div>
-            <span class="filter-label">Target group:</span>
-            <div class="filter-btns" id="grp-btns"></div>
-            <div class="divider"></div>
-            <span class="filter-label">Access:</span>
-            <div class="filter-btns" id="access-btns"></div>
-        </div>
-      </details>
-      <div class="controls-row filter-action-row">
-      <button class="filter-action-btn show-all" id="show-all-filters">
-        ◉ Show all
+      <!-- FILTER BAR (Filters, Open Now toggle, search) -->
+    <div class="filter-bar">
+      <button class="filter-pill" id="filter-toggle" aria-expanded="false" aria-controls="filter-panel">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+        Filters
+        <span class="filter-badge" id="filter-badge" aria-label="active filters">0</span>
       </button>
-      <button class="filter-action-btn clear-all" id="clear-filters">
-        ○ Clear all
+
+      <button class="open-now-toggle" id="open-now-btn" aria-pressed="false">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Open now
       </button>
+
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Search services…" aria-label="Search services"/>
+      </div>
     </div>
 
-
-    </div>
-
+    <!-- STATS BAR  -->
     <div class="stats-bar">
       <span>Showing <strong id="count">0</strong> services</span>
       <span id="open-count-label"></span>
-      <span style="margin-left:auto;color:#888">
-         · Click a pin for details
-      </span>
+      <span id="open-now-label"></span>
     </div>
 
-  <!--MAP | SIDEBAR LAYOUT-->
-  <div class="map-and-sidebar">
+    <!-- MAP, FILTER PANEL, SIDEBAR -->
+    <div class="map-and-sidebar">
 
-    <!-- Map area --> 
-    <div class="map-column">
-    <div id="map"></div>
+      <!-- Filter drawer (desktop: persistent left panel) -->
+      <aside class="filter-drawer" id="filter-panel" aria-label="Filters" aria-hidden="true">
+        <div class="filter-drawer-inner">
+          <p class="filter-hint">
+            All services shown by default, use the filter buttons below to narrow down results.
+          </p>
+          <div class="filter-section">
+            <span class="filter-section-label">Category</span>
+            <div class="cat-btns" id="cat-btns"></div>
+          </div>
 
-    <div class="legend" id="legend">
-        <button class="legend-toggle" aria-expanded="false">
-        Service types
-        </button>
-        <div class="legend-content"></div>
-    </div>
-    </div>
+          <div class="filter-section">
+            <span class="filter-section-label">Cost</span>
+            <div class="filter-btns" id="cost-btns"></div>
+          </div>
+
+          <div class="filter-section">
+            <span class="filter-section-label">Target group</span>
+            <div class="filter-btns" id="grp-btns"></div>
+          </div>
+
+          <div class="filter-section">
+            <span class="filter-section-label">Access type</span>
+            <div class="filter-btns" id="access-btns"></div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="filter-action-btn show-all" id="show-all-filters">
+              <svg width="13" height="13" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"/>
+              </svg>Select all</button>
+            <button class="filter-action-btn clear-all" id="clear-filters">
+              <svg width="13" height="13" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="18" y1="6"  x2="6"  y2="18"/>
+                  <line x1="6"  y1="6"  x2="18" y2="18"/>
+              </svg>Clear all</button>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Map area -->
+      <div class="map-column">
+        <div id="map"></div>
+        <div class="legend" id="legend">
+          <button class="legend-toggle" aria-expanded="false">Service types</button>
+          <div class="legend-content"></div>
+        </div>
+      </div>
 
 
     <!-- Sidebar: UK/Scotland/city-wide services with no pin location.-->
@@ -98,10 +124,42 @@
     </aside>
 
   </div>
+    <!-- (mobile only) bottom filter sheet layout -->
+    <div class="sheet-backdrop" id="sheet-backdrop" aria-hidden="true"></div>
     </main>
+
   <footer>
-  <!--© 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.-->
-  </footer>
+  <div class="footer-inner">
+
+    <div class="footer-col">
+      <h3 class="footer-heading">About</h3>
+      <p>Created as part of a project to improve access to recovery services 
+      across Dundee and the wider Tay Cities region, developed in 
+      partnership with Parish Nursing Dundee.</p>
+      <p>To update a service listing: <a href="name@email.com">contact us</a></p>
+    </div>
+
+    <div class="footer-col">
+      <h3 class="footer-heading">Information</h3>
+      <p>Service information is provided for general guidance only. 
+      Always contact services directly to confirm current availability.</p>
+      <ul class="footer-links">
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/about.html">About this project</a></li>
+      </ul>
+    </div>
+    <!--
+    <div class="footer-col footer-col--disclaimer">
+      <p></p>
+    </div>-->
+
+  </div>
+
+  <div class="footer-copy">
+    ©2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application. Service data is provided for informational purposes only, always contact services directly to confirm details.
+  </div>
+</footer>
+
   </body>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
