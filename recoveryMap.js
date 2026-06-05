@@ -627,7 +627,7 @@ function makeSidebarCard(s) {
 }
 
 function renderSidebar() {
-  const panel   = document.getElementById("sidebar-list");
+  const panel = document.getElementById("sidebar-list");
   const counter = document.getElementById("sidebar-count");
   if (!panel) return;
 
@@ -639,7 +639,58 @@ function renderSidebar() {
     return;
   }
   panel.innerHTML = visible.map(makeSidebarCard).join("");
+
+  // attach mobile detail sheet listeners after DOM is populated
+  if (window.innerWidth <= 768) {
+    panel.querySelectorAll(".sidebar-card").forEach((card, i) => {
+      card.style.cursor = "pointer";
+      card.addEventListener("click", () => openDetailSheet(visible[i]));
+    });
+  }
 }
+
+/* MOBILE SIDEBARDETAIL SHEET */
+function makeDetailSheetContent(s) {
+  const c = CATEGORIES[s.cat] || { color: "#555", light: "#eee" };
+  const todayH = resolveHours(s.hours[todayAbbr], s.activityStatus);
+  const chipCls = todayH.cls === "closed" ? "closed" : todayH.cls === "hours-appt" ? "appt" : todayH.cls === "hours-unknown" ? "unknown" : "open";
+  const chipTxt = todayH.cls === "closed" ? "Closed today" : todayH.cls === "hours-appt" ? "By appointment" : todayH.cls === "hours-unknown" ? "Hours unknown" : "Open today";
+
+  return `
+    <div class="sheet-service-header" style="border-left: 4px solid ${c.color}; padding-left: 10px; margin-bottom: 12px;">
+      <div class="sheet-service-name">${s.org}</div>
+      <div class="sheet-service-sub">${s.name !== s.org ? s.name : ""}</div>
+      <span class="open-chip ${chipCls}" style="margin-left:0;margin-top:4px;display:inline-block">${chipTxt}</span>
+    </div>
+
+    <div class="sheet-section-label">About</div>
+    <p class="sheet-body-text">${s.desc || "No description available."}</p>
+
+    ${s.address ? `
+    <div class="sheet-section-label">Address</div>
+    <p class="sheet-body-text">${s.address}</p>` : ""}
+
+    ${s.phone ? `
+    <div class="sheet-section-label">Phone</div>
+    <p class="sheet-body-text"><a href="tel:${s.phone}">${s.phone}</a></p>` : ""}
+
+    ${s.website ? `
+    <div class="sheet-section-label">Website</div>
+    <p class="sheet-body-text"><a href="${s.website}" target="_blank" rel="noopener">
+      ${s.website.replace(/^https?:\/\//, "")}
+    </a></p>` : ""}
+
+    <div class="sheet-section-label">Opening hours</div>
+    <div class="sheet-hours">${makeHoursGrid(s.hours, s.activityStatus)}</div>
+
+    <div class="sheet-meta">
+      <span><strong>Cost:</strong> ${s.cost || "Unknown"}</span>
+      <span><strong>Access:</strong> ${s.activityStatus || "Unknown"}</span>
+      <span><strong>Group:</strong> ${s.targetGroup || "Unknown"}</span>
+    </div>
+  `;
+}
+
 
 /* BUTTONS */
 /* SHOW ALL */
@@ -875,6 +926,41 @@ filterToggleBtn.addEventListener("click", () => {
 
 // tapping the backdrop closes the sheet on mobile
 sheetBackdrop.addEventListener("click", closeFilterPanel);
+
+const detailSheet = document.getElementById("detail-sheet");
+const detailContent = document.getElementById("detail-sheet-content");
+
+function openDetailSheet(s) {
+  console.log("openDetailSheet called", s, detailSheet, detailContent);
+  // reuse the same backdrop, just bump z-index via a class
+  sheetBackdrop.style.display = "block";
+  sheetBackdrop.getBoundingClientRect();
+  sheetBackdrop.classList.add("visible");
+  sheetBackdrop.classList.add("detail-backdrop"); // higher z-index
+
+  detailContent.innerHTML = makeDetailSheetContent(s);
+  detailSheet.setAttribute("aria-hidden", "false");
+  detailSheet.classList.add("open");
+}
+
+function closeDetailSheet() {
+  detailSheet.classList.remove("open");
+  detailSheet.setAttribute("aria-hidden", "true");
+  sheetBackdrop.classList.remove("visible");
+  sheetBackdrop.classList.remove("detail-backdrop");
+  sheetBackdrop.addEventListener("transitionend", () => {
+    sheetBackdrop.style.display = "none";
+  }, { once: true });
+}
+
+// close on backdrop tap
+sheetBackdrop.addEventListener("click", () => {
+  if (detailSheet.classList.contains("open")) {
+    closeDetailSheet();
+  } else {
+    closeFilterPanel();
+  }
+});
 
 // FILTER BADGE COUNT
 /* Counts how many filter groups have anything deactivated,

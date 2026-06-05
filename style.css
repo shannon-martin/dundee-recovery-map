@@ -49,9 +49,9 @@ header h1 {
   margin: 0 0 4px;
   line-height: 1.15;
   display: inline-block;
-  border-bottom: 3px solid var(--gold);
+  /*border-bottom: 3px solid var(--gold);*/
   padding-bottom: 4px;
-}
+} 
 
 header h1::after {
   content: "";
@@ -75,7 +75,7 @@ header p{
 	font-family: 'Raleway-Regular',Helvetica,Arial,Lucida,sans-serif;
 	font-size:1rem;
 	font-variant: small-caps;
-	letter-spacing:0.01em;
+	letter-spacing:0.04em;
 	opacity:0.75;
 	margin-top:2px}
 
@@ -92,6 +92,16 @@ header p{
 .header-text {
   flex: 1;
 }
+
+
+/* DIVIDER 
+.divider { 
+width: 1px; 
+background: var(--gold); 
+height: 24px; 
+align-self: center; }
+
+*/
 
 
 /*DAYS*/
@@ -523,7 +533,7 @@ header p{
 }
 
 .sidebar-card-header {
-  padding: 8px 10px;
+  padding: 12px 10px;
   background: var(--bg);
   /* border-left colour is set inline from category colour */
 }
@@ -583,10 +593,6 @@ header p{
 }
 
 
-/* DIVIDER 
-.divider { width: 1px; background: var(--border); height: 24px; align-self: center; }
-
-*/
 
 
 
@@ -814,7 +820,7 @@ header p{
   background: none;
   border: none;
   font-family: 'Raleway-Regular', Helvetica, Arial, Lucida, sans-serif;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   letter-spacing: 0.01em;
   font-weight: 700;
   font-size: 0.75rem;
@@ -826,7 +832,7 @@ header p{
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  font-family: inherit;
+  /* font-family: inherit; */
 }
 
 .legend-toggle:hover { color: var(--darkpurple); }
@@ -915,13 +921,98 @@ footer{
   text-align: center;
   letter-spacing: 0.04em;
 }
+
+/*MOBILE REMOTE SERVICE SHEET*/
+.detail-sheet {
+  position: fixed;
+  padding: 8px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 80vh;
+  background: var(--white);
+  border-radius: 16px 16px 0 0;
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+  z-index: 1300; /* above filter sheet */
+  transform: translateY(100%);
+  transition: transform var(--sheet-speed) ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.detail-sheet.open {
+  transform: translateY(0);
+}
+
+.detail-sheet-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  margin: 12px auto 0;
+  flex-shrink: 0;
+}
+
+.detail-sheet-content {
+  padding: 12px 16px px;
+  flex: 1;
+}
+
+.sheet-backdrop.detail-backdrop {
+  z-index: 1250; /* between filter sheet (1200) and detail sheet (1300) */
+}
+
+.sheet-service-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--darkgrey);
+  margin-bottom: 2px;
+}
+.sheet-service-sub {
+  font-size: 0.8rem;
+  color: var(--grey);
+  margin-bottom: 4px;
+}
+.sheet-section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+  margin: 12px 0 4px;
+}
+.sheet-body-text {
+  font-size: 0.82rem;
+  color: #444;
+  line-height: 1.5;
+  margin: 0;
+}
+.sheet-body-text a { color: var(--darkpurple); word-break: break-all; }
+.sheet-hours { font-size: 0.78rem; }
+.sheet-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: #555;
+}
+
+/* only render sheet on mobile */
+@media (min-width: 769px) {
+  .detail-sheet { display: none; }
+}
+
 /*RESPONSIVE*/
 @media (max-width: 768px) {
 
-  /* Stack sidebar below map */
+  /* stack sidebar below map */
   .map-and-sidebar { flex-direction: column; }
 
-  /* Hide the desktop drawer — we use bottom sheet instead */
+  /* hide the desktop drawer, use bottom sheet instead */
   .filter-drawer {
     width: 0 !important;
     border-right: none;
@@ -934,13 +1025,13 @@ footer{
   #map { min-height: 60vh; }
   .sidebar { max-height: 35vh; }
 
-  /* Legend collapsed by default on mobile */
+  /* legend collapsed by default on mobile */
   .legend-content { display: none; }
   .legend { 
     min-width: unset; 
     padding: 6px 10px;
-    /* subtle pulse border to draw attention, removes after user has clicked once */
-    border: 1.5px solid var(--gold); 
+    /* gold border indicates interactivity on mobile */
+    border: 1px solid var(--gold); 
   }
 
   .legend-toggle {
