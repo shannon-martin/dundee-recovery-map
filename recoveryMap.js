@@ -528,6 +528,7 @@ function renderMapMarkers() {
     const m = L.marker([s.lat, s.lng], { icon, opacity })
       .bindPopup(makePopup(s), { 
         maxWidth:310, 
+        autoPan: !isMobile,
         autoPanPaddingTopLeft: [20, 20], 
         autoPanPaddingBottomRight: [20, 100], // extra space for popup height
       })
