@@ -931,7 +931,7 @@ const detailSheet = document.getElementById("detail-sheet");
 const detailContent = document.getElementById("detail-sheet-content");
 
 function openDetailSheet(s) {
-  console.log("openDetailSheet called", s, detailSheet, detailContent);
+  //console.log("openDetailSheet called", s, detailSheet, detailContent);
   // reuse the same backdrop, just bump z-index via a class
   sheetBackdrop.style.display = "block";
   sheetBackdrop.getBoundingClientRect();

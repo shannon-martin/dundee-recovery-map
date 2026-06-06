@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Dundee Recovery Map</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./about.css">
+    <link rel="icon" href="./assets/icon.png" type="image/png">
+</head>
+<body>
+    <header>
+    <div class="header-text">
+      <p>Supporting recovery across Dundee</p>
+      <h1><span>Dundee Recovery Map</span></h1>
+    </div>
+    <nav class="header-nav">
+      <a href="./index.html">Back to Recovery Map</a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <div class="page-container page-container--narrow">
+
+      <div class="page-hero">
+        <h2>Get in touch</h2>
+        <p class="page-lead">
+          Use this form to report an error in a service listing, suggest a new service, or get in touch about the project.
+        </p>
+      </div>
+      <div class="contact-layout">
+
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/xqeoepnn"
+          method="POST"
+          id="contact-form"
+        >
+          <!-- catch spam bots -->
+          <input type="text" name="_gotcha" style="display:none">
+
+          <!-- redirect back to main site after submission -->
+          <input type="hidden" name="_next" value="https://dundeerecoverymap.org/contact.html?sent=true">
+
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="e.g. Jane Smith"
+              required
+              autocomplete="name"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email">Your email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="e.g. jane@example.com"
+              required
+              autocomplete="email"
+            >
+            <span class="form-hint">I'll only use this to reply to your message.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="reason">Reason for contact</label>
+            <select id="reason" name="reason" required>
+              <option value="" disabled selected>Select a reason...</option>
+              <option value="Update a service listing">Update a service listing</option>
+              <option value="Report an error">Report an error</option>
+              <option value="Add a new service">Add a new service</option>
+              <option value="Partnership or funding enquiry">Partnership or funding enquiry</option>
+              <option value="General enquiry">General enquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Please describe your enquiry, including any relevant service names, addresses, or corrections..."
+              required
+            ></textarea>
+          </div>
+
+          <p class="form-privacy-note">
+            Your name, email, and message will be sent securely via
+            <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">FormSpree</a> 
+            and used only to respond to your enquiry. Submissions are retained for up to 30 days. See <a href="./privacy.html">Privacy Policy</a> for details.
+          </p>
+
+          <button type="submit" class="form-submit">Send message</button>
+
+        </form>
+
+        <!-- success message shown by JS when ?sent=true is in URL -->
+        <div class="form-success" id="form-success" style="display:none">
+          <div class="form-success-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+            </svg></div>
+          <h3>Message sent</h3>
+          <p>Thanks for getting in touch. I'll get back to you as soon as possible.</p>
+          <a href="./index.html" class="page-btn">Back to Recovery Map</a>
+        </div>
+
+        <aside class="contact-aside">
+          <div class="page-card">
+            <h3>Updating a listing</h3>
+            <p>If you manage a recovery service listed on this map and need to update your hours, address, or contact details, use the form and select "Update a service listing.""
+            </p>
+          </div>
+          <div class="page-card">
+            <h3>Response times</h3>
+            <p>This is currently an independently maintained project. I aim to respond within a few working days, though this may vary.
+            </p>
+          </div>
+          <div class="page-card emergency-card">
+            <h3 >In an emergency</h3>
+            <p>This form is not monitored in real time. If you or someone you know needs immediate support, please call <strong>999</strong> or the <strong>Samaritans on 116 123</strong> (free, 24/7).
+            </p>
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h3 class="footer-heading">About</h3>
+        <p>Created as part of a project to improve access to recovery services across Dundee, developed in partnership with Parish Nursing Dundee.</p>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-heading">Information</h3>
+        <ul class="footer-links">
+          <li><a href="./about.html">About this project</a></li>
+          <li><a href="./privacy.html">Privacy Policy</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copy">
+      ©2026 Shannon Martin. All rights reserved. Service data is provided for informational purposes only, always contact services directly to confirm details.
+    </div>
+  </footer>
+
+  <script>
+    // show success message if redirected back with sent=true
+    if (window.location.search.includes("sent=true")) {
+      document.getElementById("contact-form").style.display = "none";
+      document.getElementById("form-success").style.display = "flex";
+    }
+  </script>
+</body>
+</html>
