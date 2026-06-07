@@ -259,6 +259,28 @@ align-self: center; }
 .open-now-toggle:hover { border-color: var(--green); color: var(--green); }
 .open-now-toggle[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: var(--white); }
 
+
+.filter-confirm {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: var(--darkpurple);
+  color: var(--white);
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s;
+  margin-top: 4px;
+}
+.filter-confirm:hover { background: var(--purple); }
+
 /*SEARCH*/
 .search-box { margin-left: auto; }
 .search-box input {
@@ -372,6 +394,7 @@ align-self: center; }
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-sizing: border-box;
 }
 
 .filter-hint {
@@ -1475,4 +1498,11 @@ footer{
   .cat-btn { font-size: 0.75rem; padding: 4px 10px; }
 }
 
+
+  .contact-layout {
+      grid-template-columns: 1fr;
+    }
+  .contact-aside {
+    order: -1; /* moves info cards above the form on mobile */
+  }
 /*© 2026 Shannon Martin. All rights reserved. Created as part of a prototype services-mapping application.*/

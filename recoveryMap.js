@@ -550,7 +550,7 @@ function renderMapMarkers() {
   const openNowLbl = document.getElementById("open-now-label");
 
   if (shown === 0) {
-    openLabel.innerHTML = `<span style="color:#a32d2d">No services match or have been selected, try 'Show All' or other filter buttons</span>`;
+    openLabel.innerHTML = `<span style="color:#a32d2d">No services match or have been selected, try 'Select All' or apply filter buttons</span>`;
     openNowLbl.innerHTML = "";
   } else if (activeDay === todayAbbr) {
     openLabel.innerHTML = `
@@ -929,6 +929,22 @@ filterToggleBtn.addEventListener("click", () => {
 sheetBackdrop.addEventListener("click", closeFilterPanel);
 
 const detailSheet = document.getElementById("detail-sheet");
+let touchStartY = 0;
+
+detailSheet.addEventListener("touchstart", (e) => {
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+detailSheet.addEventListener("touchend", (e) => {
+  const touchEndY = e.changedTouches[0].clientY;
+  const swipeDistance = touchEndY - touchStartY;
+
+  // if swiped down more than 80px, close the sheet
+  if (swipeDistance > 80) {
+    closeDetailSheet();
+  }
+}, { passive: true });
+
 const detailContent = document.getElementById("detail-sheet-content");
 
 function openDetailSheet(s) {
@@ -953,6 +969,24 @@ function closeDetailSheet() {
     sheetBackdrop.style.display = "none";
   }, { once: true });
 }
+
+document.getElementById("filter-confirm")
+  .addEventListener("click", closeFilterPanel);
+
+let filterTouchStartY = 0;
+
+filterPanel.addEventListener("touchstart", (e) => {
+  filterTouchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+filterPanel.addEventListener("touchend", (e) => {
+  const touchEndY = e.changedTouches[0].clientY;
+  const swipeDistance = touchEndY - filterTouchStartY;
+
+  if (swipeDistance > 80) {
+    closeFilterPanel();
+  }
+}, { passive: true });
 
 // close on backdrop tap
 sheetBackdrop.addEventListener("click", () => {
