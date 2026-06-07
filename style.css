@@ -170,15 +170,15 @@ align-self: center; }
   color:var(--purple);
 }
 
+.day-btn.today-btn {
+  border-color:var(--darkpurple);
+  color:var(--darkpurple);
+}
+
 .day-btn.active {
   background:var(--darkpurple);
   border-color:var(--darkpurple);
   color:var(--white);
-}
-
-.day-btn.today-btn {
-  border-color:var(--darkpurple);
-  color:var(--darkpurple);
 }
 
 .day-btn.today-btn.active {

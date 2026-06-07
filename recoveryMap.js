@@ -341,6 +341,12 @@ const map = L.map("map", {
   maxZoom: 19
 }).setView([56.462, -2.971], 14);
 
+const mapContainer = document.getElementById("map");
+const resizeObserver = new ResizeObserver(() => {
+  map.invalidateSize({ animate: false });
+});
+resizeObserver.observe(mapContainer);
+
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   maxZoom: 19
@@ -762,6 +768,13 @@ DAYS.forEach((d, i) => {
     activeDay = d;
     document.querySelectorAll(".day-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
+
+    // if switching away from today, turn off open now
+    if (d !== todayAbbr && openNowActive) {
+      openNowActive = false;
+      openNowBtn.setAttribute("aria-pressed", "false");
+     }
+    
     renderMapMarkers();
   };
 
@@ -1058,7 +1071,7 @@ function isOpenRightNow(hoursStr) {
   const sessions = str.split(/\s*\/\s*/);
 
   return sessions.some(session => {
-    // strip any bracketed notes e.g. "(drop-in)" or "(last assessment at 11:00)"
+    // strip any bracketed notes e.g. "(drop-in)"
     const clean = session.replace(/\(.*?\)/g, "").trim();
     const match = clean.match(/^(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})$/);
     if (!match) return false;
@@ -1073,6 +1086,21 @@ const openNowBtn = document.getElementById("open-now-btn");
 openNowBtn.addEventListener("click", () => {
   openNowActive = !openNowActive;
   openNowBtn.setAttribute("aria-pressed", String(openNowActive));
+
+  // if turning on, switch to today
+  if (openNowActive) {
+    activeDay = todayAbbr;
+
+    // update day button visuals
+    document.querySelectorAll(".day-btn").forEach(btn => {
+    btn.classList.remove("active"); // remove
+  });
+
+    // find and add to today's button
+    const todayBtn = document.querySelector(".day-btn.today-btn");
+    if (todayBtn) todayBtn.classList.add("active");
+  }
+
   renderMapMarkers();
 });
 
